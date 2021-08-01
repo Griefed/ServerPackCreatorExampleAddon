@@ -1,0 +1,98 @@
+import java.text.SimpleDateFormat
+
+plugins {
+    id 'java'
+    id 'idea'
+}
+
+group 'de.griefed'
+version '1.0-SNAPSHOT'
+
+//noinspection GroovyUnusedAssignment
+sourceCompatibility = targetCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    embed
+    implementation.extendsFrom(embed)
+}
+
+dependencies {
+    embed 'com.typesafe:config:1.4.1'
+
+    // Testing
+    testImplementation 'org.mockito:mockito-core:3.11.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+}
+
+test {
+    useJUnitPlatform()
+    // Mention test result in logs
+    testLogging {
+        events "passed",
+                "skipped",
+                "failed"
+    }
+}
+
+// Include specific files in resources folder, like the license and readme.
+tasks.register('about', Copy) {
+    dependsOn tasks.named('clean')
+
+    from layout.projectDirectory.file("LICENSE") into layout.projectDirectory.dir("src/main/resources")
+    from layout.projectDirectory.file("README.md") into layout.projectDirectory.dir("src/main/resources")
+}
+
+tasks.withType(Javadoc) {
+    options.addStringOption('encoding', 'UTF-8')
+}
+
+javadoc {
+    options.memberLevel = JavadocMemberLevel.PRIVATE
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    from {
+        configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
+    //noinspection GroovyAssignabilityCheck
+    manifest {
+        attributes(
+                "Main-Class"     : "de.griefed.serverpackcreatoraddonexample.Main",
+                "Class-Path"     : configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
+                "Description"    : "Example addon for ServerPackCreator",
+                "Built-By"       : System.getProperty("user.name"),
+                "Build-Timestamp": new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                "Created-By"     : "Gradle ${gradle.gradleVersion}",
+                "Build-Jdk"      : "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
+                "Build-OS"       : "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
+        )
+    }
+    exclude (
+            'META-INF/org',
+            'META-INF/org/**',
+            'META-INF/versions',
+            'META-INF/versions/**',
+            'META-INF/DEPENDENCIES',
+            'META-INF/LICENSE',
+            'META-INF/NOTICE',
+            'META-INF/CHANGES',
+            'META-INF/LICENSE.txt',
+            'META-INF/NOTICE.txt',
+            'META-INF/README.md',
+            'Log4j-**'
+    )
+}
