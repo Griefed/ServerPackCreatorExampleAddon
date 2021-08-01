@@ -59,7 +59,7 @@ jobs:
           echo "New version: ${NEW_VERSION}"
           echo "Github username: ${GITHUB_ACTOR}"
           ./gradlew about
-          ./gradlew -Pversion=${NEW_VERSION} --info -x test
+          ./gradlew -Pversion=${NEW_VERSION} publish --info -x test
       - name: List files
         run: ls -ahl build/libs
 
