@@ -2,8 +2,7 @@
 /tests
 /build
 /.gradle
-gradlew
-gradlew.bat
+
 
 # Editor directories and files
 .idea
