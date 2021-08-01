@@ -1,3 +1,11 @@
+### [1.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/1.0.0...1.0.1) (2021-08-01)
+
+
+### 🛠 Fixes
+
+* Fix release assets on GitLab ([6e7d6fb](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/6e7d6fbedc6b50cc62d3410c3e691da9b72500a8))
+* Fix release on GitHub ([3c8d25d](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/3c8d25dd4958db107ac6f6424c7340cb5f8c96d1))
+
 ## [1.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/...1.0.0) (2021-08-01)
 
 
