@@ -5,6 +5,8 @@ This is an example server pack addon for [ServerPackCreator](https://github.com/
 Server pack addons for ServerPackCreator are executed right after a server pack was generated, allowing for additional
 operations and more customization of server packs. Users are free to write their own addons, distribute and share them.
 
+This example provides JavaDocs and tests.
+
 # 1. The reason for allowing ServerPackCreator to run addons:
 
 There are things which people want to do with their server packs which could most certainly be automated. Some of those
@@ -66,9 +68,12 @@ or similar methods. These are caught by ServerPacKCreator and added to the addon
 
 1. Fork and clone this repository
 2. Make your changes and additions.
-3. Build with `gradlew about build`.
+3. Build with `gradlew about build --info`.
 4. Copy the JAR-file from `build/libs` to the addons-directory created by ServerPackCreator.
 5. Run ServerPackCreator!
+
+**NOTE: Please be aware that you might need to change the tests I've provided as an example for this addon. If you change the
+base behaviour of this example, the chance that you will have to make changes to tests, too, is quite high.**
 
 ## 4. Contributing
 
@@ -83,4 +88,4 @@ Example:
 
 | Addon | Creator | Description |
 | :---- | :------ | :---------- |
-| [ExampleAddon]() | Griefed | An example addon providing a starting point for addon development. |
+| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon) | Griefed | An example addon providing a starting point for addon development. |
