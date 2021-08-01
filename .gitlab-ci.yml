@@ -31,8 +31,6 @@ Gradle Test:
       build
     - LC_COLLATE=C ls -ahl --group-directories-first --color=auto
       build/libs
-    - LC_COLLATE=C ls -ah --group-directories-first --color=auto
-      build/libs/libraries
     - echo "**** Renaming files to please the eye ****"
     - mv
       build/libs/serverpackcreatorexampleaddon.jar
@@ -107,8 +105,6 @@ Build Release:
       build
     - LC_COLLATE=C ls -ahl --group-directories-first --color=auto
       build/libs
-    - LC_COLLATE=C ls -ah --group-directories-first --color=auto
-      build/libs/libraries
     - echo "**** Renaming files to please the eye ****"
     - mv
       build/libs/serverpackcreatorexampleaddon.jar
