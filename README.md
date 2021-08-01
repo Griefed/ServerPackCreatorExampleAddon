@@ -88,4 +88,4 @@ Example:
 
 | Addon | Creator | Description |
 | :---- | :------ | :---------- |
-| [ExampleAddon]() | Griefed | An example addon providing a starting point for addon development. |
+| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon) | Griefed | An example addon providing a starting point for addon development. |
