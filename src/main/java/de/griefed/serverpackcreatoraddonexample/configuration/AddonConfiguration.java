@@ -24,9 +24,10 @@ package de.griefed.serverpackcreatoraddonexample.configuration;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
+import de.griefed.serverpackcreatoraddonexample.Main;
 
-import java.io.File;
-import java.util.Objects;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Example class for reading the addon.conf-file and getting values from it.
@@ -39,18 +40,23 @@ public class AddonConfiguration {
     /**
      * Constructor for the AddonConfiguration.class which automatically parses the addon.conf-file in the JAR-file.
      * @author Griefed
-     * @param injectedAddonConfiguration Either instantiate this class with your own {@link Config} object, or let it create
-     *                                   one using the addon.conf-file.
      */
-    public AddonConfiguration(Config injectedAddonConfiguration) {
+    public AddonConfiguration() {
 
-        if (injectedAddonConfiguration == null) {
-            ClassLoader classLoader = getClass().getClassLoader();
-            File addonConfigFile = new File(Objects.requireNonNull(classLoader.getResource("addon.conf")).getFile());
-            this.ADDONCONFIGURATION = ConfigFactory.parseFile(addonConfigFile);
-        } else {
-            this.ADDONCONFIGURATION = injectedAddonConfiguration;
+        URL urlToConfig = null;
+
+        String addonLocation = null;
+
+        try {
+            addonLocation = Main.class.getProtectionDomain().getCodeSource().getLocation().getFile();
+            urlToConfig = new URL(String.format("jar:file:%s!/addon.conf", addonLocation));
+        } catch (MalformedURLException  ex) {
+            ex.printStackTrace();
         }
+
+        assert urlToConfig != null;
+        this.ADDONCONFIGURATION = ConfigFactory.parseURL(urlToConfig);
+
     }
 
     /**
@@ -69,7 +75,7 @@ public class AddonConfiguration {
      * work with the addon.conf-file.
      */
     public String exampleConfig() {
-        return getAddonConfiguration().getString("serverpackcreator.addon.someconfig");
+        return getAddonConfiguration().getString("someconfig");
     }
 
 }
