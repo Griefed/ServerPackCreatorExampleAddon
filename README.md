@@ -7,6 +7,35 @@ operations and more customization of server packs. Users are free to write their
 
 This example provides JavaDocs and tests.
 
+Using this example with a [dev-build of ServerPackCreator](https://git.griefed.de/Griefed/ServerPackCreator/-/pipelines?page=1&scope=all&ref=webservice) would result in the following output to the addons.log file:
+
+```
+2021-08-02T20:53:28,077 DEBUG [pool-2-thread-1] (AddonsHandler.java:240) - Addon work-directory is: work\temp\serverpackcreatorexampleaddon
+2021-08-02T20:53:28,077 DEBUG [pool-2-thread-1] (AddonsHandler.java:254) - ProcessBuilder command is: [C:/Program Files/Java/jdk1.8.0_291/bin/java.exe, -jar, C:/Minecraft/ServerPackCreator/addons/serverpackcreatorexampleaddon.jar, C:/Minecraft/Game/Instances/Survive Create Prosper 4 1.16.5, AmbientSounds, BackTools, BetterAdvancement, BetterFoliage, BetterPing, BetterPlacement, Blur, cherished, ClientTweaks, Controlling, customdiscordrpc, CustomMainMenu, DefaultOptions, durability, DynamicSurroundings, FullscreenWindowed, iemzoom, jeiintegration, jei-professions, JustEnoughResources, keywizard, modnametooltip, MouseTweaks, multihotbar-, Neat, OldJavaWarning, PackMenu, prciseblockplacing, ResourceLoader, SimpleDiscordRichPresence, SpawnerFix, timestamps, TipTheScales, WorldNameRandomizer, config, defaultconfigs, mods, scripts, seeds, C:/Program Files/Java/jdk1.8.0_291/bin/java.exe, 1.16.5, Forge, 36.2.2, true, true, true, true, true, C:/Minecraft/ServerPackCreator]
+2021-08-02T20:53:28,255  INFO [pool-2-thread-1] (AddonsHandler.java:272) - We have recieved the following configuration: [C:/Minecraft/Game/Instances/Survive Create Prosper 4 1.16.5, AmbientSounds, BackTools, BetterAdvancement, BetterFoliage, BetterPing, BetterPlacement, Blur, cherished, ClientTweaks, Controlling, customdiscordrpc, CustomMainMenu, DefaultOptions, durability, DynamicSurroundings, FullscreenWindowed, iemzoom, jeiintegration, jei-professions, JustEnoughResources, keywizard, modnametooltip, MouseTweaks, multihotbar-, Neat, OldJavaWarning, PackMenu, prciseblockplacing, ResourceLoader, SimpleDiscordRichPresence, SpawnerFix, timestamps, TipTheScales, WorldNameRandomizer, config, defaultconfigs, mods, scripts, seeds, C:/Program Files/Java/jdk1.8.0_291/bin/java.exe, 1.16.5, Forge, 36.2.2, true, true, true, true, true, C:/Minecraft/ServerPackCreator]
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - 
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Configuration passed from ServerPackCreator, processed and now usable however we wish.
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - 
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Modpack directory:                                 C:/Minecraft/Game/Instances/Survive Create Prosper 4 1.16.5
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Clientside-only mods:                              [AmbientSounds, BackTools, BetterAdvancement, BetterFoliage, BetterPing, BetterPlacement, Blur, cherished, ClientTweaks, Controlling, customdiscordrpc, CustomMainMenu, DefaultOptions, durability, DynamicSurroundings, FullscreenWindowed, iemzoom, jeiintegration, jei-professions, JustEnoughResources, keywizard, modnametooltip, MouseTweaks, multihotbar-, Neat, OldJavaWarning, PackMenu, prciseblockplacing, ResourceLoader, SimpleDiscordRichPresence, SpawnerFix, timestamps, TipTheScales, WorldNameRandomizer]
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Directories to copy to server pack:                [config, defaultconfigs, mods, scripts, seeds]
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Path to Java installation:                         C:/Program Files/Java/jdk1.8.0_291/bin/java.exe
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Minecraft version:                                 1.16.5
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Specified modloader:                               Forge
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Specified modloader version:                       36.2.2
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to install the modloader server:           true
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to copy the server-icon.png:               true
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to copy the server.properties:             true
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to copy the start scripts:                 true
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to create a ZIP-archive of the server pack:true
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - 
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Example addon configuration for someconfig:        This is an example for working with the addon.conf-file.
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - 
+2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Base path for ServerPackCreator:                   C:/Minecraft/ServerPackCreator
+2021-08-02T20:53:28,259  INFO [pool-2-thread-1] (AddonsHandler.java:284) - All addons executed. Returning to ServerPackCreator.
+
+```
+
 # 1. The reason for allowing ServerPackCreator to run addons:
 
 There are things which people want to do with their server packs which could most certainly be automated. Some of those
