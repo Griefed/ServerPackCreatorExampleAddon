@@ -12,6 +12,28 @@ group 'de.griefed'
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = targetCompatibility = '1.8'
 
+sourceSets {
+    //noinspection GroovyAssignabilityCheck
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        //noinspection GroovyAssignabilityCheck
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+        //noinspection GroovyAssignabilityCheck
+        resources {
+            srcDirs = ['src/test/resources']
+        }
+    }
+}
+
 repositories {
     mavenCentral()
 }
