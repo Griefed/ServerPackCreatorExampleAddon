@@ -26,6 +26,9 @@ import de.griefed.serverpackcreatoraddonexample.configuration.AddonConfiguration
 import de.griefed.serverpackcreatoraddonexample.configuration.ConfigurationHandler;
 import de.griefed.serverpackcreatoraddonexample.configuration.ConfigurationModel;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 
 /**
@@ -49,14 +52,33 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        String configurationWeReceived = Arrays.toString(args);
-
+        // Create an instance of ConfigurationModel for later use.
         ConfigurationModel configurationModel = new ConfigurationModel();
+
+        /*
+         * Creates an instance of ConfigurationHandler, passes the args received from ServerPackCreator and the newly created
+         * instance of ConfigurationModel. ConfigurationHandler writes the contents of args to our ConfigurationModel, so
+         * we can then start working with it.
+         */
         ConfigurationHandler configurationHandler = new ConfigurationHandler(args, configurationModel);
-        AddonConfiguration addonConfiguration = new AddonConfiguration(null);
 
+        /*
+         * Create an instance of AddonConfiguration. This parses the addon.conf-file in the JAR-file. This allows us to
+         * access all configurations inside the configuration-file by either calling addonConfiguration.getString("config-key")
+         * or by writing dedicated methods, such as getAddonConfiguration(), which returns the String
+         * "This is an example for working with the addon.conf-file." from the key "someconfig" in the config-file.
+         */
+        AddonConfiguration addonConfiguration = new AddonConfiguration();
 
-        System.out.println("We have recieved the following configuration: " + configurationWeReceived);
+        try {
+            //Create an example in the work/temp/<addon_name> directory
+            Files.createFile(Paths.get("This_is_an_example_file"));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        // Print the entire configuration, after parsing, to the console to see that everything works as intended.
+        System.out.println("We have recieved the following configuration: " + Arrays.toString(args));
         System.out.println("");
         System.out.println("Configuration passed from ServerPackCreator, processed and now usable however we wish.");
         System.out.println("");
@@ -73,8 +95,11 @@ public class Main {
         System.out.println("Whether to copy the start scripts:                 " + configurationModel.getIncludeStartScripts());
         System.out.println("Whether to create a ZIP-archive of the server pack:" + configurationModel.getIncludeZipCreation());
         System.out.println("");
-        System.out.println("Example addon configuration for serverpackcreator.addon.someconfig: " + addonConfiguration.exampleConfig());
-
+        // Print the example config "someconfig" from our addon.conf file to see that everything works as intended.
+        System.out.println("Example addon configuration for someconfig:        " + addonConfiguration.exampleConfig());
+        System.out.println("");
+        // Print the location of ServerPackCreator, so we know how to access server packs and the like.
+        System.out.println("Base path for ServerPackCreator:                   " + args[12]);
     }
 
 }
