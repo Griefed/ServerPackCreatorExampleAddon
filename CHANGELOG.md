@@ -1,3 +1,28 @@
+## [1.1.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/1.0.1...1.1.0) (2021-08-02)
+
+
+### :scissors: Refactor
+
+* Rewrite configparser in AddonConfiguration ([dade3aa](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/dade3aae909967f55c858878cd8fbddc903af59c))
+
+
+### 🦊 CI/CD
+
+* Explicitly specify source sets ([fdb4099](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/fdb40991cb8ed3bec997201904b966ebbf62fb54))
+* Deploy to GitHub pages on push ([e074834](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/e0748344f98fb238d4231af818c665e6eca089ee))
+
+
+### 🚀 Features
+
+* Add example of ServerPackCreator path passed by the very same. ([b1aafea](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b1aafea9c0e9b913625015b5966dc6df74c44805))
+
+
+### Other
+
+* Add example output produces by this example addon when using it with a dev build of ServerPackCreator 3.x.x ([6c7d3a5](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/6c7d3a583517b7063865cf59c0005f8e425c6aad))
+* Remove some unnecessary whitespace ([e803410](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/e803410c812b0a32046507fb2ae1dc266c054969))
+* **deps:** update dependency gradle to v7.1.1 ([2ec8fdc](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/2ec8fdce4ecb96be2556c3f5642182cee06cbbe7))
+
 ### [1.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/1.0.0...1.0.1) (2021-08-01)
 
 
