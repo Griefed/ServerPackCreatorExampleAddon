@@ -33,7 +33,6 @@ Using this example with a [dev-build of ServerPackCreator](https://git.griefed.d
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - 
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Base path for ServerPackCreator:                   C:/Minecraft/ServerPackCreator
 2021-08-02T20:53:28,259  INFO [pool-2-thread-1] (AddonsHandler.java:284) - All addons executed. Returning to ServerPackCreator.
-
 ```
 
 # 1. The reason for allowing ServerPackCreator to run addons:
@@ -84,9 +83,11 @@ operations.
 
 ## 2.3 Working directory
 
-All addons are run in the <code>work/temp</code>-directory. Be aware of that when creating your addons! This also means
+All addons are run in the <code>work/temp/addon_name</code>-directory. Be aware of that when creating your addons! This also means
 that you should be wary of trying to cleanup the temp-directory yourself, as it could potentially interfere with any other
 addon running after yours! 
+ServerPackCreator also passes the path to itself to any of its addons it executes, making it easier for you to work with
+any and all files regarding it and the server packs.
 
 ## 2.4 Logs
 
