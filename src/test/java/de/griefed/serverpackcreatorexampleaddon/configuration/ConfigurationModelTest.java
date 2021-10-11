@@ -162,18 +162,6 @@ public class ConfigurationModelTest {
     }
 
     @Test
-    void getsetIncludeStartScriptsTest() {
-        boolean includeStartScripts = true;
-        boolean includeStartScriptsFalse = false;
-        configurationModel.setIncludeStartScripts(includeStartScripts);
-        Assertions.assertNotNull(configurationModel.getIncludeStartScripts());
-        Assertions.assertTrue(configurationModel.getIncludeStartScripts());
-        configurationModel.setIncludeStartScripts(includeStartScriptsFalse);
-        Assertions.assertNotNull(configurationModel.getIncludeStartScripts());
-        Assertions.assertFalse(configurationModel.getIncludeStartScripts());
-    }
-
-    @Test
     void getsetIncludeZipCreationTest() {
         boolean includeZipCreation = true;
         boolean includeZipCreationFalse = false;
@@ -244,7 +232,6 @@ public class ConfigurationModelTest {
         configurationModel.setIncludeServerInstallation(includeServerInstallation);
         configurationModel.setIncludeServerIcon(includeServerIcon);
         configurationModel.setIncludeServerProperties(includeServerProperties);
-        configurationModel.setIncludeStartScripts(includeStartScripts);
         configurationModel.setIncludeZipCreation(includeZipCreation);
         String toString = "ConfigurationModel{" +
                 "clientMods=" + clientMods +
@@ -257,7 +244,6 @@ public class ConfigurationModelTest {
                 ", includeServerInstallation=" + includeServerInstallation +
                 ", includeServerIcon=" + includeServerIcon +
                 ", includeServerProperties=" + includeServerProperties +
-                ", includeStartScripts=" + includeStartScripts +
                 ", includeZipcreation=" + includeZipCreation +
                 '}';
         Assertions.assertNotNull(configurationModel.toString());
@@ -265,7 +251,6 @@ public class ConfigurationModelTest {
         configurationModel.setIncludeServerInstallation(includeServerInstallationFalse);
         configurationModel.setIncludeServerIcon(includeServerIconFalse);
         configurationModel.setIncludeServerProperties(includeServerPropertiesFalse);
-        configurationModel.setIncludeStartScripts(includeStartScriptsFalse);
         configurationModel.setIncludeZipCreation(includeZipCreationFalse);
         String toStringFalse = "ConfigurationModel{" +
                 "clientMods=" + clientMods +
@@ -278,7 +263,6 @@ public class ConfigurationModelTest {
                 ", includeServerInstallation=" + includeServerInstallationFalse +
                 ", includeServerIcon=" + includeServerIconFalse +
                 ", includeServerProperties=" + includeServerPropertiesFalse +
-                ", includeStartScripts=" + includeStartScriptsFalse +
                 ", includeZipcreation=" + includeZipCreationFalse +
                 '}';
         Assertions.assertNotNull(configurationModel.toString());

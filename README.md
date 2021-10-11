@@ -26,7 +26,6 @@ Using this example with a [dev-build of ServerPackCreator](https://git.griefed.d
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to install the modloader server:           true
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to copy the server-icon.png:               true
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to copy the server.properties:             true
-2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to copy the start scripts:                 true
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Whether to create a ZIP-archive of the server pack:true
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - 
 2021-08-02T20:53:28,256  INFO [pool-2-thread-1] (AddonsHandler.java:272) - Example addon configuration for someconfig:        This is an example for working with the addon.conf-file.
@@ -70,7 +69,6 @@ That list consists of:
 * includeServerInstallation
 * includeServerIcon
 * includeServerProperties
-* includeStartScripts
 * includeZipCreation
 
 That list is parsed in `ConfigurationHandler` and written into an instance of `ConfigurationModel`, allowing you to make use

@@ -92,7 +92,6 @@ public class Main {
         System.out.println("Whether to install the modloader server:           " + configurationModel.getIncludeServerInstallation());
         System.out.println("Whether to copy the server-icon.png:               " + configurationModel.getIncludeServerIcon());
         System.out.println("Whether to copy the server.properties:             " + configurationModel.getIncludeServerProperties());
-        System.out.println("Whether to copy the start scripts:                 " + configurationModel.getIncludeStartScripts());
         System.out.println("Whether to create a ZIP-archive of the server pack:" + configurationModel.getIncludeZipCreation());
         System.out.println("");
         // Print the example config "someconfig" from our addon.conf file to see that everything works as intended.

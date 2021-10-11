@@ -57,7 +57,6 @@ public class ConfigurationHandler {
         CONFIGURATIONMODEL.setIncludeServerInstallation(Boolean.valueOf(args[7]));
         CONFIGURATIONMODEL.setIncludeServerIcon(Boolean.valueOf(args[8]));
         CONFIGURATIONMODEL.setIncludeServerProperties(Boolean.valueOf(args[9]));
-        CONFIGURATIONMODEL.setIncludeStartScripts(Boolean.valueOf(args[10]));
-        CONFIGURATIONMODEL.setIncludeZipCreation(Boolean.valueOf(args[11]));
+        CONFIGURATIONMODEL.setIncludeZipCreation(Boolean.valueOf(args[10]));
     }
 }
