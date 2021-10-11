@@ -1,3 +1,27 @@
+## [2.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/1.1.0...2.0.0) (2021-10-11)
+
+
+### 🦊 CI/CD
+
+* Add breaking type ([02eda08](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/02eda08d519522cae305f8fe54bfbe0876f3718a))
+
+
+### 🧨 Breaking changes!
+
+* Remove start-script related code as this option is no longer available in ServerPackCreator ([150070c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/150070c4359813b7cc6f33c16bd38410e7d753cf))
+
+
+### Other
+
+* Update info regarding paths to reflect recent changes to ServerPackCreators AddonHandler. ([891fc94](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/891fc94b85402893f096ad5d71e8f6784bbc924b))
+* **deps:** update dependency gradle to v7.2 ([cb4cb13](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/cb4cb131c6f16f3fdbb4db0dc987dedcfe9aed26))
+* **deps:** update dependency org.mockito:mockito-core to v3.12.1 ([484494b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/484494b6417415eafed83fcd2c7f1302a1c9fb62))
+* **deps:** update dependency org.mockito:mockito-core to v3.12.4 ([69ab366](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/69ab36665876777499bf6903e3c3e744d6852cd6))
+* **deps:** update dependency org.mockito:mockito-core to v4 ([fed2f66](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/fed2f66532fe7695c28ab7dc6ab95ff52086860e))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.1.5 ([8141900](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/814190011af369a4ac88dd2cbfafb64f5b4d6c52))
+* **deps:** update junit5 monorepo to v5.8.0 ([a3cc8fd](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/a3cc8fdf58bd880e8468042fb0cdd9a7ff51892b))
+* **deps:** update junit5 monorepo to v5.8.1 ([a838135](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/a838135a909965ed03c5338fdf5034a7f72380c5))
+
 ## [1.1.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/1.0.1...1.1.0) (2021-08-02)
 
 
