@@ -22,7 +22,7 @@ verifyConditions:
 analyzeCommits:
   - path: '@semantic-release/commit-analyzer'
     releaseRules:
-      - type: breaking  # Changes that break something makes something incompatible to ealier version
+      - type: breaking  # Changes that break something makes something incompatible to earlier version
         release: major
       - type: build     # Changes that affect the build system or external dependencies
         release: patch
@@ -60,6 +60,9 @@ generateNotes:
     linkReferences: true
     presetConfig:
       types:  # looks like it only works with 'conventionalcommits' preset
+        - type: 'breaking'
+          section: '🧨 Breaking changes!'
+          hidden: false
         - type: 'build'
           section: '🦊 CI/CD'
           hidden: false
