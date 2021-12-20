@@ -1,3 +1,29 @@
+### [2.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/2.0.0...2.0.1) (2021-12-20)
+
+
+### 🦊 CI/CD
+
+* **deps:** bump JamesIves/github-pages-deploy-action ([4b8b864](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/4b8b8642b7a1e7df07fbf259de305a7f15640aca))
+* **deps:** bump mockito-core from 4.1.0 to 4.2.0 ([f2f0f2e](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f2f0f2e74120abaaef0fd9a2aa01d3d86cfa4bcc))
+* Change dependabot branch prefix. Upload artifacts from gradle builds ([242ce4b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/242ce4bbe0fe7322b13192bae6443555a6c7074a))
+* Improve GitHub related workflows and add tests ([d080074](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/d080074e89110654321115e01bf8c7175f529b3f))
+* Move to gitlab-ci-cd:1.0.4 which deprecates armv7 images. Staying up-to-date is more important than supporting old platforms. Sorry, you may need to consider getting a Raspberry Pi 4. ([b8a8461](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b8a84611c0d50e443c88ce29bb21579d9fd1c118))
+* Update ci-cd image to 1.0.2 ([5c9edeb](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/5c9edeb8b36e634c9ea884a4864f666490d9040f))
+
+
+### Other
+
+* **deps:** update dependency gradle to v7.3 ([342504f](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/342504f32e9989f6a8ef03a8eb8703a1c370583d))
+* **deps:** update dependency gradle to v7.3.1 ([b2bd802](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b2bd8027e6fc733a7386d38176b321af1f2ef6ce))
+* **deps:** update dependency gradle to v7.3.2 ([da75096](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/da75096d9268d7ffd111e9d57dad2a36fc718e3a))
+* **deps:** update dependency org.mockito:mockito-core to v4.1.0 ([c00dcad](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/c00dcad1fa34bfbad4cbcdbbf1ea5d09727abed3))
+* **deps:** update dependency org.mockito:mockito-core to v4.2.0 ([b9b9870](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b9b98707215486922a3cb91c1a04eca7ee16e5c6))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2 ([9085fec](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/9085fec0b0e1c78dbe11fc7ae30a71530f3c81da))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.1.6 ([9527eff](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/9527eff8e2f78ec60e6072fbdee002b7e6ce4130))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.1.7 ([bb616a2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/bb616a2a4ca2dde49d833b534a0641201da0e419))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.1.8 ([5b546c0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/5b546c011958167bbc61c4acb1d279bd4e2945d4))
+* **deps:** update junit5 monorepo to v5.8.2 ([531b080](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/531b0800678deb0e6668b17a575d5bdeb2349389))
+
 ## [2.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/1.1.0...2.0.0) (2021-10-11)
 
 
