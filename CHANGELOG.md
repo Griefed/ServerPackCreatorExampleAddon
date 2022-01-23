@@ -1,3 +1,19 @@
+### [2.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/2.0.1...2.0.2) (2022-01-23)
+
+
+### 🦊 CI/CD
+
+* **deps:** bump JamesIves/github-pages-deploy-action ([e4c593f](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/e4c593f7d9b18d8689b04f4dc50e4142147c3fd3))
+
+
+### Other
+
+* **deps:** update dependency gradle to v7.3.3 ([6431489](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/643148920effd12d04077cfe6a7a5d3c89546d40))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.1 ([265a053](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/265a053875d18e249f4fc39feee6e910ecfce163))
+* **deps:** update griefed/gitlab-ci-cd docker tag to v1.1.0 ([ceded41](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/ceded418603f317de2ce86fd0a1896fb8829382c))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.2.0 ([f06731b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f06731b091af1c7eaef83fc71a1b695f59b99ed9))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.2.2 ([6ff96c9](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/6ff96c9ea7615d7fcb26a242ccad2fe5001f61cc))
+
 ### [2.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/2.0.0...2.0.1) (2021-12-20)
 
 
