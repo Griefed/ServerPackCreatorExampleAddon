@@ -1,3 +1,10 @@
+## [3.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/2.0.2...3.0.0) (2022-01-26)
+
+
+### 🧨 Breaking changes!
+
+* Implement ServerPackCreator from GitLab Maven packages and provide basic example of a plugin ([f211a3c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f211a3caee31e25270c00f4faea1317fbc7b5239))
+
 ### [2.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/2.0.1...2.0.2) (2022-01-23)
 
 
