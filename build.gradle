@@ -51,7 +51,7 @@ dependencies {
     embed 'org.apache.commons:commons-lang3:3.12.0'
 
     implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
-    implementation('de.griefed.serverpackcreator:serverpackcreator:97c1999') {
+    implementation('de.griefed.serverpackcreator:serverpackcreator:b3b4b85') {
         version {
             branch = 'rewriteWithPlf4j'
         }
@@ -105,7 +105,7 @@ jar {
     //noinspection GroovyAssignabilityCheck
     manifest {
         attributes(
-                "Main-Class"            : "de.griefed.serverpackcreatoraddonexample.Main",
+                "Main-Class"            : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
                 "Class-Path"            : configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
                 "Description"           : "Example plugin for ServerPackCreator",
                 "Built-By"              : System.getProperty("user.name"),

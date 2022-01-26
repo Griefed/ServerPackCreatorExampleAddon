@@ -2,10 +2,13 @@ package de.griefed.serverpackcreatoraddonexample;
 
 import de.griefed.serverpackcreator.ApplicationProperties;
 import de.griefed.serverpackcreator.ConfigurationModel;
-import de.griefed.serverpackcreator.plugins.serverpackhandler.ServerPackArchiveCreated;
-import de.griefed.serverpackcreator.plugins.serverpackhandler.ServerPackCreated;
-import de.griefed.serverpackcreator.plugins.serverpackhandler.ServerPackStart;
-import de.griefed.serverpackcreator.plugins.swinggui.AddTab;
+import de.griefed.serverpackcreator.plugins.serverpackhandler.PostGenExtension;
+import de.griefed.serverpackcreator.plugins.serverpackhandler.PreZipExtension;
+import de.griefed.serverpackcreator.plugins.serverpackhandler.PreGenExtension;
+import de.griefed.serverpackcreator.plugins.swinggui.TabExtension;
+import de.griefed.serverpackcreator.utilities.ConfigUtilities;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pf4j.Extension;
@@ -14,6 +17,9 @@ import org.pf4j.PluginWrapper;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ExamplePlugin extends Plugin {
 
@@ -38,19 +44,26 @@ public class ExamplePlugin extends Plugin {
     public void start() {
         LOG_ADDONS.info("Starting ExamplePlugin...");
         LOG_ADDONS.info("This methods should prepare the environment for anything you want to do with it.");
+        LOG_ADDONS.info("You could download some files. Create or replace some files. Basically you can do whatever you want.");
         /*
             Write all your preparation code here..
                                                     */
     }
 
     @Extension(ordinal = 1)
-    public static class ExampleStartPlugin implements ServerPackStart {
+    public static class ExampleStartExtension implements PreGenExtension {
 
         @Override
         public void run(ApplicationProperties applicationProperties, ConfigurationModel configurationModel, String destination) throws Exception {
             LOG_ADDONS.info("This would run before a server pack generation.");
+            LOG_ADDONS.info("Received destination: " + destination);
             LOG_ADDONS.info("We recieved the following configurationModel: " + configurationModel.toString());
             LOG_ADDONS.info("We received the following applicationProperties: " + applicationProperties.toString());
+            StringUtils.upperCase("some text in lower case");
+            //Create example file in server pack
+            try {
+            Files.createFile(Paths.get(String.format("%s/%s",destination, this.getClass().getSimpleName())));
+            } catch (Exception ignored) {}
             /*
                 Write all your pre-gen stuff here...
                                                         */
@@ -78,13 +91,24 @@ public class ExamplePlugin extends Plugin {
     }
 
     @Extension(ordinal = 1)
-    public static class ExampleCreatedPlugin implements ServerPackCreated {
+    public static class ExampleCreatedExtension implements PreZipExtension {
 
         @Override
         public void run(ApplicationProperties applicationProperties, ConfigurationModel configurationModel, String destination) throws Exception {
             LOG_ADDONS.info("This would run after a server pack was generated, but BEFORE the ZIP-archive would be generated.");
+            LOG_ADDONS.info("Received destination: " + destination);
             LOG_ADDONS.info("We recieved the following configurationModel: " + configurationModel.toString());
             LOG_ADDONS.info("We received the following applicationProperties: " + applicationProperties.toString());
+            StringUtils.upperCase("some text in lower case");
+            //Create example file in server pack
+            try {
+                FileUtils.createParentDirectories(new File(destination + "/some/folder/with/a/name"));
+            } catch (Exception ex) {
+                LOG_ADDONS.info("Error occurred creating parent directories.", ex);
+            }
+
+            new ConfigUtilities(null,null,null,applicationProperties, null)
+                    .writeConfigToFile(configurationModel, new File(destination + "/serverpackcreator.conf"));
             /*
                 Write all your post-gen-pre-zip stuff here...
                                                                  */
@@ -112,13 +136,19 @@ public class ExamplePlugin extends Plugin {
     }
 
     @Extension(ordinal = 1)
-    public static class ExampleArchivePlugin implements ServerPackArchiveCreated {
+    public static class ExampleArchiveExtension implements PostGenExtension {
 
         @Override
         public void run(ApplicationProperties applicationProperties, ConfigurationModel configurationModel, String destination) throws Exception {
             LOG_ADDONS.info("This would run after the server pack ZIP-archive was created.");
+            LOG_ADDONS.info("Received destination: " + destination);
             LOG_ADDONS.info("We recieved the following configurationModel: " + configurationModel.toString());
             LOG_ADDONS.info("We received the following applicationProperties: " + applicationProperties.toString());
+            //Create example file in server pack
+            try {
+                Files.createFile(Paths.get(String.format("%s/%s",destination, this.getClass().getSimpleName())));
+            } catch (Exception ignored) {}
+
             /*
                 Write all your post-archive stuff here...
                                                         */
@@ -146,7 +176,7 @@ public class ExamplePlugin extends Plugin {
     }
 
     @Extension(ordinal = 1)
-    public static class ExampleTabbedpanePlugin extends JComponent implements AddTab {
+    public static class ExampleAddTabExtension extends JComponent implements TabExtension {
 
         @Override
         public JComponent getTab() {
@@ -199,11 +229,10 @@ public class ExamplePlugin extends Plugin {
 
         @Override
         public void run(ApplicationProperties applicationProperties, ConfigurationModel configurationModel, String destination) throws Exception {
-            LOG_ADDONS.info("When adding tabbed panes, you could also write some backend logic here, like threads that do some stuff.");
-            LOG_ADDONS.info("We recieved the following configurationModel: " + configurationModel.toString());
-            LOG_ADDONS.info("We received the following applicationProperties: " + applicationProperties.toString());
             /*
-                Write all your pre-gen stuff here...
+                So far, the run(...) method for AddTab extensions never gets called.
+                There is no point in writing code here with the intention of
+                ServerPackCreator executing it.
                                                         */
         }
 
