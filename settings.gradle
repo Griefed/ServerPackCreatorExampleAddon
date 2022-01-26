@@ -1,1 +1,6 @@
+sourceControl {
+    gitRepository("https://github.com/Griefed/ServerPackCreator.git") {
+        producesModule("de.griefed.serverpackcreator:serverpackcreator")
+    }
+}
 rootProject.name = 'serverpackcreatorexampleaddon'

@@ -3,11 +3,9 @@ import java.text.SimpleDateFormat
 plugins {
     id 'java'
     id 'idea'
-
-    id 'maven-publish'
 }
 
-group 'de.griefed'
+group 'de.griefed.serverpackcreatorexampleaddon'
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = targetCompatibility = '1.8'
@@ -36,6 +34,8 @@ sourceSets {
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
+    maven { url 'https://repo.spring.io/release' }
 }
 
 configurations {
@@ -44,10 +44,21 @@ configurations {
 }
 
 dependencies {
-    embed 'com.typesafe:config:1.4.1'
+    implementation 'org.pf4j:pf4j:3.6.0'
+    annotationProcessor 'org.pf4j:pf4j:3.6.0'
+
+    embed 'commons-io:commons-io:2.11.0'
+    embed 'org.apache.commons:commons-lang3:3.12.0'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
+    implementation('de.griefed.serverpackcreator:serverpackcreator:b3b4b85') {
+        version {
+            branch = 'webservice'
+        }
+    }
 
     // Testing
-    testImplementation 'org.mockito:mockito-core:4.2.0'
+    testImplementation 'org.mockito:mockito-core:4.3.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
@@ -94,51 +105,19 @@ jar {
     //noinspection GroovyAssignabilityCheck
     manifest {
         attributes(
-                "Main-Class"     : "de.griefed.serverpackcreatoraddonexample.Main",
-                "Class-Path"     : configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
-                "Description"    : "Example addon for ServerPackCreator",
-                "Built-By"       : System.getProperty("user.name"),
-                "Build-Timestamp": new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
-                "Created-By"     : "Gradle ${gradle.gradleVersion}",
-                "Build-Jdk"      : "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
-                "Build-OS"       : "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
+                "Main-Class"            : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
+                "Class-Path"            : configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
+                "Description"           : "Example plugin for ServerPackCreator",
+                "Built-By"              : System.getProperty("user.name"),
+                "Build-Timestamp"       : new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                "Created-By"            : "Gradle ${gradle.gradleVersion}",
+                "Build-Jdk"             : "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
+                "Build-OS"              : "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
+                "Plugin-Class"          : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
+                "Plugin-Id"             : "example-plugin",
+                "Plugin-Provider"       : "Griefed",
+                "Plugin-Version"        : "0.0.1",
+                "Plugin-Description"    : "Example plugin for ServerPackCreator",
         )
-    }
-    exclude (
-            'META-INF/org',
-            'META-INF/org/**',
-            'META-INF/versions',
-            'META-INF/versions/**',
-            'META-INF/DEPENDENCIES',
-            'META-INF/LICENSE',
-            'META-INF/NOTICE',
-            'META-INF/CHANGES',
-            'META-INF/LICENSE.txt',
-            'META-INF/NOTICE.txt',
-            'META-INF/README.md',
-            'Log4j-**'
-    )
-}
-
-// Publish the package with passed version to GHPR. Use ./gradlew -Pversion=${NEW_VERSION} publish, for example.
-publishing {
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/Griefed/serverpackcreatorexampleaddon")
-            credentials {
-                username = System.getenv("GITHUB_ACTOR")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
-    publications {
-        //noinspection GroovyAssignabilityCheck
-        gpr(MavenPublication) {
-            //noinspection GroovyAssignabilityCheck
-            artifactId='serverpackcreatorexampleaddon'
-            //noinspection GroovyAssignabilityCheck
-            from (components.java)
-        }
     }
 }
