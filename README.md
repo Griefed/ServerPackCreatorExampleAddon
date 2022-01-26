@@ -72,6 +72,10 @@ Additionally, the following files/directories would be created in the server pac
 - `serverpackcreator.conf` as it was used to generate the server pack
 - `./some/folder/with/a/name`
 
+| Example at boot time  | Example after generation finished |
+|-----------------------|-----------------------------------|
+| ![boot](img/boot.png) | ![preGen](img/afterGen.png)       |
+
 # 1. The reason for allowing ServerPackCreator to run addons:
 
 Some people need additional functionality for their server packs, or have some additional wishes for them. Some of those
