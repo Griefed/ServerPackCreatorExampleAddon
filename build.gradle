@@ -109,19 +109,19 @@ jar {
     //noinspection GroovyAssignabilityCheck
     manifest {
         attributes(
-                "Main-Class"            : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
+                "Main-Class"            : "de.griefed.serverpackcreatoraddonexample.MiniGame",
                 "Class-Path"            : configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
-                "Description"           : "Example plugin for ServerPackCreator",
+                "Description"           : "Example minigame-plugin for ServerPackCreator which adds Tetris.",
                 "Built-By"              : System.getProperty("user.name"),
                 "Build-Timestamp"       : new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
                 "Created-By"            : "Gradle ${gradle.gradleVersion}",
                 "Build-Jdk"             : "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
                 "Build-OS"              : "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
-                "Plugin-Class"          : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
-                "Plugin-Id"             : "example-plugin",
+                "Plugin-Class"          : "de.griefed.serverpackcreatoraddonexample.MiniGame",
+                "Plugin-Id"             : "minigame-plugin",
                 "Plugin-Provider"       : "Griefed",
                 "Plugin-Version"        : "0.0.1",
-                "Plugin-Description"    : "Example plugin for ServerPackCreator",
+                "Plugin-Description"    : "Example minigame-plugin for ServerPackCreator which adds Tetris.",
         )
     }
 }
