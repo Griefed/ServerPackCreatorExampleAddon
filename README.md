@@ -112,6 +112,10 @@ Some excerpts:
 During the start of ServerPackCreator, all plugins are loaded and started. If you have anything you need to run then and there,
 use `public void start() {...}` and do your thing.
 
+For documentation about Pf4j, visit https://pf4j.org/
+
+If you have ideas and/or suggestions for improvements to the addon-system in ServerPackCreator, open an improvement-issue over at the ServerPackCreator [issues page](https://github.com/Griefed/ServerPackCreator/issues/new?assignees=Griefed&labels=enhancement&template=improvement.yml&title=%5BImprovement+request%5D%3A+)
+
 ## 2.1 Extensions
 
 One plugin can have multiple extensions.
@@ -144,6 +148,7 @@ along with a small description, if you provided one.
 
 Example:
 
-| Addon                                                                    | Creator | Description                                                        |
-|:-------------------------------------------------------------------------|:--------|:-------------------------------------------------------------------|
-| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon) | Griefed | An example addon providing a starting point for addon development. |
+| Addon                                                                                    | Creator | Description                                                        |
+|:-----------------------------------------------------------------------------------------|:--------|:-------------------------------------------------------------------|
+| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon)                 | Griefed | An example addon providing a starting point for addon development. |
+| [Example MiniGame](https://github.com/Griefed/ServerPackCreatorExampleAddon/tree/tetris) | Griefed | Play Tetris in a new window whilst your server packs generate!     |
