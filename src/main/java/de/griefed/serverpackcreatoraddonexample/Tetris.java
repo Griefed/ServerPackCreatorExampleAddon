@@ -104,7 +104,7 @@ public class Tetris
         taHiScores.setForeground(Color.white);
         taHiScores.setFont(new Font("monospaced",0,11));
         taHiScores.setText(" High Scores                  \n"+
-                " -----------------------------\n\n"+
+                " ---------------------------\n\n"+
 
                 " PLAYER     LEVEL    SCORE    \n\n"+
 
