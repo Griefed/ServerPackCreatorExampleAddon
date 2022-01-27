@@ -33,19 +33,19 @@ Gradle Test:
       build/libs
     - echo "**** Renaming files to please the eye ****"
     - mv
-      build/libs/serverpackcreatorexampleaddon.jar
-      build/libs/ServerPackCreatorExampleAddon.jar
+      build/libs/minigame.jar
+      build/libs/MiniGame.jar
     - mv
-      build/libs/serverpackcreatorexampleaddon-javadoc.jar
-      build/libs/ServerPackCreatorExampleAddon-javadoc.jar
+      build/libs/minigame-javadoc.jar
+      build/libs/MiniGame-javadoc.jar
     - mv
-      build/libs/serverpackcreatorexampleaddon-sources.jar
-      build/libs/ServerPackCreatorExampleAddon-sources.jar
+      build/libs/minigame-sources.jar
+      build/libs/MiniGame-sources.jar
   artifacts:
     paths:
-      - build/libs/ServerPackCreatorExampleAddon.jar
-      - build/libs/ServerPackCreatorExampleAddon-javadoc.jar
-      - build/libs/ServerPackCreatorExampleAddon-sources.jar
+      - build/libs/MiniGame.jar
+      - build/libs/MiniGame-javadoc.jar
+      - build/libs/MiniGame-sources.jar
       - build/reports/tests/test
     expire_in: 1 week
   except:
