@@ -1,3 +1,22 @@
+### [3.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.0...3.0.1) (2022-01-28)
+
+
+### 📔 Docs
+
+* Add info regarding Pf4j documentation and request pages, as well as add minigame example to list of addons ([480e6f8](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/480e6f8b837dc25d03252e1537d81311a4c8ca1f))
+
+
+### 🦊 CI/CD
+
+* **deps:** bump JamesIves/github-pages-deploy-action ([ac94f9f](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/ac94f9fbae9a44e08535550b0dac43c9f5fb6529))
+* **deps:** bump mockito-core from 4.2.0 to 4.3.1 ([99f557b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/99f557b532b74fe70bc1d8c1f8f49c04461dbdd5))
+
+
+### Other
+
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.2 ([10233dc](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/10233dc53983c35d887acde71eb5727b3ad6d170))
+* **deps:** update griefed/gitlab-ci-cd docker tag to v2 ([5e8e8c3](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/5e8e8c330bc6e5cc84472c58b918566083db510b))
+
 ## [3.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/2.0.2...3.0.0) (2022-01-26)
 
 
