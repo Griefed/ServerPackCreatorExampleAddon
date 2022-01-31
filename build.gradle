@@ -119,9 +119,10 @@ jar {
                 "Build-OS"              : "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
                 "Plugin-Class"          : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
                 "Plugin-Id"             : "example-plugin",
+                "Plugin-Name"           : "ServerPackCreator Example Plugin",
                 "Plugin-Provider"       : "Griefed",
-                "Plugin-Version"        : "0.0.1",
-                "Plugin-Description"    : "Example plugin for ServerPackCreator",
+                "Plugin-Version"        : project.version,
+                "Plugin-Description"    : "This is an example addon for ServerPackCreator showcasing all, currently 4, aspects of ServerPackCreators addon functionality. In this example you see code which gets executed before a server pack is generated, code that gets executed after a server pack was generated but before the ZIP-archive is created, code that gets executed after this ZIP-archive was created, as well as code adding a new tabbed pane to the GUI."
         )
     }
 }
