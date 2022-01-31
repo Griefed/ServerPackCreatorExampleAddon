@@ -1,3 +1,10 @@
+### [3.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.1...3.0.2) (2022-01-31)
+
+
+### 🦊 CI/CD
+
+* Update dependency ServerPackCreator to 3.0.0-alpha.19 ([d6a1cfe](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/d6a1cfe2fccb665e06aebf0501b29bb838ee05dc))
+
 ### [3.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.0...3.0.1) (2022-01-28)
 
 
