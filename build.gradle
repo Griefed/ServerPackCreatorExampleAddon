@@ -38,7 +38,7 @@ repositories {
     maven { url 'https://repo.spring.io/release' }
 
     /* If using GitLab.com fails, use git.griefed.de for package retrieval */ //maven { url 'https://git.griefed.de/api/v4/projects/63/packages/maven' }
-    maven { url 'https://gitlab.com/api/v4/projects/32677538/packages/maven' }
+    //maven { url 'https://gitlab.com/api/v4/projects/32677538/packages/maven' }
 }
 
 configurations {
@@ -59,7 +59,7 @@ dependencies {
      * You may need to refresh this dependency every now and then
      * Check https://gitlab.com/Griefed/ServerPackCreator/-/packages/4830254 occasionally
      */
-    implementation 'de.griefed.serverpackcreator:serverpackcreator:3.0.0-alpha.19'
+    implementation 'de.griefed:serverpackcreator:3.0.0-beta.1'
 
     // Testing
     testImplementation 'org.mockito:mockito-core:4.3.1'
