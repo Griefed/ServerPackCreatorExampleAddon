@@ -72,6 +72,14 @@ Additionally, the following files/directories would be created in the server pac
 - `serverpackcreator.conf` as it was used to generate the server pack
 - `./some/folder/with/a/name`
 
+| Example at boot time       | Example after generation finished |
+|----------------------------|-----------------------------------|
+| ![boot](img/boot.png)      | ![preGen](img/afterGen.png)       |
+
+**Example tab**
+
+![tab](img/exampleTab.png)
+
 # 1. The reason for allowing ServerPackCreator to run addons:
 
 Some people need additional functionality for their server packs, or have some additional wishes for them. Some of those
@@ -89,20 +97,24 @@ Some examples for addons can be found [in this discussion thread](https://github
 
 Some excerpts:
 1. Changelog generator, by @TheButterbrotMan at [Feature request]: Changelog generator #198
-    - A changelog generator that checks the differences to the previous version and generates a changelog.
-    
+   - A changelog generator that checks the differences to the previous version and generates a changelog.
+
 2. Bundle Adoptium Java with server packs, by @kreezxil at [Feature request]: Bundle Adoptium Java #199
-    - Because modpacks need one of the either Java 8, 16, or 17, it would be nice to have the corresponding https://adoptium.net java prebundled with the server pack.
+   - Because modpacks need one of the either Java 8, 16, or 17, it would be nice to have the corresponding https://adoptium.net java prebundled with the server pack.
 
 3. Automatic setup of a server pack for [BlueMap](https://www.curseforge.com/minecraft/mc-mods/bluemap)
-    - Check all mods in the specified modpacks mods-directory for textures, and if any are found, add the mod to
-      BlueMap's resourcepack folder `config/bluemap/resourcepacks`, install BlueMap for the specified Minecraft and Forge/Fabric
-      version and voilà!
+   - Check all mods in the specified modpacks mods-directory for textures, and if any are found, add the mod to
+     BlueMap's resourcepack folder `config/bluemap/resourcepacks`, install BlueMap for the specified Minecraft and Forge/Fabric
+     version and voilà!
 
 # 2. How
 
 During the start of ServerPackCreator, all plugins are loaded and started. If you have anything you need to run then and there,
 use `public void start() {...}` and do your thing.
+
+For documentation about Pf4j, visit https://pf4j.org/
+
+If you have ideas and/or suggestions for improvements to the addon-system in ServerPackCreator, open an improvement-issue over at the ServerPackCreator [issues page](https://github.com/Griefed/ServerPackCreator/issues/new?assignees=Griefed&labels=enhancement&template=improvement.yml&title=%5BImprovement+request%5D%3A+)
 
 ## 2.1 Extensions
 
@@ -136,6 +148,8 @@ along with a small description, if you provided one.
 
 Example:
 
-| Addon                                                                    | Creator | Description                                                        |
-|:-------------------------------------------------------------------------|:--------|:-------------------------------------------------------------------|
-| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon) | Griefed | An example addon providing a starting point for addon development. |
+| Addon                                                                                                                                           | Creator | Description                                                                                                                                                                                         |
+|:------------------------------------------------------------------------------------------------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon)                                                                        | Griefed | An example addon providing a starting point for addon development.                                                                                                                                  |
+| [ExampleAddon Alternative Extension Declaration](https://github.com/Griefed/ServerPackCreatorExampleAddon/tree/alternativeExtensionDeclaration) | Griefed | An example addon providing a starting point for addon development. This addon provides an example for a different way of declaring extensions as well as reading entries from the plugins manifest. |
+| [Example MiniGame](https://github.com/Griefed/ServerPackCreatorExampleAddon/tree/tetris)                                                        | Griefed | Play Tetris in a new window whilst your server packs generate!                                                                                                                                      |

@@ -5,7 +5,7 @@ plugins {
     id 'idea'
 }
 
-group 'de.griefed.serverpackcreatorexampleaddon'
+group 'de.griefed'
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = targetCompatibility = '1.8'
@@ -35,10 +35,6 @@ sourceSets {
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
-    maven { url 'https://repo.spring.io/release' }
-
-    /* If using GitLab.com fails, use git.griefed.de for package retrieval */ //maven { url 'https://git.griefed.de/api/v4/projects/63/packages/maven' }
-    maven { url 'https://gitlab.com/api/v4/projects/32677538/packages/maven' }
 }
 
 configurations {
@@ -47,19 +43,17 @@ configurations {
 }
 
 dependencies {
+    // Dependencies required for any plugin and/or extension to work
     implementation 'org.pf4j:pf4j:3.6.0'
     annotationProcessor 'org.pf4j:pf4j:3.6.0'
+    implementation 'de.griefed:serverpackcreator:3.0.0-alpha.19'
 
-    embed 'commons-io:commons-io:2.11.0'
-    embed 'org.apache.commons:commons-lang3:3.12.0'
-
+    // Required if you want to log to any of ServerPackCreators logs
     implementation 'org.apache.logging.log4j:log4j-api:2.17.1'
 
-    /*
-     * You may need to refresh this dependency every now and then
-     * Check https://gitlab.com/Griefed/ServerPackCreator/-/packages/4830254 occasionally
-     */
-    implementation 'de.griefed.serverpackcreator:serverpackcreator:3.0.0-alpha.19'
+    // Dependencies your plugin or extension requires and need to be shipped within the plugin#s JAR-file
+    embed 'commons-io:commons-io:2.11.0'
+    embed 'org.apache.commons:commons-lang3:3.12.0'
 
     // Testing
     testImplementation 'org.mockito:mockito-core:4.3.1'
