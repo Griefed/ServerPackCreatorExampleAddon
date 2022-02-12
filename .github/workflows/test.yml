@@ -6,10 +6,80 @@ on:
   workflow_dispatch:
 
 jobs:
-  test:
+  main:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: main
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+      - name: Where is Java
+        run: which java
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew about build --no-daemon --info
+      - name: List files in libs
+        run: ls -ahl build/libs
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts-gradle
+          path: |
+            build/libs/
+            !build/libs/libraries/
+            frontend/dist/spa
+          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: report
+          path: build/reports/tests/test/
+          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
+
+  alternative:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: alternativeExtensionDeclaration
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '8'
+      - name: Where is Java
+        run: which java
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew about build --no-daemon --info
+      - name: List files in libs
+        run: ls -ahl build/libs
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts-gradle
+          path: |
+            build/libs/
+            !build/libs/libraries/
+            frontend/dist/spa
+          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
+      - uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: report
+          path: build/reports/tests/test/
+          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
+
+  tetris:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: tetris
       - name: Set up JDK 8
         uses: actions/setup-java@v2
         with:
