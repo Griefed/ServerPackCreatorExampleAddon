@@ -5,7 +5,7 @@ plugins {
     id 'idea'
 }
 
-group 'de.griefed.serverpackcreatorexampleaddon'
+group 'de.griefed'
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = targetCompatibility = '1.8'
