@@ -78,22 +78,42 @@ Additionally, the following files/directories would be created in the server pac
 
 **Example tab**
 
-![tab](img/exampleTab.png)
+![tab](img/exampleTab.png) 
 
-# 1. The reason for allowing ServerPackCreator to run addons:
+# 1. Addons
 
-Some people need additional functionality for their server packs, or have some additional wishes for them. Some of those
-things may not fit into the core functionality of ServerPackCreator itself.
+## 1.1 Why
+
+There are things which people want to do with their server packs which could most certainly be automated. Some of those
+things so special, or maybe out of place, that they would not warrant a separate feature for ServerPackCreator itself.
 
 It may also be that it is such a niche feature, that I either don't have the time to code it in, or simply don't want to.
 Maybe it doesn't fit into the overall design of ServerPackCreator, too. Who knows, it could be any of those reasons or another.
 
-**Hence, the addon functionality.**
+**Hence, the addon functionality!**
 
 This allows people to write their own addons to expand the functionality of ServerPackCreator with their own features as
 they see fit or want.
 
-Some examples for addons can be found [in this discussion thread](https://github.com/Griefed/ServerPackCreator/discussions/201).
+For documentation about Pf4j, visit the [Pf4j documentation](https://pf4j.org/)
+
+## 1.2 Adding your own
+
+How to get your own addon into this list:
+
+If you have written your own addon or plugin for ServerPackCreator and you would like to see it added here, please open an issue over at ServerPackCreatoron GitHub, using the Documentation template.
+
+For an addon to be accepted, you must at least provide:
+- The name of the repository, and therefore the addon.
+- The owner of the repository, and therefore the addon.
+- The branch of the repository where the main code resides in.
+- A description of the plugin or addon.
+
+A curated list of officially acknowledged addons/plugins can be found at [addons.griefed.de](https://addons.griefed.de) (redirects to [GitHub Pages](https://griefed.github.io/ServerPackCreator-Addons-Overview/#/))
+
+## 1.3 Examples for potential addons
+
+Some examples for potential addons can be found [in this discussion thread](https://github.com/Griefed/ServerPackCreator/discussions/201).
 
 Some excerpts:
 1. Changelog generator, by @TheButterbrotMan at [Feature request]: Changelog generator #198
