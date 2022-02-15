@@ -220,8 +220,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/Minigame-${{ needs.release.outputs.newtag }}.jar
-          asset_name: Minigame-${{ needs.release.outputs.newtag }}.jar
+          asset_path: ./build/libs/MiniGame-${{ needs.release.outputs.newtag }}.jar
+          asset_name: MiniGame-${{ needs.release.outputs.newtag }}.jar
           asset_content_type: application/jar
 
       - name: Upload Release Asset Sources Jar
@@ -231,8 +231,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/Minigame-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_name: Minigame-${{ needs.release.outputs.newtag }}-sources.jar
+          asset_path: ./build/libs/MiniGame-${{ needs.release.outputs.newtag }}-sources.jar
+          asset_name: MiniGame-${{ needs.release.outputs.newtag }}-sources.jar
           asset_content_type: application/jar
 
       - name: Upload Release Asset Javadoc Jar
@@ -242,6 +242,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/Minigame-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_name: Minigame-${{ needs.release.outputs.newtag }}-javadoc.jar
+          asset_path: ./build/libs/MiniGame-${{ needs.release.outputs.newtag }}-javadoc.jar
+          asset_name: MiniGame-${{ needs.release.outputs.newtag }}-javadoc.jar
           asset_content_type: application/jar
