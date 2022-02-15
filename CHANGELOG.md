@@ -1,3 +1,24 @@
+### [3.0.3](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.2...3.0.3) (2022-02-15)
+
+
+### 🦊 CI/CD
+
+* **deps:** Bump ServerPackCreator to 3.0.0-beta.1 ([9d2ea8f](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/9d2ea8f4b36675e2cd6de16dd71c15a63c057048))
+* **branches:** Add different branches to releases and tests, so people can download the different examples and use them. ([43ac00d](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/43ac00df930107f578817a4fb5f84a9e62ea0868))
+* **release:** Don't build release assets on GitLab. Don't upload artifacts from test job. ([016d69c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/016d69c0abcd1b237751787f2815c1465d6e5948))
+* **release:** On tag, build all three branches and upload assets to generated release. ([f15205a](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f15205aa3c9f5df1ca2643a553b93e001376e6b4))
+
+
+### Other
+
+* Add info about additional example in alternativeExtensionDeclaration branch ([acbf95e](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/acbf95ef4a8cbc9514fb4fd281a5c906ef5ad4ce))
+* **deps:** update dependency gradle to v7.4 ([f87176b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f87176bf16db596c803f152443e49191a2bc8fd5))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.3 ([0a41972](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/0a419721a720e47ac83729f6ead8d7532bbbe5c3))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.4 ([b102243](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b1022430720088830a696ecb70a7347d80f33b21))
+* **deps:** update griefed/gitlab-ci-cd docker tag to v2.0.1 ([f6096fe](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f6096fea21b140465432dbe87c5e4d8380ad849d))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.2.3 ([7e220fd](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/7e220fde79c2833a191d41cf314bd604de215b4a))
+* **README:** Rephrase addons section and include link to new addons overview website ([31b291a](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/31b291aceab2f40393b418259c87050cdaee1cb9))
+
 ### [3.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.1...3.0.2) (2022-01-31)
 
 
