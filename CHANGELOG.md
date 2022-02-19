@@ -1,3 +1,15 @@
+### [3.0.4](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.3...3.0.4) (2022-02-19)
+
+
+### ⚗ Build and Dependencies
+
+* **ServerPackCreator:** Update to beta.3 ([61689a2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/61689a27bc2a4c2a6d0620774a4ab014806b01af))
+
+
+### 🦊 CI/CD
+
+* Fix GitHub release job asset upload for MiniGame branch ([79be391](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/79be3918b57a74e09428dcc75f65aacdc4a1a99c))
+
 ### [3.0.3](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.2...3.0.3) (2022-02-15)
 
 
