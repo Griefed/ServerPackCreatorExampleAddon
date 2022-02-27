@@ -1,3 +1,27 @@
+### [3.0.5](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.4...3.0.5) (2022-02-27)
+
+
+### ⚗ Build and Dependencies
+
+* **ServerPackCreator:** Update to beta.7 ([b28d80b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b28d80b4fec0323cdc39aea75f49678a4e3060b5))
+
+
+### 🦊 CI/CD
+
+* **GitHub:** Correctly execute (pre)release actions when tags are pushed. ([34f5e0e](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/34f5e0ed694609f10ebac4c722badf299fc9176e))
+
+
+### Other
+
+* **deps:** update actions/setup-java action to v3 ([2daeabe](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/2daeabe7b2afba6ade6e04b24b7104eb316b35de))
+* **deps:** update dependency de.griefed:serverpackcreator to v3.0.0-beta.3 ([c2858c5](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/c2858c5747d2fd17e625528f0e508a224fbeec06))
+* **deps:** update dependency de.griefed:serverpackcreator to v3.0.0-beta.6 ([69429b0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/69429b03879038861747d90199a8100b45057852))
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.6 ([d9273af](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/d9273afc07c421e21258fd4d55c22d05604908f8))
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.3 ([e1c9704](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/e1c97043ab53764afa914bff12d2f0c77fd8831a))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.5 ([5b63cb8](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/5b63cb84097663f22971ea29b4fc84405492fce2))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.2.5 ([6f9b52e](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/6f9b52e85aa2d2183d524ca73e71efc7e0357b8d))
+* **Icon:** Add icon ([b874a32](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/b874a321f9e505bb576771949d747d8737df0ca3))
+
 ### [3.0.4](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.3...3.0.4) (2022-02-19)
 
 
