@@ -1,3 +1,20 @@
+### [3.0.6](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.5...3.0.6) (2022-03-27)
+
+
+### ⚗ Build and Dependencies
+
+* **deps:** bump log4j-api from 2.17.1 to 2.17.2 ([95ffab5](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/95ffab5156663e9d0709ba1c1f146295a9667822))
+* **deps:** bump mockito-core from 4.3.1 to 4.4.0 ([d42748c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/d42748c8e234972b67bc3fa350e492baff294fea))
+* **deps:** bump serverpackcreator from 3.0.0-beta.7 to 3.0.0-beta.9 ([ecc0ed3](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/ecc0ed37aa9305a714bd2f4cb641e561f1420a52))
+* **deps:** bump serverpackcreator from 3.0.0-beta.9 to 3.0.0-beta.10 ([3707498](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/3707498dfe61dc753856431c14a1817843dc21a8))
+* **deps:** Update ServerPackCreator to 3.0.1, amongst other dependency updates. ([08c4780](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/08c478054df7d36f5aef7a67c39da6f48d2e86a7))
+
+
+### Other
+
+* **deps:** update dependency de.griefed:serverpackcreator to v3.0.0-beta.9 ([d489876](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/d4898766dcbedd754242fc8960e52df4948276d0))
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.7 ([ccdafde](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/ccdafdeb1ef0e59f99660db1fdb980be91451110))
+
 ### [3.0.5](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.4...3.0.5) (2022-02-27)
 
 
