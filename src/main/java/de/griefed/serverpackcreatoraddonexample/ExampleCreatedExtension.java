@@ -35,7 +35,7 @@ public class ExampleCreatedExtension implements PreZipExtension {
             LOG_ADDONS.info("Error occurred creating parent directories.", ex);
         }
 
-        new ConfigUtilities(null,null,null,applicationProperties,null,null)
+        new ConfigUtilities(null,null,applicationProperties,null)
                 .writeConfigToFile(configurationModel, new File(destination + "/serverpackcreator.conf"));
             /*
                 Write all your post-gen-pre-zip stuff here...
