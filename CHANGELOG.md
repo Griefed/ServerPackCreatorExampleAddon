@@ -1,3 +1,19 @@
+### [3.0.7](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.6...3.0.7) (2022-04-15)
+
+
+### ⚗ Build and Dependencies
+
+* **ServerPackCreator:** Update to 3.1.0 ([8602f24](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/8602f24c6b9aa746f2907c693e0de79e85977bfa))
+
+
+### Other
+
+* **deps:** update actions/checkout action to v3 ([37f52e4](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/37f52e4154da7bcf37fd36153378be8d211683ff))
+* **deps:** update actions/upload-artifact action to v3 ([7b82039](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/7b820397e2c578ec2de1fbde2e4ac9d9d3f4ef46))
+* **deps:** update dependency gradle to v7.4.2 ([1294ba8](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/1294ba80e3c954ffedaa9968ffd79c504c170078))
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.8 ([fa73205](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/fa73205349c5dbeb2242eae3ec88825421915a4d))
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.5 ([632e7a7](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/632e7a71190327ec00b52ce4ff41a33b55fbfb65))
+
 ### [3.0.6](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.5...3.0.6) (2022-03-27)
 
 
