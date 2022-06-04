@@ -8,7 +8,7 @@ Gradle Test:
   image: griefed/baseimage-ubuntu-jdk-8:2.0.9
   stage: Gradle Test
   services:
-    - name: griefed/gitlab-ci-cd:2.0.6
+    - name: griefed/gitlab-ci-cd:2.0.7
       alias: docker
   variables:
     project_name: $CI_PROJECT_NAME
@@ -38,9 +38,9 @@ Release:
     - job: 'Gradle Test'
       artifacts: false
   stage: Release
-  image: griefed/gitlab-ci-cd:2.0.6
+  image: griefed/gitlab-ci-cd:2.0.7
   services:
-    - name: griefed/gitlab-ci-cd:2.0.6
+    - name: griefed/gitlab-ci-cd:2.0.7
       alias: docker
   variables:
     project_name: $CI_PROJECT_NAME
@@ -59,7 +59,7 @@ pages:
   image: griefed/baseimage-ubuntu-jdk-8:2.0.9
   stage: Documentation
   services:
-    - name: griefed/gitlab-ci-cd:2.0.6
+    - name: griefed/gitlab-ci-cd:2.0.7
       alias: docker
   variables:
     project_name: $CI_PROJECT_NAME
