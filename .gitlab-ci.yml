@@ -5,7 +5,7 @@ stages:
   - Build Release
 
 Gradle Test:
-  image: griefed/baseimage-ubuntu-jdk-8:2.0.9
+  image: griefed/baseimage-ubuntu-jdk-8:2.0.10
   stage: Gradle Test
   services:
     - name: griefed/gitlab-ci-cd:2.0.6
@@ -56,7 +56,7 @@ Release:
       - $CI_COMMIT_TITLE =~ /^RELEASE:.+$/
 
 pages:
-  image: griefed/baseimage-ubuntu-jdk-8:2.0.9
+  image: griefed/baseimage-ubuntu-jdk-8:2.0.10
   stage: Documentation
   services:
     - name: griefed/gitlab-ci-cd:2.0.6
