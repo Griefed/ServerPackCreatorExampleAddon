@@ -1,3 +1,21 @@
+## [3.0.9](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.8...3.0.9) (2022-06-18)
+
+
+### ⚗ Build and Dependencies
+
+* **Dependencies:** Update dependencies ([5935d8a](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/5935d8a0724a46e9c8332bc36a729201eb8c1e08))
+
+
+### Other
+
+* **deps:** update dependency de.griefed:serverpackcreator to v3.4.1 ([82e5f3b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/82e5f3b44e977144ddd8d5320e21a98a99ca3a99))
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.10 ([2396cff](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/2396cff155d937817ce3146b1d7afc63d0290da6))
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.9 ([aacf2f8](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/aacf2f8b49851006ae86beb648800516b5f3bf75))
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.6 ([304f169](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/304f169d0109a8f62a63667e88bb0033c81e1b50))
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.7 ([1613c63](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/1613c633dcc55bdc803da8df2af232732e246358))
+* **deps:** update dependency org.mockito:mockito-core to v4.5.1 ([7f7cc1c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/7f7cc1ce38e00941805d3657a08b60f5ba286aa5))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.3.3 ([829433c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/829433c2984fb190a878900a86f09d918fe76ae2))
+
 ### [3.0.8](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.7...3.0.8) (2022-04-24)
 
 
