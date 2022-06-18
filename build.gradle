@@ -46,7 +46,7 @@ dependencies {
     // Dependencies required for any plugin and/or extension to work
     implementation 'org.pf4j:pf4j:3.6.0'
     annotationProcessor 'org.pf4j:pf4j:3.6.0'
-    implementation 'de.griefed:serverpackcreator:3.4.1'
+    implementation 'de.griefed:serverpackcreator:3.5.0-beta.4'
 
     // Required if you want to log to any of ServerPackCreators logs
     implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
@@ -56,7 +56,7 @@ dependencies {
     embed 'org.apache.commons:commons-lang3:3.12.0'
 
     // Testing
-    testImplementation 'org.mockito:mockito-core:4.5.1'
+    testImplementation 'org.mockito:mockito-core:4.6.1'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
@@ -103,19 +103,19 @@ jar {
     //noinspection GroovyAssignabilityCheck
     manifest {
         attributes(
-                "Main-Class"            : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
-                "Class-Path"            : configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
-                "Description"           : "Example plugin for ServerPackCreator",
-                "Built-By"              : System.getProperty("user.name"),
-                "Build-Timestamp"       : new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
-                "Created-By"            : "Gradle ${gradle.gradleVersion}",
-                "Build-Jdk"             : "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
-                "Build-OS"              : "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
-                "Plugin-Class"          : "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
-                "Plugin-Id"             : "example-plugin",
-                "Plugin-Provider"       : "Griefed",
-                "Plugin-Version"        : "0.0.1",
-                "Plugin-Description"    : "Example plugin for ServerPackCreator",
+                "Main-Class": "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
+                "Class-Path": configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
+                "Description": "Example plugin for ServerPackCreator",
+                "Built-By": System.getProperty("user.name"),
+                "Build-Timestamp": new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
+                "Created-By": "Gradle ${gradle.gradleVersion}",
+                "Build-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
+                "Build-OS": "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
+                "Plugin-Class": "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
+                "Plugin-Id": "example-plugin",
+                "Plugin-Provider": "Griefed",
+                "Plugin-Version": "0.0.1",
+                "Plugin-Description": "Example plugin for ServerPackCreator",
         )
     }
 }
