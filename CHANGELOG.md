@@ -1,3 +1,10 @@
+## [3.0.10](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.9...3.0.10) (2022-06-22)
+
+
+### ⚗ Build and Dependencies
+
+* **Dependencies:** Update dependency ServerPackCreator to 3.5.0. ([9ec4dfc](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/9ec4dfc6fde3bd77940633e1e9607ad5afdd9c02))
+
 ## [3.0.9](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.8...3.0.9) (2022-06-18)
 
 
