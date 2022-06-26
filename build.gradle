@@ -60,7 +60,7 @@ dependencies {
    * You may need to refresh this dependency every now and then
    * Check https://gitlab.com/Griefed/ServerPackCreator/-/packages/4830254 occasionally
    */
-  implementation 'de.griefed:serverpackcreator:3.5.0'
+  implementation 'de.griefed:serverpackcreator:3.6.0'
 
   // Testing
   testImplementation 'org.mockito:mockito-core:4.6.1'
