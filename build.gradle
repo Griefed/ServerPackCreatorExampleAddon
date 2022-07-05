@@ -44,8 +44,8 @@ configurations {
 
 dependencies {
   // Dependencies required for any plugin and/or extension to work
-  implementation 'org.pf4j:pf4j:3.6.0'
-  annotationProcessor 'org.pf4j:pf4j:3.6.0'
+  implementation 'org.pf4j:pf4j:3.7.0'
+  annotationProcessor 'org.pf4j:pf4j:3.7.0'
   implementation 'de.griefed:serverpackcreator:3.6.0'
 
   // Required if you want to log to any of ServerPackCreators logs
