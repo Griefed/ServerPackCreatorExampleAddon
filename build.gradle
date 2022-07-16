@@ -56,11 +56,7 @@ dependencies {
 
   implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
 
-  /*
-   * You may need to refresh this dependency every now and then
-   * Check https://gitlab.com/Griefed/ServerPackCreator/-/packages/4830254 occasionally
-   */
-  implementation 'de.griefed:serverpackcreator:3.6.0'
+  implementation 'de.griefed:serverpackcreator:3.9.0'
 
   // Testing
   testImplementation 'org.mockito:mockito-core:4.6.1'
@@ -119,8 +115,8 @@ jar {
         "Build-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
         "Build-OS": "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
         "Plugin-Class": "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
-        "Plugin-Id": "example-plugin",
-        "Plugin-Name": "ServerPackCreator Example Plugin",
+        "Plugin-Id": "example-plugin-alternative",
+        "Plugin-Name": "ServerPackCreator Example Plugin Alternative Extension Declaration",
         "Plugin-Provider": "Griefed",
         "Plugin-Version": project.version,
         "Plugin-Description": "This is an example addon for ServerPackCreator showcasing all, currently 4, aspects of ServerPackCreators addon functionality. In this example you see code which gets executed before a server pack is generated, code that gets executed after a server pack was generated but before the ZIP-archive is created, code that gets executed after this ZIP-archive was created, as well as code adding a new tabbed pane to the GUI."
