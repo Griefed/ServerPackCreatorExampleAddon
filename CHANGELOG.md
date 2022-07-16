@@ -1,3 +1,19 @@
+## [3.0.12](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.11...3.0.12) (2022-07-16)
+
+
+### ⚗ Build and Dependencies
+
+* **Dependencies:** Update dependency ServerPackCreator to 3.9.0. ([4f402c0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/4f402c0fcb822a0dba4c7fa1b452e3d241edae00))
+
+
+### Other
+
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.11 ([e24ce0e](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/e24ce0e0b5de447f092de10b7c88344ed005fea4))
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.8 ([e9a98c7](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/e9a98c7f0e780ff7ed7ae835a98503533b2cdb1e))
+* **deps:** update dependency org.apache.logging.log4j:log4j-api to v2.18.0 ([aa2b824](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/aa2b824d8ef8fcc39400ce97accacc5809277b49))
+* **deps:** update dependency org.pf4j:pf4j to v3.7.0 ([3a0a9da](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/3a0a9da49fffb0da13bf47f4b463e4b264e7e90a))
+* **deps:** update jamesives/github-pages-deploy-action action to v4.3.4 ([fd9a81a](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/fd9a81afd57b2cbf290a9c02266ac4dc2a21bbbb))
+
 ## [3.0.11](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.10...3.0.11) (2022-06-26)
 
 
