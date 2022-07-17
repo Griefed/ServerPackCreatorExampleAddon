@@ -15,13 +15,10 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.TextArea;
 import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Hashtable;
@@ -40,39 +37,6 @@ import javax.swing.JComponent;
  */
 public class Tetris {
 
-  //    /**
-  //     * The applet parameter information structure.
-  //     */
-  //    private static final String PARAMETER[][] = {
-  //        { "tetris.color.background", "color",
-  //            "The overall background color." },
-  //        { "tetris.color.label", "color",
-  //            "The text color of the labels." },
-  //        { "tetris.color.button", "color",
-  //            "The start and pause button bolor." },
-  //        { "tetris.color.board.background", "color",
-  //            "The background game board color." },
-  //        { "tetris.color.board.message", "color",
-  //            "The game board message color." },
-  //        { "tetris.color.figure.square", "color",
-  //            "The color of the square figure." },
-  //        { "tetris.color.figure.line", "color",
-  //            "The color of the line figure." },
-  //        { "tetris.color.figure.s", "color",
-  //            "The color of the 's' curved figure." },
-  //        { "tetris.color.figure.z", "color",
-  //            "The color of the 'z' curved figure." },
-  //        { "tetris.color.figure.right", "color",
-  //            "The color of the right angle figure." },
-  //        { "tetris.color.figure.left", "color",
-  //            "The color of the left angle figure." },
-  //        { "tetris.color.figure.triangle", "color",
-  //            "The color of the triangle figure." }
-  //    };
-
-  /** The Tetris game being played (in applet mode). */
-  private Game game = null;
-
   /**
    * The stand-alone main routine.
    *
@@ -84,17 +48,13 @@ public class Tetris {
     final Game game = new Game();
 
     game.addPropertyChangeListener(
-        new PropertyChangeListener() {
-          public void propertyChange(PropertyChangeEvent evt) {
-            System.out.println("PCE " + evt.getPropertyName() + " " + evt.getNewValue());
-          }
-        });
+        evt -> System.out.println("PCE " + evt.getPropertyName() + " " + evt.getNewValue()));
 
     final TextArea taHiScores = new TextArea("", 10, 10, TextArea.SCROLLBARS_NONE);
 
     taHiScores.setBackground(Color.black);
     taHiScores.setForeground(Color.white);
-    taHiScores.setFont(new Font("monospaced", 0, 11));
+    taHiScores.setFont(new Font("monospaced", Font.PLAIN, 11));
     taHiScores.setText(
         " High Scores                  \n"
             + " ---------------------------\n\n"
@@ -108,34 +68,25 @@ public class Tetris {
     txt.setEnabled(false);
 
     game.addPropertyChangeListener(
-        new PropertyChangeListener() {
-          public void propertyChange(PropertyChangeEvent evt) {
-            if (evt.getPropertyName().equals("state")) {
-              int state = ((Integer) evt.getNewValue()).intValue();
-              if (state == Game.STATE_GAMEOVER) {
-                txt.setEnabled(true);
-                txt.requestFocus();
-                txt.addActionListener(
-                    new ActionListener() {
-                      public void actionPerformed(ActionEvent e) {
-                        txt.setEnabled(false);
-                        game.init();
-                      }
-                    });
-                // show score...
-              }
+        evt -> {
+          if (evt.getPropertyName().equals("state")) {
+            int state = (Integer) evt.getNewValue();
+            if (state == Game.STATE_GAMEOVER) {
+              txt.setEnabled(true);
+              txt.requestFocus();
+              txt.addActionListener(
+                  e -> {
+                    txt.setEnabled(false);
+                    game.init();
+                  });
+              // show score...
             }
           }
         });
 
     Button btnStart = new Button("Start");
     btnStart.setFocusable(false);
-    btnStart.addActionListener(
-        new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
-            game.start();
-          }
-        });
+    btnStart.addActionListener(e -> game.start());
 
     final Container c = new Container();
     c.setLayout(new BorderLayout());
@@ -159,52 +110,15 @@ public class Tetris {
         new WindowAdapter() {
           public void windowClosing(WindowEvent e) {
             frame.dispose();
+            game.terminate();
           }
         });
 
+    frame.setLocationRelativeTo(null);
+
     // Show frame (and start game)
-    frame.show();
+    frame.setVisible(true);
   }
-
-  //    /**
-  //     * Returns information about the parameters that are understood by
-  //     * this applet.
-  //     *
-  //     * @return an array describing the parameters to this applet
-  //     */
-  //    public String[][] getParameterInfo() {
-  //        return PARAMETER;
-  //    }
-
-  //    /**
-  //     * Initializes the game in applet mode.
-  //     */
-  //    public void init() {
-  //        String  value;
-  //
-  //        // Set all configuration parameters
-  //        for (int i = 0; i < PARAMETER.length; i++) {
-  //            value = getParameter(PARAMETER[i][0]);
-  //            if (value != null) {
-  //                Configuration.setValue(PARAMETER[i][0], value);
-  //            }
-  //        }
-  //
-  //        // Create game object
-  //        game = new Game();
-  //
-  //        // Initialize applet component
-  //        setLayout(new BorderLayout());
-  //        add(game.getComponent(), "Center");
-  //    }
-  //
-  //    /**
-  //     * Stops the game in applet mode.
-  //     */
-  //    public void stop() {
-  //        game.quit();
-  //    }
-
 }
 /*
  * @(#)SquareBoard.java
@@ -231,7 +145,8 @@ public class Tetris {
  * @version 1.2
  * @author Per Cederberg, per@percederberg.net
  */
-class SquareBoard extends Object {
+@SuppressWarnings("unused")
+class SquareBoard {
 
   /** The board width (in squares) */
   private final int width;
@@ -247,7 +162,7 @@ class SquareBoard extends Object {
    * The square board color matrix. This matrix (or grid) contains a color entry for each square in
    * the board. The matrix is indexed by the vertical, and then the horizontal coordinate.
    */
-  private Color[][] matrix = null;
+  private final Color[][] matrix;
   /**
    * An optional board message. The board message can be set at any time, printing it on top of the
    * board.
@@ -483,9 +398,7 @@ class SquareBoard extends Object {
       return;
     }
     for (; y > 0; y--) {
-      for (int x = 0; x < width; x++) {
-        matrix[y][x] = matrix[y - 1][x];
-      }
+      if (width >= 0) System.arraycopy(matrix[y - 1], 0, matrix[y], 0, width);
     }
     for (int x = 0; x < width; x++) {
       matrix[0][x] = null;
@@ -508,60 +421,51 @@ class SquareBoard extends Object {
   private class SquareBoardComponent extends JComponent {
 
     /**
-     * The component size. If the component has been resized, that will be detected when the paint
-     * method executes. If this value is set to null, the component dimensions are unknown.
-     */
-    private Dimension size = null;
-
-    /**
      * The component insets. The inset values are used to create a border around the board to
      * compensate for a skewed aspect ratio. If the component has been resized, the insets values
      * will be recalculated when the paint method executes.
      */
-    private Insets insets = new Insets(0, 0, 0, 0);
-
+    private final Insets insets = new Insets(0, 0, 0, 0);
     /**
      * The square size in pixels. This value is updated when the component size is changed, i.e.
      * when the <code>size</code> variable is modified.
      */
-    private Dimension squareSize = new Dimension(0, 0);
-
+    private final Dimension squareSize = new Dimension(0, 0);
+    /**
+     * A clip boundary buffer rectangle. This rectangle is used when calculating the clip
+     * boundaries, in order to avoid allocating a new clip rectangle for each board square.
+     */
+    private final Rectangle bufferRect = new Rectangle();
+    /** The board message color. */
+    private final Color messageColor;
+    /**
+     * A lookup table containing lighter versions of the colors. This table is used to avoid
+     * calculating the lighter versions of the colors for each and every square drawn.
+     */
+    private final Hashtable<Color, Color> lighterColors = new Hashtable<>();
+    /**
+     * A lookup table containing darker versions of the colors. This table is used to avoid
+     * calculating the darker versions of the colors for each and every square drawn.
+     */
+    private final Hashtable<Color, Color> darkerColors = new Hashtable<>();
+    /**
+     * A bounding box of the squares to update. The coordinates used in the rectangle refers to the
+     * square matrix.
+     */
+    private final Rectangle updateRect = new Rectangle();
+    /**
+     * The component size. If the component has been resized, that will be detected when the paint
+     * method executes. If this value is set to null, the component dimensions are unknown.
+     */
+    private Dimension size = null;
     /**
      * An image used for double buffering. The board is first painted onto this image, and that
      * image is then painted onto the real surface in order to avoid making the drawing process
      * visible to the user. This image is recreated each time the component size changes.
      */
     private Image bufferImage = null;
-
-    /**
-     * A clip boundary buffer rectangle. This rectangle is used when calculating the clip
-     * boundaries, in order to avoid allocating a new clip rectangle for each board square.
-     */
-    private Rectangle bufferRect = new Rectangle();
-
-    /** The board message color. */
-    private Color messageColor = Color.white;
-
-    /**
-     * A lookup table containing lighter versions of the colors. This table is used to avoid
-     * calculating the lighter versions of the colors for each and every square drawn.
-     */
-    private Hashtable lighterColors = new Hashtable();
-
-    /**
-     * A lookup table containing darker versions of the colors. This table is used to avoid
-     * calculating the darker versions of the colors for each and every square drawn.
-     */
-    private Hashtable darkerColors = new Hashtable();
-
     /** A flag set when the component has been updated. */
     private boolean updated = true;
-
-    /**
-     * A bounding box of the squares to update. The coordinates used in the rectangle refers to the
-     * square matrix.
-     */
-    private Rectangle updateRect = new Rectangle();
 
     /** Creates a new square board component. */
     public SquareBoardComponent() {
@@ -676,7 +580,7 @@ class SquareBoard extends Object {
     private Color getLighterColor(Color c) {
       Color lighter;
 
-      lighter = (Color) lighterColors.get(c);
+      lighter = lighterColors.get(c);
       if (lighter == null) {
         lighter = c.brighter().brighter();
         lighterColors.put(c, lighter);
@@ -695,7 +599,7 @@ class SquareBoard extends Object {
     private Color getDarkerColor(Color c) {
       Color darker;
 
-      darker = (Color) darkerColors.get(c);
+      darker = darkerColors.get(c);
       if (darker == null) {
         darker = c.darker().darker();
         darkerColors.put(c, darker);
@@ -718,12 +622,6 @@ class SquareBoard extends Object {
         size = getSize();
         squareSize.width = size.width / width;
         squareSize.height = size.height / height;
-
-        // if (squareSize.width <= squareSize.height) {
-        //    squareSize.height = squareSize.width;
-        // } else {
-        //    squareSize.width = squareSize.height;
-        // }
 
         insets.left = (size.width - width * squareSize.width) / 2;
         insets.right = insets.left;
@@ -874,7 +772,8 @@ class SquareBoard extends Object {
  * @version 1.2
  * @author Per Cederberg, per@percederberg.net
  */
-class Game extends Object {
+@SuppressWarnings("unused")
+class Game {
   public static final int STATE_GETREADY = 1;
   public static final int STATE_PLAYING = 2;
   public static final int STATE_PAUSED = 3;
@@ -898,7 +797,7 @@ class Game extends Object {
    * objects while the game is running. Special care has to be taken when the preview figure and the
    * current figure refers to the same object.
    */
-  private Figure[] figures = {
+  private final Figure[] figures = {
     new Figure(Figure.SQUARE_FIGURE),
     new Figure(Figure.LINE_FIGURE),
     new Figure(Figure.S_FIGURE),
@@ -1420,7 +1319,7 @@ class Game extends Object {
 
     /** Runs the game. */
     public void run() {
-      while (thread == this) {
+      while (true) {
         // Make the time step
         handleTimer();
 
@@ -1467,14 +1366,15 @@ class Game extends Object {
  * @author Per Cederberg, per@percederberg.net
  * @version 1.2
  */
-class Configuration extends Object {
+@SuppressWarnings("unused")
+class Configuration {
 
   /**
    * The internal configuration property values. This lookup table is used to avoid setting
    * configuration parameters in the system properties, as some programs (applets) do not have the
    * security permissions to set system properties.
    */
-  private static Hashtable config = new Hashtable();
+  private static final Hashtable<String, String> config = new Hashtable<>();
 
   /**
    * Returns a configuration parameter value.
@@ -1484,7 +1384,7 @@ class Configuration extends Object {
    */
   public static String getValue(String key) {
     if (config.containsKey(key)) {
-      return config.get(key).toString();
+      return config.get(key);
     } else {
       try {
         return System.getProperty(key);
@@ -1591,7 +1491,7 @@ class Configuration extends Object {
  * @version 1.2
  * @author Per Cederberg, per@percederberg.net
  */
-class Figure extends Object {
+class Figure {
 
   /** A figure constant used to create a figure forming a square. */
   public static final int SQUARE_FIGURE = 1;
@@ -1613,25 +1513,31 @@ class Figure extends Object {
 
   /** A figure constant used to create a figure forming a triangle. */
   public static final int TRIANGLE_FIGURE = 7;
-
+  /**
+   * The horizontal coordinates of the figure shape. The coordinates are relative to the current
+   * figure position and orientation.
+   */
+  private final int[] shapeX = new int[4];
+  /**
+   * The vertical coordinates of the figure shape. The coordinates are relative to the current
+   * figure position and orientation.
+   */
+  private final int[] shapeY = new int[4];
   /**
    * The square board to which the figure is attached. If this variable is set to null, the figure
    * is not attached.
    */
   private SquareBoard board = null;
-
   /**
    * The horizontal figure position on the board. This value has no meaning when the figure is not
    * attached to a square board.
    */
   private int xPos = 0;
-
   /**
    * The vertical figure position on the board. This value has no meaning when the figure is not
    * attached to a square board.
    */
   private int yPos = 0;
-
   /**
    * The figure orientation (or rotation). This value is normally between 0 and 3, but must also be
    * less than the maxOrientation value.
@@ -1639,7 +1545,6 @@ class Figure extends Object {
    * @see #maxOrientation
    */
   private int orientation = 0;
-
   /**
    * The maximum allowed orientation number. This is used to reduce the number of possible rotations
    * for some figures, such as the square figure. If this value is not used, the square figure will
@@ -1648,19 +1553,6 @@ class Figure extends Object {
    * @see #orientation
    */
   private int maxOrientation = 4;
-
-  /**
-   * The horizontal coordinates of the figure shape. The coordinates are relative to the current
-   * figure position and orientation.
-   */
-  private int[] shapeX = new int[4];
-
-  /**
-   * The vertical coordinates of the figure shape. The coordinates are relative to the current
-   * figure position and orientation.
-   */
-  private int[] shapeY = new int[4];
-
   /** The figure color. */
   private Color color = Color.white;
 
@@ -2017,9 +1909,7 @@ class Figure extends Object {
    * previous cells. If no square board is attached, the rotation is performed directly.
    */
   public void rotateClockwise() {
-    if (maxOrientation == 1) {
-      return;
-    } else {
+    if (maxOrientation != 1) {
       setRotation((orientation + 1) % maxOrientation);
     }
   }
@@ -2030,9 +1920,7 @@ class Figure extends Object {
    * the previous cells. If no square board is attached, the rotation is performed directly.
    */
   public void rotateCounterClockwise() {
-    if (maxOrientation == 1) {
-      return;
-    } else {
+    if (maxOrientation != 1) {
       setRotation((orientation + 3) % 4);
     }
   }

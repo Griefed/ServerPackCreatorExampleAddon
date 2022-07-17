@@ -97,7 +97,7 @@ public class MiniGame extends Plugin {
         ConfigurationModel configurationModel,
         String destination)
         throws Exception {
-      Tetris.main(null);
+
     }
   }
 }
