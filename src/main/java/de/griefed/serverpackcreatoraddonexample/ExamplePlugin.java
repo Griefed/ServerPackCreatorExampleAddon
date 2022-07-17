@@ -1,23 +1,19 @@
 package de.griefed.serverpackcreatoraddonexample;
 
-import java.io.File;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.Enumeration;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
+import java.net.URL;
 import java.util.jar.Manifest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.pf4j.Plugin;
 import org.pf4j.PluginWrapper;
-import org.springframework.boot.system.ApplicationHome;
 
 public class ExamplePlugin extends Plugin {
 
   private static final Logger LOG_ADDONS = LogManager.getLogger("AddonsLogger");
   private static final Logger LOG = LogManager.getLogger(ExamplePlugin.class);
 
+  private final Manifest MANIFEST;
   public static String NAME;
   public static String PROVIDER;
   public static String AUTHOR;
@@ -26,43 +22,34 @@ public class ExamplePlugin extends Plugin {
   public ExamplePlugin(PluginWrapper wrapper) {
     super(wrapper);
 
-    JarFile jarFile = null;
+    MANIFEST = getPluginManifest();
+
+    if (MANIFEST != null) {
+
+      NAME = MANIFEST.getMainAttributes().getValue("Plugin-Name");
+      PROVIDER = MANIFEST.getMainAttributes().getValue("Plugin-Description");
+      AUTHOR = MANIFEST.getMainAttributes().getValue("Plugin-Provider");
+      VERSION = MANIFEST.getMainAttributes().getValue("Plugin-Version");
+    }
+  }
+  
+  private Manifest getPluginManifest() {
     Manifest manifest = null;
 
-    try {
-      jarFile =
-          new JarFile(
-              new File(
-                  new ApplicationHome(this.getClass()).getSource().toString().replace("\\", "/")));
-    } catch (IOException ex) {
-      LOG_ADDONS.error("Couldn't acquire JarFile.", ex);
+    String classPath =
+        this.getClass().getResource(this.getClass().getSimpleName() + ".class").toString();
+
+    try (InputStream inputStream =
+        new URL(classPath.substring(0, classPath.lastIndexOf("!") + 1) + "/META-INF/MANIFEST.MF")
+            .openStream()) {
+
+      manifest = new Manifest(inputStream);
+
+    } catch (Exception ex) {
+      LOG_ADDONS.error("Couldn't read manifest", ex);
     }
-
-    if (jarFile != null) {
-      for (Enumeration<JarEntry> entries = jarFile.entries(); entries.hasMoreElements(); ) {
-
-        JarEntry jarEntry = entries.nextElement();
-        String entryName = jarEntry.getName();
-
-        if (entryName.equals("META-INF/MANIFEST.MF")) {
-
-          try (InputStream inputStream = jarFile.getInputStream(jarEntry)) {
-            manifest = new Manifest(inputStream);
-            break;
-          } catch (Exception ex) {
-            LOG_ADDONS.error("Couldn't read inputstream for Manifest.", ex);
-          }
-        }
-      }
-    }
-
-    if (manifest != null) {
-
-      NAME = manifest.getMainAttributes().getValue("Plugin-Name");
-      PROVIDER = manifest.getMainAttributes().getValue("Plugin-Description");
-      AUTHOR = manifest.getMainAttributes().getValue("Plugin-Provider");
-      VERSION = manifest.getMainAttributes().getValue("Plugin-Version");
-    }
+    
+    return manifest;
   }
 
   @Override
