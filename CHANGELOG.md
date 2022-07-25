@@ -1,3 +1,11 @@
+## [3.0.13](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.12...3.0.13) (2022-07-25)
+
+
+### ⚗ Build and Dependencies
+
+* **Dependencies:** Update dependency ServerPackCreator to 3.10.1 ([401f194](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/401f1949b7f27364e460cb01a428c67318b98dca))
+* **deps:** bump JamesIves/github-pages-deploy-action ([c49c29c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/c49c29cdaa1329683a7dd06a8e81e1399bb60b0d))
+
 ## [3.0.12](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.11...3.0.12) (2022-07-16)
 
 
