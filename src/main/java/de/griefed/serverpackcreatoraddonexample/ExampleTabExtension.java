@@ -74,7 +74,9 @@ public class ExampleTabExtension implements TabExtension {
       ApplicationProperties applicationProperties,
       ConfigurationModel configurationModel,
       String destination)
-      throws Exception {}
+      throws Exception {
+    System.out.println("Whargarbl");
+  }
 
   @Override
   public String getName() {

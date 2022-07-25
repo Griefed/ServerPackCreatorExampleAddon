@@ -1,9 +1,13 @@
 package de.griefed.serverpackcreatoraddonexample;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import de.griefed.serverpackcreator.ApplicationProperties;
 import de.griefed.serverpackcreator.ConfigurationModel;
+import de.griefed.serverpackcreator.i18n.I18n;
 import de.griefed.serverpackcreator.plugins.serverpackhandler.PreZipExtension;
 import de.griefed.serverpackcreator.utilities.ConfigUtilities;
+import de.griefed.serverpackcreator.utilities.common.Utilities;
 import java.io.File;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,7 +45,12 @@ public class ExampleCreatedExtension implements PreZipExtension {
       LOG_ADDONS.info("Error occurred creating parent directories.", ex);
     }
 
-    new ConfigUtilities(null, null, applicationProperties, null)
+    new ConfigUtilities(
+        new Utilities(new I18n(), applicationProperties),
+        applicationProperties,
+        new ObjectMapper()
+            .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+            .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY))
         .writeConfigToFile(configurationModel, new File(destination + "/serverpackcreator.conf"));
     /*
     Write all your post-gen-pre-zip stuff here...
