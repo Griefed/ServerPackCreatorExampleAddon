@@ -155,9 +155,7 @@ public class ExamplePlugin extends Plugin {
       } catch (Exception ex) {
         LOG_ADDONS.info("Error occurred creating parent directories.", ex);
       }
-
-      Utilities utilities = new Utilities(new I18n(), applicationProperties);
-
+      
       new ConfigUtilities(
               new Utilities(new I18n(), applicationProperties),
               applicationProperties,
