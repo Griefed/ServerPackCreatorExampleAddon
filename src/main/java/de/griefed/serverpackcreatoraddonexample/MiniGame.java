@@ -20,7 +20,7 @@ public class MiniGame extends Plugin {
    * Constructor to be used by plugin manager for plugin instantiation. Your plugins have to provide
    * constructor with this exact signature to be successfully loaded by manager.
    *
-   * @param wrapper shuddup
+   * @param wrapper {@link PluginWrapper} supplied by pf4j.
    */
   public MiniGame(PluginWrapper wrapper) {
     super(wrapper);
@@ -97,7 +97,7 @@ public class MiniGame extends Plugin {
         ConfigurationModel configurationModel,
         String destination)
         throws Exception {
-
+      System.out.println("FLYNN LIVES");
     }
   }
 }
