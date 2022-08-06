@@ -1,3 +1,18 @@
+## [3.0.14](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.13...3.0.14) (2022-08-06)
+
+
+### 🛠 Fixes
+
+* **deps:** update junit5 monorepo to v5.9.0 ([f32dbf4](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/f32dbf435eff97564653e5992580f338b220805e))
+
+
+### Other
+
+* **deps:** update dependency ghcr.io/griefed/gitlab-ci-cd to v2.0.9 ([be309fb](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/be309fb259906174cb31b7f468dab98e36c7ff5f))
+* **deps:** update dependency gradle to v7.5 ([ca9ebb8](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/ca9ebb8d4cbf1b5faf89afaefa4f5b4d80665f3a))
+* **deps:** update dependency griefed/baseimage-ubuntu-jdk-8 to v2.0.12 ([c31bd6b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/c31bd6b3b12ffc7f76779dfe62c1087f4fde25b8))
+* **deps:** update dependency griefed/gitlab-ci-cd to v2.0.9 ([77e0e72](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/77e0e72290fcb0e0cceb6c59c7ba76a0ca8d8571))
+
 ## [3.0.13](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.12...3.0.13) (2022-07-25)
 
 
