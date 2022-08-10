@@ -1,3 +1,11 @@
+## [3.0.15](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.14...3.0.15) (2022-08-10)
+
+
+### ⚗ Build and Dependencies
+
+* **deps:** bump junit-jupiter-api from 5.8.2 to 5.9.0 ([cd5526c](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/cd5526cad69bdff9bbf0e398c3662230e552ae92))
+* **deps:** bump junit-jupiter-engine from 5.8.2 to 5.9.0 ([987c90d](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/987c90d9150714c4f44e651f648572dae89d0c70))
+
 ## [3.0.14](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.13...3.0.14) (2022-08-06)
 
 
