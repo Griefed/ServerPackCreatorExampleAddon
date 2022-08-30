@@ -1,3 +1,11 @@
+## [3.0.16](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.15...3.0.16) (2022-08-30)
+
+
+### ⚗ Build and Dependencies
+
+* **Dependencies:** Update Mockito Core to 4.7.0 ([6f5be52](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/6f5be52a0c5872b35aae53ee0ef98dc7d9321723))
+* **Dependencies:** Update ServerPackCreator to 3.12.0 ([28aa2e0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/28aa2e00b34837ee399115f86c076f3156c2eea2))
+
 ## [3.0.15](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.14...3.0.15) (2022-08-10)
 
 
