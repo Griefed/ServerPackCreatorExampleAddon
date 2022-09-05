@@ -19,7 +19,7 @@ workflow:
     - when: always
 
 Gradle Test:
-  image: griefed/baseimage-ubuntu-jdk-8:2.0.12
+  image: griefed/baseimage-ubuntu-jdk-8:2.0.13
   stage: Gradle Test
   services:
     - name: griefed/gitlab-ci-cd:2.2.1
@@ -70,7 +70,7 @@ Release:
       - $CI_COMMIT_TITLE =~ /^RELEASE:.+$/
 
 pages:
-  image: griefed/baseimage-ubuntu-jdk-8:2.0.12
+  image: griefed/baseimage-ubuntu-jdk-8:2.0.13
   stage: Documentation
   services:
     - name: griefed/gitlab-ci-cd:2.2.1
