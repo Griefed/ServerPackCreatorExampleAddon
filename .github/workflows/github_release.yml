@@ -61,10 +61,12 @@ jobs:
 
       # BUILD PROJECT AND PUBLISH TO PACKAGES
       - name: Set up JDK 8
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
+          distribution: 'zulu'
           java-version: '8'
+          check-latest: true
+          cache: 'gradle'
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
@@ -88,8 +90,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/ExampleAddon-${{ needs.release.outputs.newtag }}.jar
-          asset_name: ExampleAddon-${{ needs.release.outputs.newtag }}.jar
+          asset_path: ./build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}.jar
+          asset_name: ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}.jar
           asset_content_type: application/jar
 
       - name: Upload Release Asset Sources Jar
@@ -99,8 +101,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/ExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_name: ExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
+          asset_path: ./build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
+          asset_name: ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
           asset_content_type: application/jar
 
       - name: Upload Release Asset Javadoc Jar
@@ -110,138 +112,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/ExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_name: ExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_content_type: application/jar
-
-  alternative:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      # GET LATEST CODE
-      - name: Checkout latest code
-        uses: actions/checkout@master
-        with:
-          ref: alternativeExtensionDeclaration
-          fetch-depth: 0
-
-      # BUILD PROJECT AND PUBLISH TO PACKAGES
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '8'
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Publish to GitHub Packages
-        env:
-          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          NEW_VERSION=$(echo "${{ needs.release.outputs.newtag }}")
-          echo "New version: ${NEW_VERSION}"
-          echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew about
-          ./gradlew -Pversion=${NEW_VERSION} build --info -x test
-
-      # UPLOAD ASSETS TO RELEASE
-      - name: Upload Release Asset Main Jar
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/AlternativeExtensionDeclaration-${{ needs.release.outputs.newtag }}.jar
-          asset_name: AlternativeExtensionDeclaration-${{ needs.release.outputs.newtag }}.jar
-          asset_content_type: application/jar
-
-      - name: Upload Release Asset Sources Jar
-        id: upload-release-asset-sources
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/AlternativeExtensionDeclaration-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_name: AlternativeExtensionDeclaration-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_content_type: application/jar
-
-      - name: Upload Release Asset Javadoc Jar
-        id: upload-release-asset-javadoc
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/AlternativeExtensionDeclaration-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_name: AlternativeExtensionDeclaration-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_content_type: application/jar
-
-  tetris:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      # GET LATEST CODE
-      - name: Checkout latest code
-        uses: actions/checkout@master
-        with:
-          ref: tetris
-          fetch-depth: 0
-
-      # BUILD PROJECT AND PUBLISH TO PACKAGES
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          distribution: 'adopt'
-          java-version: '8'
-
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-
-      - name: Publish to GitHub Packages
-        env:
-          GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          NEW_VERSION=$(echo "${{ needs.release.outputs.newtag }}")
-          echo "New version: ${NEW_VERSION}"
-          echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew about
-          ./gradlew -Pversion=${NEW_VERSION} build --info -x test
-
-      # UPLOAD ASSETS TO RELEASE
-      - name: Upload Release Asset Main Jar
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/MiniGame-${{ needs.release.outputs.newtag }}.jar
-          asset_name: MiniGame-${{ needs.release.outputs.newtag }}.jar
-          asset_content_type: application/jar
-
-      - name: Upload Release Asset Sources Jar
-        id: upload-release-asset-sources
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/MiniGame-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_name: MiniGame-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_content_type: application/jar
-
-      - name: Upload Release Asset Javadoc Jar
-        id: upload-release-asset-javadoc
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/MiniGame-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_name: MiniGame-${{ needs.release.outputs.newtag }}-javadoc.jar
+          asset_path: ./build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
+          asset_name: ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
           asset_content_type: application/jar

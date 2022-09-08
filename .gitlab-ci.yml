@@ -4,15 +4,13 @@ stages:
   - Release
   - Build Release
 
+variables:
+  project_name: $CI_PROJECT_NAME
+  SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
+
 Gradle Test:
   image: griefed/baseimage-ubuntu-jdk-8:2.0.4
   stage: Gradle Test
-  services:
-    - name: griefed/gitlab-ci-cd:2.0.1
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
   before_script:
     - echo "**** Running in $CI_JOB_ID ****"
     - echo "**** Java location ****"
@@ -39,12 +37,6 @@ Release:
       artifacts: false
   stage: Release
   image: griefed/gitlab-ci-cd:2.0.1
-  services:
-    - name: griefed/gitlab-ci-cd:2.0.1
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
   script:
     - npx semantic-release
   only:
@@ -58,12 +50,6 @@ Release:
 pages:
   image: griefed/baseimage-ubuntu-jdk-8:2.0.4
   stage: Documentation
-  services:
-    - name: griefed/gitlab-ci-cd:2.0.1
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
   before_script:
     - which java
     - chmod +x gradlew
@@ -74,7 +60,6 @@ pages:
     - LC_COLLATE=C ls -ahl --group-directories-first --color=auto
       public
   only:
-    - master
     - main
   artifacts:
     paths:

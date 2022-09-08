@@ -11,10 +11,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK 8
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          distribution: 'adopt'
+          distribution: 'zulu'
           java-version: '8'
+          check-latest: true
+          cache: 'gradle'
       - name: Where is Java
         run: which java
       - name: Grant execute permission for gradlew
@@ -27,13 +29,5 @@ jobs:
         with:
           name: build-artifacts-gradle
           path: |
-            build/libs/
-            !build/libs/libraries/
-            frontend/dist/spa
-          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
-      - uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: report
-          path: build/reports/tests/test/
-          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
+            build
+          if-no-files-found: warn
