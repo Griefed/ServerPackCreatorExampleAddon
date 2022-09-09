@@ -5,9 +5,6 @@ plugins {
   id 'idea'
 }
 
-group 'de.griefed'
-version = "1.0.0"
-
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 def pluginClass = 'de.griefed.exampleaddon.Example'
@@ -15,6 +12,8 @@ def addon_id = 'example'
 def addon_name = 'Example Addon'
 def addon_description = 'An example addon for ServerPackCreator'
 def addon_author = 'Griefed'
+group 'de.griefed'
+version = "1.0.0"
 
 sourceSets {
   //noinspection GroovyAssignabilityCheck
