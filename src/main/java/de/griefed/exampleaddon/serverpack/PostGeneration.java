@@ -5,6 +5,8 @@ import com.electronwill.nightconfig.toml.TomlWriter;
 import de.griefed.serverpackcreator.ApplicationProperties;
 import de.griefed.serverpackcreator.ConfigurationModel;
 import de.griefed.serverpackcreator.addons.serverpackhandler.PostGenExtension;
+import de.griefed.serverpackcreator.utilities.common.Utilities;
+import de.griefed.serverpackcreator.versionmeta.VersionMeta;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -19,6 +21,10 @@ public class PostGeneration implements PostGenExtension {
   private TomlWriter tomlWriter = null;
 
   /**
+   * @param versionMeta           Instance of {@link VersionMeta} so you can work with available
+   *                              Minecraft, Forge, Fabric, LegacyFabric and Quilt versions.
+   * @param utilities             Instance of {@link Utilities} commonly used across
+   *                              ServerPackCreator.
    * @param applicationProperties Instance of {@link ApplicationProperties} as ServerPackCreator
    *                              itself uses it.
    * @param configurationModel    Instance of {@link ConfigurationModel} for a given server pack.
@@ -31,10 +37,15 @@ public class PostGeneration implements PostGenExtension {
    * @author Griefed
    */
   @Override
-  public void run(ApplicationProperties applicationProperties,
-      ConfigurationModel configurationModel, String destination,
+  public void run(
+      VersionMeta versionMeta,
+      Utilities utilities,
+      ApplicationProperties applicationProperties,
+      ConfigurationModel configurationModel,
+      String destination,
       Optional<CommentedConfig> addonConfig,
-      ArrayList<CommentedConfig> packSpecificConfigs) throws Exception {
+      ArrayList<CommentedConfig> packSpecificConfigs
+  ) throws Exception {
 
     LOG_ADDONS.info("I am: " + getName() + "(" + getVersion() + ") by " + getAuthor() + ". "
         + getDescription());
@@ -66,7 +77,6 @@ public class PostGeneration implements PostGenExtension {
       getTomlWriter().write(packSpecificConfigs.get(i), stringWriter);
       LOG_ADDONS.info(stringWriter);
     }
-
   }
 
   private TomlWriter getTomlWriter() {
