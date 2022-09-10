@@ -32,13 +32,8 @@ public class Tetris {
    * @param args the command-line arguments
    */
   public static void main(String[] args) {
-    System.out.println("starting");
     Frame frame = new Frame("Tetris");
     final Game game = new Game();
-
-    game.addPropertyChangeListener(
-        evt -> System.out.println("PCE " + evt.getPropertyName() + " " + evt.getNewValue()));
-
     final TextArea taHiScores = new TextArea("", 10, 10, TextArea.SCROLLBARS_NONE);
 
     taHiScores.setBackground(Color.black);
@@ -89,9 +84,6 @@ public class Tetris {
     c2.add(taHiScores);
 
     frame.add(c2);
-
-    System.out.println("packing");
-
     frame.pack();
 
     // Add frame window listener

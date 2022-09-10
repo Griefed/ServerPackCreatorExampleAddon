@@ -32,9 +32,14 @@ public class ConfigurationCheck implements ConfigCheckExtension {
    * @author Griefed
    */
   @Override
-  public boolean runCheck(ConfigurationModel configurationModel, List<String> encounteredErrors,
+  public boolean runCheck(
+      ConfigurationModel configurationModel,
+      List<String> encounteredErrors,
       Optional<CommentedConfig> addonConfig,
-      ArrayList<CommentedConfig> packSpecificConfigs) throws Exception {
+      ArrayList<CommentedConfig> packSpecificConfigs)
+      throws Exception {
+
+    boolean bool = false;
 
     LOG_ADDONS.info("I am: " + getName() + "(" + getVersion() + ") by " + getAuthor() + ". "
         + getDescription());
@@ -62,10 +67,14 @@ public class ConfigurationCheck implements ConfigCheckExtension {
 
       getTomlWriter().write(packSpecificConfigs.get(i), stringWriter);
       LOG_ADDONS.info(stringWriter);
-    }
-    encounteredErrors.add("I am an example for a custom error message when an extension configuration check detected an error.");
 
-    return true;
+      if (!packSpecificConfigs.get(i).get("text").toString().isEmpty()) {
+        bool = true;
+        encounteredErrors.add("Extension " + packSpecificConfigs.get(i).get("extension").toString() + " encountered an error.");
+      }
+    }
+
+    return bool;
   }
 
   private TomlWriter getTomlWriter() {

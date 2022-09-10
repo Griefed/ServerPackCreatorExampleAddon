@@ -3,15 +3,22 @@ package de.griefed.exampleaddon.gui.tab;
 import com.electronwill.nightconfig.core.CommentedConfig;
 import de.griefed.serverpackcreator.ApplicationProperties;
 import de.griefed.serverpackcreator.addons.swinggui.ExtensionTab;
+import de.griefed.serverpackcreator.swing.ServerPackCreatorGui;
 import de.griefed.serverpackcreator.utilities.common.Utilities;
 import de.griefed.serverpackcreator.versionmeta.VersionMeta;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.io.File;
+import java.util.Objects;
 import java.util.Optional;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class TetrisTab extends ExtensionTab {
@@ -45,53 +52,89 @@ public class TetrisTab extends ExtensionTab {
     setLayout(new GridBagLayout());
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.fill = GridBagConstraints.NONE;
-    gridBagConstraints.anchor = GridBagConstraints.WEST;
+    gridBagConstraints.anchor = GridBagConstraints.CENTER;
     gridBagConstraints.gridwidth = 1;
     gridBagConstraints.gridheight = 1;
     gridBagConstraints.weightx = 1;
     gridBagConstraints.weighty = 1;
 
-    JLabel press = new JLabel("PRESS PLAY ON TAPE");
+    JPanel miniGame = new JPanel();
+    miniGame.setBorder(BorderFactory.createTitledBorder("Tetris Minigame"));
+    miniGame.setLayout(new GridBagLayout());
+    GridBagConstraints miniGameConstraints = new GridBagConstraints();
+    miniGameConstraints.fill = GridBagConstraints.HORIZONTAL;
+    miniGameConstraints.anchor = GridBagConstraints.CENTER;
+
+    JLabel press = new JLabel("PRESS PLAY ON TAPE  ");
+    JButton play = new JButton();
+    play.setIcon(new ImageIcon(Objects.requireNonNull(TetrisTab.class.getResource("/play.png"))));
+    play.setToolTipText("Open Tetris in a new window");
+    play.addActionListener(e -> Tetris.main(null));
+
+    miniGameConstraints.gridx = 0;
+    miniGameConstraints.gridy = 0;
+    miniGame.add(press,miniGameConstraints);
+    miniGameConstraints.gridx = 0;
+    miniGameConstraints.gridy = 1;
+    miniGame.add(play,miniGameConstraints);
+
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
-    add(press, gridBagConstraints);
+    gridBagConstraints.gridwidth = 2;
 
-    JButton play = new JButton("Tetris");
-    play.setToolTipText("Open Tetris in a new window");
-    gridBagConstraints.gridx = 1;
-    gridBagConstraints.gridy = 0;
-    play.addActionListener(e -> Tetris.main(null));
-    add(play, gridBagConstraints);
+    miniGame.setPreferredSize(new Dimension(300,135));
+    add(miniGame, gridBagConstraints);
 
-    if (addonConfig.isPresent()) {
+    gridBagConstraints.gridy += 1;
+    gridBagConstraints.anchor = GridBagConstraints.WEST;
+    gridBagConstraints.fill = GridBagConstraints.BOTH;
+    gridBagConstraints.insets = new Insets(10,10,10,10);
+
+    if (addonConfig.isPresent() && configFile.isPresent()) {
+      JPanel config = new JPanel();
+      config.setBorder(BorderFactory.createTitledBorder("Global Example Addon Config"));
+      config.setLayout(new GridBagLayout());
+      GridBagConstraints configConstraints = new GridBagConstraints();
+
+      configConstraints.fill = GridBagConstraints.HORIZONTAL;
+      configConstraints.anchor = GridBagConstraints.NORTHWEST;
+      configConstraints.gridwidth = 1;
+      configConstraints.gridheight = 1;
+      configConstraints.weighty = 1;
+
       JLabel who = new JLabel("Who am I?");
-      gridBagConstraints.gridx = 0;
-      gridBagConstraints.gridy += 1;
-      add(who, gridBagConstraints);
+      configConstraints.gridx = 0;
+      configConstraints.gridy = 0;
+      configConstraints.weightx = 0.1F;
+      config.add(who, configConstraints);
 
-      ami = new JTextField(addonConfig.get().get("whomai"));
-      gridBagConstraints.gridx = 1;
-      add(ami, gridBagConstraints);
+      ami = new JTextField(addonConfig.get().get("whoami"));
+      configConstraints.gridx = 1;
+      configConstraints.weightx = 1;
+      config.add(ami, configConstraints);
 
       JLabel why = new JLabel("Why am I here?");
-      gridBagConstraints.gridx = 0;
-      gridBagConstraints.gridy += 1;
-      add(why, gridBagConstraints);
+      configConstraints.gridx = 0;
+      configConstraints.gridy += 1;
+      configConstraints.weightx = 0.1F;
+      config.add(why, configConstraints);
 
       here = new JTextField(addonConfig.get().get("whyamihere"));
-      gridBagConstraints.gridx = 1;
-      add(here, gridBagConstraints);
+      configConstraints.gridx = 1;
+      configConstraints.weightx = 1;
+      config.add(here, configConstraints);
 
       JButton set = new JButton("Set values");
-      gridBagConstraints.gridx = 0;
-      gridBagConstraints.gridy += 1;
+      configConstraints.gridx = 0;
+      configConstraints.gridy += 1;
+      configConstraints.gridwidth = 2;
       set.addActionListener(e -> {
-        addonConfig.get().set("whomai", ami.getText());
+        addonConfig.get().set("whoami", ami.getText());
         addonConfig.get().set("whyamihere", here.getText());
 
         if (JOptionPane.showConfirmDialog(
             null,
-            "New values set. Save addon configuration?",
+            "New values set. Save addon configuration?   ",
             "Save?",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.INFORMATION_MESSAGE) == 0) {
@@ -99,13 +142,15 @@ public class TetrisTab extends ExtensionTab {
         } else {
           JOptionPane.showMessageDialog(
               null,
-              "Values not saved :-(",
+              "Values not saved :-(   ",
               "Sad face",
               JOptionPane.WARNING_MESSAGE
           );
         }
       });
-      add(set, gridBagConstraints);
+      config.add(set,configConstraints);
+
+      add(config, gridBagConstraints);
     }
   }
 }

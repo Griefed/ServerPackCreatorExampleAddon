@@ -7,12 +7,14 @@ import de.griefed.serverpackcreator.addons.swinggui.ExtensionConfigPanel;
 import de.griefed.serverpackcreator.swing.TabCreateServerPack;
 import de.griefed.serverpackcreator.utilities.common.Utilities;
 import de.griefed.serverpackcreator.versionmeta.VersionMeta;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.util.ArrayList;
 import java.util.Optional;
 import javax.swing.JLabel;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
 public class ConfigurationPanel extends ExtensionConfigPanel {
@@ -58,6 +60,8 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
 
     panelName = extensionName + " (" + pluginID + ")";
 
+    Font extensionHeader = new Font("Noto Sans Display Regular", Font.BOLD, 18);
+
     setLayout(new GridBagLayout());
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -70,32 +74,54 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
 
     JLabel pregenexample = new JLabel(
         "Example Pre Server Pack Generation Extension (pregenexample)");
+    pregenexample.setFont(extensionHeader);
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     add(pregenexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
+    JLabel pregenexampletext = new JLabel("text: ");
+    add(pregenexampletext,gridBagConstraints);
+    gridBagConstraints.gridy += 1;
     add(pregen, gridBagConstraints);
 
+    add(new JSeparator());
+
     JLabel prezipexample = new JLabel("Example Pre ZIP-Archive Creation Extension (prezipexample)");
+    prezipexample.setFont(extensionHeader);
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy += 1;
     add(prezipexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
+    JLabel prezipexampletext = new JLabel("text: ");
+    add(prezipexampletext,gridBagConstraints);
+    gridBagConstraints.gridy += 1;
     add(prezip, gridBagConstraints);
+
+    add(new JSeparator());
 
     JLabel postgenexample = new JLabel(
         "Example Post Server Pack Generation Extension (postgenexample)");
+    postgenexample.setFont(extensionHeader);
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy += 1;
     add(postgenexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
+    JLabel postgenexampletext = new JLabel("text: ");
+    add(postgenexampletext,gridBagConstraints);
+    gridBagConstraints.gridy += 1;
     add(postgen, gridBagConstraints);
+
+    add(new JSeparator());
 
     JLabel configcheckexample = new JLabel(
         "Example Configuration Check Extension (configcheckexample)");
+    configcheckexample.setFont(extensionHeader);
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy += 1;
     add(configcheckexample, gridBagConstraints);
+    gridBagConstraints.gridy += 1;
+    JLabel configcheckexampletext = new JLabel("text: ");
+    add(configcheckexampletext,gridBagConstraints);
     gridBagConstraints.gridy += 1;
     add(confcheck, gridBagConstraints);
   }
@@ -135,6 +161,7 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     configcheckexample.set("extension", "configcheckexample");
     configcheckexample.set("text", confcheck.getText());
 
+    SERVERPACK_EXTENSION_CONFIG.clear();
     SERVERPACK_EXTENSION_CONFIG.add(pregenexample);
     SERVERPACK_EXTENSION_CONFIG.add(prezipexample);
     SERVERPACK_EXTENSION_CONFIG.add(postgenexample);
@@ -166,22 +193,22 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
             switch (extension) {
               case "pregenexample":
 
-                pregen.setText(config.get("text"));
+                pregen.setText(config.get("text").toString());
                 break;
 
               case "prezipexample":
 
-                prezip.setText(config.get("text"));
+                prezip.setText(config.get("text").toString());
                 break;
 
               case "postgenexample":
 
-                postgen.setText(config.get("text"));
+                postgen.setText(config.get("text").toString());
                 break;
 
               case "configcheckexample":
 
-                confcheck.setText(config.get("text"));
+                confcheck.setText(config.get("text").toString());
                 break;
             }
           }

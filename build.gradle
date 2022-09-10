@@ -49,7 +49,8 @@ configurations {
 }
 
 dependencies {
-  implementation 'de.griefed:serverpackcreator:3.14.0-beta.3'
+  annotationProcessor 'org.pf4j:pf4j:3.7.0'
+  implementation 'de.griefed:serverpackcreator:3.14.0-beta.4'
 
   // Testing
   testImplementation 'org.mockito:mockito-core:4.7.0'
@@ -70,14 +71,14 @@ test {
 }
 
 processResources {
-
   filesMatching("addon.toml") {
     expand(
         "version": project.version,
         "addon_id": addon_id,
         "addon_name": addon_name,
         "addon_description": addon_description,
-        "addon_author": addon_author
+        "addon_author": addon_author,
+        "addon_class": pluginClass
     )
   }
 }
