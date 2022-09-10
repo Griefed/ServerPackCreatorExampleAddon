@@ -27,12 +27,22 @@ jobs:
       - name: Use tag
         run: echo ${{steps.tag.outputs.tag}}
 
-      # GENERATE CHANGELOG, RELEASE
-      - id: conventional_changelog
-        uses: ardalanamini/auto-changelog@master
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # GET RELEASE INFO
+      - name: Get Release Info
+        run: |
+          curl --header \
+          'PRIVATE-TOKEN: ${{ secrets.GITLAB_TOKEN }}' \
+          'https://git.griefed.de/api/v4/projects/95/releases/${{steps.tag.outputs.tag}}' >> ./version.json
 
+      # GET DESCRIPTION
+      - name: Extract version from package.json
+        uses: sergeysova/jq-action@v2
+        id: description
+        with:
+          cmd: 'jq .description version.json -r'
+          multiline: true
+
+      # GENERATE RELEASE
       - name: Create Release
         id: create_release
         uses: actions/create-release@latest
@@ -41,10 +51,7 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{steps.tag.outputs.tag}}
-          body: |
-            Automatic release of version: **${{steps.tag.outputs.tag}}**
-            **Changes in this release:**
-            ${{ steps.conventional_changelog.outputs.changelog }}
+          body: ${{ steps.description.outputs.value }}
           draft: false
           prerelease: false
 
@@ -76,11 +83,7 @@ jobs:
           GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          NEW_VERSION=$(echo "${{ needs.release.outputs.newtag }}")
-          echo "New version: ${NEW_VERSION}"
-          echo "Github username: ${GITHUB_ACTOR}"
-          ./gradlew about
-          ./gradlew -Pversion=${NEW_VERSION} build --info -x test
+          ./gradlew -Pversion=${{ needs.release.outputs.newtag }} build --info --stacktrace -x test
 
       # UPLOAD ASSETS TO RELEASE
       - name: Upload Release Asset Main Jar
