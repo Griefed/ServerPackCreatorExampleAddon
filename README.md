@@ -1,11 +1,125 @@
 # Example Addon for ServerPackCreator
 
-This is an example server pack addon
-for [ServerPackCreator](https://github.com/Griefed/ServerPackCreator)
+This is an example server pack addon for [ServerPackCreator](https://github.com/Griefed/ServerPackCreator)
 
-ServerPackCreator provides several extension endpoints
-for [pf4j plugins](https://github.com/pf4j/pf4j), from hereon out called **addons**, to add
+ServerPackCreator provides several extension endpoints for [pf4j plugins](https://github.com/pf4j/pf4j), from hereon out called **addons**, to add
 additional functionality. This example addon demonstrates an implementation for all available extension endpoints of ServerPackCreator.
+
+This repository demonstrates how extension for ServerPackCreator are implemented, one small example for every extension
+point available in ServerPackCreator.
+
+## Configuration Panel Extension
+
+The configuration panel is intended to let you add a panel in which you, or the user of your addon, may
+configure something for any of the extensions added by your addon.
+
+![configpanel](img/configpanel.png)
+
+The above example lets you configure four textfields, one for each extension point used during server pack 
+configuration checking and server pack generation. More on this in **Configuration Check Extension**.
+
+Extension configurations are saved to the serverpackcreator.conf of the server pack and re-loaded along
+with everything else, like the Minecraft version, modloader and modloader version etc.
+
+To see how this is achieved, please see
+
+```java
+@Override
+public ArrayList<CommentedConfig> serverPackExtensionConfig() {...}
+``` 
+
+and 
+
+```java
+@Override
+public void setServerPackExtensionConfig(ArrayList<CommentedConfig> serverPackExtensionConfig) {...}
+```
+
+in the `ConfigurationPanel`-class.
+
+## Tab Extension
+
+Tab extensions allow you to add whole tabs to the GUI of ServerPackCreator. These additional tabs are intended
+to let you add textfields and such, which allow you to configure your global addon configuration.
+You may add anything you want to it. The sky is the limit!
+
+![tab](img/tabextension.png)
+
+The above example adds a button which, when pressed, opens a minimalistic Tetris game in a new window.
+It's not supposed to be actually that entertaining, but rather to demonstrate that you can do what you want inside
+your tab.
+
+Below the big button are some textfields which allow you to change some values of the global addon-wide configuration.
+Global addon-configurations are handed to you by ServerPackCreator when the tab is instantiated. The only thing
+you need to take care of is to call `saveConfiguration()` from within your tab to save the configuration.
+The example above simply adds a button `Set values` which does just that. 
+
+Global addon-configurations are passed to every extension, along with any available extension-specific configuration,
+automatically, so you don't have to worry about anything other than actually saving changes you made in the tab.
+
+Maybe have a timer auto-save every few seconds? Your tab, your choice! 😁
+
+## Configuration Check Extension
+
+The configuration check extension point allows you to run your own config checks, be that on any of the
+already available data from the server pack config tab, or your own data from the configuration panel, or your
+own tab, or whatever else you may want to check.
+
+![check](img/configcheck.png)
+
+The above example simply checks whether the string in `text` of the passed `CommentedConfig` in a list
+of passed configs contains text. If it does, then we add a custom error message to the list of errors encountered
+during configuration checks.
+That list is then displayed to the user after the configurations checks have all run.
+
+For details see `runCheck(...) {...}` in the `ConfigurationCheck`-class.
+
+Keep in mind that the method must return `true` in order to trigger a config check failure on ServerPackCreators part.
+Only if any one configuration check, be that ServerPackCreator native or from addons, returns `true` will the
+error messages be displayed to the user.
+
+Make use of this extension point in combination with the **Configuration Panel Extension** and/or **Tab Extension** in order to
+check user input for any errors!
+
+## Pre Server Pack Generation Extension
+
+The Pre Server Pack Generation extensions run, as the name implies, *right before* the generation of a server pack really begins.
+You may use this to prepare the environment for any of the tailing extensions.
+
+![pregen](img/pregen.png)
+
+The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
+extension passed to it by ServerPackCreator.
+
+See the `PreGeneration`-class for details on how the example above was achieved.
+
+## Pre Server Pack ZIP-archive Creation Extension
+
+The Pre Server Pack ZIP-archive Creation extensions run, as the name implies, *right before* the creation of the server packs ZIP-archive is, or would be,
+started. Want to add any files to the ZIP-archive? Or make sure some file doesn't make it into the ZIP-archive?
+
+![prezip](img/prezip.png)
+
+The above example shows the run of a PreZip extension, with the global addon configuration as well as the extension-specific
+extension passed to it by ServerPackCreator.
+
+See the `PreZipArchive`-class for details on how the example above was achieved.
+
+## Post Server Pack Generation Extension
+
+The Post Server Pack Generation extensions run, as the name implies, *after* the generation of a server pack has finished.
+Want to add any files to the server pack, but don't want them to end up in the ZIP-archive? Maybe download,
+install and configure DynMap with some renderdata? This would be the place to do that!
+
+![postgen](img/postgen.png)
+
+The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
+extension passed to it by ServerPackCreator.
+
+See the `PostGeneration`-class for details on how the example above was achieved.
+
+See now why the ConfigPanel, ConfigCheck and Tab extensions are so nice to have?
+The possibilities are (almost) **endless**!😁 
 
 # 1. The reason for allowing ServerPackCreator to run addons:
 

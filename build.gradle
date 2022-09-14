@@ -7,6 +7,14 @@ plugins {
 
 //noinspection GroovyUnusedAssignment
 sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+/*
+ CHANGE THESE VALUES
+    FOR YOUR OWN
+       ADDON
+
+ Addon ID must be unique.
+    Set it carefully!
+ */
 def pluginClass = 'de.griefed.exampleaddon.Example'
 def addon_id = 'example'
 def addon_name = 'Example Addon'
@@ -50,10 +58,10 @@ configurations {
 
 dependencies {
   annotationProcessor 'org.pf4j:pf4j:3.7.0'
-  implementation 'de.griefed:serverpackcreator:3.14.0-beta.5'
+  implementation 'de.griefed:serverpackcreator:3.14.0'
 
   // Testing
-  testImplementation 'org.mockito:mockito-core:4.7.0'
+  testImplementation 'org.mockito:mockito-core:4.8.0'
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
