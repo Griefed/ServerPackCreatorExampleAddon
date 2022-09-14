@@ -1,4 +1,4 @@
-# Example Addon for ServerPackCreator
+# 1. Example Addon for ServerPackCreator
 
 This is an example server pack addon for [ServerPackCreator](https://github.com/Griefed/ServerPackCreator)
 
@@ -8,7 +8,54 @@ additional functionality. This example addon demonstrates an implementation for 
 This repository demonstrates how extension for ServerPackCreator are implemented, one small example for every extension
 point available in ServerPackCreator.
 
-## Configuration Panel Extension
+## 1.1 Addon details
+
+Take care to edit this section in the `build.gradle`-file if you forked, or intent on forking, this repository.
+
+```groovy
+/*
+ CHANGE THESE VALUES
+    FOR YOUR OWN
+       ADDON
+
+ Addon ID must be unique.
+    Set it carefully!
+ */
+def pluginClass = 'de.griefed.exampleaddon.Example'
+def addon_id = 'example'
+def addon_name = 'Example Addon'
+def addon_description = 'An example addon for ServerPackCreator'
+def addon_author = 'Griefed'
+group 'de.griefed'
+version = "1.0.0"
+```
+
+`pluginClass` must point at the Addon/Plugin class of your addon. Think of it as the Main-Class-attribute from a regular JARs manifest.
+
+`addon_id` Is the ID used by ServerPackCreator to identify your addon, extensions in your addon, the global configuration-file of your addon (if you provide one) and
+for identifying extension-configurations from or given to a serverpackcreator.conf. Make it as **unique** as possible.
+[pf4j](https://pf4j.org/doc/plugins.html) does **not** allow for two addons with the same ID to co-exist in a given environment. The more unique
+your addon-ID is, the more likely it will be able to co-exist with any other addon in a given users ServerPackCreator environment.
+
+`addon_name` Is good for identifying a troublesome addon in the logs.
+
+`addon_description`, `addon_author` and `version` are fancy to have and should contain a value, but they are not used by ServerPackCreator for any vital or sensitive operations.
+
+`group` well yeah, this should obviously be changed to **your** group as you're **not** me 😅
+
+### 1.1.1 Updating the implemented version of ServerPackCreator
+
+It's as simple as changing the version specified in the `dependencies`-section of the `build.gradle`:
+
+```groovy
+dependencies {
+    ...
+    implementation 'de.griefed:serverpackcreator:3.14.0'
+    ...
+}
+```
+
+## 1.2 Configuration Panel Extension
 
 The configuration panel is intended to let you add a panel in which you, or the user of your addon, may
 configure something for any of the extensions added by your addon.
@@ -37,7 +84,7 @@ public void setServerPackExtensionConfig(ArrayList<CommentedConfig> serverPackEx
 
 in the `ConfigurationPanel`-class.
 
-## Tab Extension
+## 1.3 Tab Extension
 
 Tab extensions allow you to add whole tabs to the GUI of ServerPackCreator. These additional tabs are intended
 to let you add textfields and such, which allow you to configure your global addon configuration.
@@ -59,7 +106,7 @@ automatically, so you don't have to worry about anything other than actually sav
 
 Maybe have a timer auto-save every few seconds? Your tab, your choice! 😁
 
-## Configuration Check Extension
+## 1.4 Configuration Check Extension
 
 The configuration check extension point allows you to run your own config checks, be that on any of the
 already available data from the server pack config tab, or your own data from the configuration panel, or your
@@ -81,7 +128,7 @@ error messages be displayed to the user.
 Make use of this extension point in combination with the **Configuration Panel Extension** and/or **Tab Extension** in order to
 check user input for any errors!
 
-## Pre Server Pack Generation Extension
+## 1.5 Pre Server Pack Generation Extension
 
 The Pre Server Pack Generation extensions run, as the name implies, *right before* the generation of a server pack really begins.
 You may use this to prepare the environment for any of the tailing extensions.
@@ -93,7 +140,7 @@ extension passed to it by ServerPackCreator.
 
 See the `PreGeneration`-class for details on how the example above was achieved.
 
-## Pre Server Pack ZIP-archive Creation Extension
+## 1.6 Pre Server Pack ZIP-archive Creation Extension
 
 The Pre Server Pack ZIP-archive Creation extensions run, as the name implies, *right before* the creation of the server packs ZIP-archive is, or would be,
 started. Want to add any files to the ZIP-archive? Or make sure some file doesn't make it into the ZIP-archive?
@@ -105,7 +152,7 @@ extension passed to it by ServerPackCreator.
 
 See the `PreZipArchive`-class for details on how the example above was achieved.
 
-## Post Server Pack Generation Extension
+## 1.7 Post Server Pack Generation Extension
 
 The Post Server Pack Generation extensions run, as the name implies, *after* the generation of a server pack has finished.
 Want to add any files to the server pack, but don't want them to end up in the ZIP-archive? Maybe download,
@@ -121,7 +168,7 @@ See the `PostGeneration`-class for details on how the example above was achieved
 See now why the ConfigPanel, ConfigCheck and Tab extensions are so nice to have?
 The possibilities are (almost) **endless**!😁 
 
-# 1. The reason for allowing ServerPackCreator to run addons:
+# 2. The reason for allowing ServerPackCreator to run addons:
 
 Some people need additional functionality for their server packs, or have some additional wishes for
 them. Some of those
@@ -138,9 +185,9 @@ This allows people to write their own addons to expand the functionality of Serv
 their own features as
 they see fit.
 
-# 2. How
+# 3. How
 
-During the start of ServerPackCreator, all plugins are loaded and then started. As per the pf4j
+During the start of ServerPackCreator, all addons are loaded and then started. As per the pf4j
 plugin lifecycle, you may use the `start()` method of your addon-class to run any operations needed
 to ensure your environment is set up.
 ServerPackCreator provides a nice `ServerPackCreatorExampleAddon`-class which you can extend if you so
@@ -158,7 +205,7 @@ After addons have been loaded an started by ServerPackCreator, it will list all 
 - additional panels may get added to the server pack configuration tab
 - additional extensions for configuration checking and server pack generation may be added
 
-## 2.1 Extension Endpoints
+## 3.1 Extension Endpoints
 
 One plugin can have multiple extensions. You may add and provide as many as you like.
 Currently existing endpoint and their intended purpose:
@@ -172,7 +219,7 @@ Currently existing endpoint and their intended purpose:
 | Pre Server Pack ZIP-archive Generation | Allows you to run your own operations after the server pack was generated, but before the ZIP-archive creation would start. You may provide configurations via the previously mentioned Tab- and Configuration Panel extensions.                                                                                                 |
 | Post Server Pack Generation            | Allows you to run your own operations after the generation of a server pack has finished. You may provide configurations via the previously mentioned Tab- and Configuration Panel extensions.                                                                                                                                   |
 
-## 2.2 Data provided to extensions
+## 3.2 Data provided to extensions
 
 Depending on the extension, different data will be supplied by ServerPackCreator, to the extension, automatically.
 
@@ -197,7 +244,7 @@ user saves their configuration.
 
 See [pf4j documentation](https://pf4j.org/doc/extensions) on extensions.
 
-## 2.3 Global addon configuration
+## 3.3 Global addon configuration
 
 This example contains a `config.toml`-file which serves as a global configuration for your addon and
 any extensions it provides. As mentioned previously, every one of your extensions will receive this
@@ -212,7 +259,7 @@ If you intend on using the global configuration, bear in mind:
 ServerPackCreator will manage and provide the global configuration itself. You simply have to take
 care to provide, change and use the values therein.
 
-## 2.4 Addon identification
+## 3.4 Addon identification
 
 The `addon.toml`-file contains values by which to identify your addon in the logs. Do not edit this
 file manually, as the `processResources`-task will automatically replace the values with the ones
@@ -223,13 +270,13 @@ information is also automatically replace.
 
 Again, make sure to change the values in the `def <key>`-section!
 
-## 2.4 Logs
+## 3.5 Logs
 
 If you want to print log messages, then use the `LOG_ADDONS` logger as shown in this example. This
 will result in ServerPackCreator writing any and all log entries from this logger to
 the `addons.log`-file.
 
-# 3. Building
+# 4. Building
 
 1. Fork and clone this repository
 2. Make your changes and additions.
@@ -237,7 +284,7 @@ the `addons.log`-file.
 4. Copy the JAR-file from `build/libs` to the plugins-directory created by ServerPackCreator.
 5. Run ServerPackCreator!
 
-## 4. Contributing
+# 5. Contributing
 
 If you have written an addon, let me know by creating an issue in this repository. Provide a short
 description of what your
