@@ -1,3 +1,27 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2022 Griefed
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
 package de.griefed.exampleaddon.gui.panel;
 
 import com.electronwill.nightconfig.core.CommentedConfig;
@@ -66,7 +90,7 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     GridBagConstraints gridBagConstraints = new GridBagConstraints();
     gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
     gridBagConstraints.anchor = GridBagConstraints.WEST;
-    gridBagConstraints.insets = new Insets(5,5,5,5);
+    gridBagConstraints.insets = new Insets(5, 5, 5, 5);
     gridBagConstraints.gridwidth = 1;
     gridBagConstraints.gridheight = 1;
     gridBagConstraints.weightx = 1;
@@ -80,7 +104,7 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     add(pregenexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     JLabel pregenexampletext = new JLabel("text: ");
-    add(pregenexampletext,gridBagConstraints);
+    add(pregenexampletext, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     add(pregen, gridBagConstraints);
 
@@ -93,7 +117,7 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     add(prezipexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     JLabel prezipexampletext = new JLabel("text: ");
-    add(prezipexampletext,gridBagConstraints);
+    add(prezipexampletext, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     add(prezip, gridBagConstraints);
 
@@ -107,7 +131,7 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     add(postgenexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     JLabel postgenexampletext = new JLabel("text: ");
-    add(postgenexampletext,gridBagConstraints);
+    add(postgenexampletext, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     add(postgen, gridBagConstraints);
 
@@ -121,7 +145,7 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     add(configcheckexample, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     JLabel configcheckexampletext = new JLabel("text: ");
-    add(configcheckexampletext,gridBagConstraints);
+    add(configcheckexampletext, gridBagConstraints);
     gridBagConstraints.gridy += 1;
     add(confcheck, gridBagConstraints);
   }
@@ -142,22 +166,22 @@ public class ConfigurationPanel extends ExtensionConfigPanel {
     String comment = " The ID of the extension.\n This field is used to identify the configuration to use when\n running the extension during config checks or server pack generation.";
 
     CommentedConfig pregenexample = TomlFormat.newConfig();
-    pregenexample.setComment("extension",comment);
+    pregenexample.setComment("extension", comment);
     pregenexample.set("extension", "pregenexample");
     pregenexample.set("text", pregen.getText());
 
     CommentedConfig prezipexample = TomlFormat.newConfig();
-    prezipexample.setComment("extension",comment);
+    prezipexample.setComment("extension", comment);
     prezipexample.set("extension", "prezipexample");
     prezipexample.set("text", prezip.getText());
 
     CommentedConfig postgenexample = TomlFormat.newConfig();
-    postgenexample.setComment("extension",comment);
+    postgenexample.setComment("extension", comment);
     postgenexample.set("extension", "postgenexample");
     postgenexample.set("text", postgen.getText());
 
     CommentedConfig configcheckexample = TomlFormat.newConfig();
-    configcheckexample.setComment("extension",comment);
+    configcheckexample.setComment("extension", comment);
     configcheckexample.set("extension", "configcheckexample");
     configcheckexample.set("text", confcheck.getText());
 

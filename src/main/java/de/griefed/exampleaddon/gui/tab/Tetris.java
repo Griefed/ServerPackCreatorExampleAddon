@@ -26,6 +26,7 @@ import javax.swing.JComponent;
 
 
 public class Tetris {
+
   /**
    * The stand-alone main routine.
    *
@@ -123,16 +124,20 @@ public class Tetris {
  * constraint to the top of the board, although colors assigned to positions above the board are not
  * saved.
  *
- * @version 1.2
  * @author Per Cederberg, per@percederberg.net
+ * @version 1.2
  */
 @SuppressWarnings("unused")
 class SquareBoard {
 
-  /** The board width (in squares) */
+  /**
+   * The board width (in squares)
+   */
   private final int width;
 
-  /** The board height (in squares). */
+  /**
+   * The board height (in squares).
+   */
   private final int height;
   /**
    * The graphical sqare board component. This graphical representation is created upon the first
@@ -158,7 +163,7 @@ class SquareBoard {
   /**
    * Creates a new square board with the specified size. The square board will initially be empty.
    *
-   * @param width the width of the board (in squares)
+   * @param width  the width of the board (in squares)
    * @param height the height of the board (in squares)
    */
   public SquareBoard(int width, int height) {
@@ -299,8 +304,8 @@ class SquareBoard {
    * a repaint, but the graphical component will NOT be repainted until the update() method is
    * called.
    *
-   * @param x the horizontal position (0 &#60;= x &#60; width)
-   * @param y the vertical position (0 &#60;= y &#60; height)
+   * @param x     the horizontal position (0 &#60;= x &#60; width)
+   * @param y     the vertical position (0 &#60;= y &#60; height)
    * @param color the new square color, or null for empty
    */
   public void setSquareColor(int x, int y, Color color) {
@@ -379,7 +384,9 @@ class SquareBoard {
       return;
     }
     for (; y > 0; y--) {
-      if (width >= 0) System.arraycopy(matrix[y - 1], 0, matrix[y], 0, width);
+      if (width >= 0) {
+        System.arraycopy(matrix[y - 1], 0, matrix[y], 0, width);
+      }
     }
     for (int x = 0; x < width; x++) {
       matrix[0][x] = null;
@@ -417,7 +424,9 @@ class SquareBoard {
      * boundaries, in order to avoid allocating a new clip rectangle for each board square.
      */
     private final Rectangle bufferRect = new Rectangle();
-    /** The board message color. */
+    /**
+     * The board message color.
+     */
     private final Color messageColor;
     /**
      * A lookup table containing lighter versions of the colors. This table is used to avoid
@@ -445,10 +454,14 @@ class SquareBoard {
      * visible to the user. This image is recreated each time the component size changes.
      */
     private Image bufferImage = null;
-    /** A flag set when the component has been updated. */
+    /**
+     * A flag set when the component has been updated.
+     */
     private boolean updated = true;
 
-    /** Creates a new square board component. */
+    /**
+     * Creates a new square board component.
+     */
     public SquareBoardComponent() {
       setBackground(Configuration.getColor("board.background", "#000000"));
       messageColor = Configuration.getColor("board.message", "#ffffff");
@@ -493,7 +506,9 @@ class SquareBoard {
       if (!updated) {
         updated = true;
         g = getGraphics();
-        if (g == null) return;
+        if (g == null) {
+          return;
+        }
         g.setClip(
             insets.left + updateRect.x * squareSize.width,
             insets.top + updateRect.y * squareSize.height,
@@ -503,13 +518,17 @@ class SquareBoard {
       }
     }
 
-    /** Redraws the whole component. */
+    /**
+     * Redraws the whole component.
+     */
     public void redrawAll() {
       Graphics g;
 
       updated = true;
       g = getGraphics();
-      if (g == null) return;
+      if (g == null) {
+        return;
+      }
       g.setClip(insets.left, insets.top, width * squareSize.width, height * squareSize.height);
       paint(g);
     }
@@ -694,7 +713,7 @@ class SquareBoard {
     /**
      * Paints a board message. The message will be drawn at the center of the component.
      *
-     * @param g the graphics context to use
+     * @param g   the graphics context to use
      * @param msg the string message
      */
     private void paintMessage(Graphics g, String msg) {
@@ -750,23 +769,30 @@ class SquareBoard {
  * game is started through user interaction with the graphical game component provided by this
  * class.
  *
- * @version 1.2
  * @author Per Cederberg, per@percederberg.net
+ * @version 1.2
  */
 @SuppressWarnings("unused")
 class Game {
+
   public static final int STATE_GETREADY = 1;
   public static final int STATE_PLAYING = 2;
   public static final int STATE_PAUSED = 3;
   public static final int STATE_GAMEOVER = 4;
 
-  /** The PropertyChangeSupport Object able to register listener and dispatch events to them. */
+  /**
+   * The PropertyChangeSupport Object able to register listener and dispatch events to them.
+   */
   private final PropertyChangeSupport PCS = new PropertyChangeSupport(this);
 
-  /** The main square board. This board is used for the game itself. */
+  /**
+   * The main square board. This board is used for the game itself.
+   */
   private final SquareBoard board;
 
-  /** The preview square board. This board is used to display a preview of the figures. */
+  /**
+   * The preview square board. This board is used to display a preview of the figures.
+   */
   private final SquareBoard previewBoard = new SquareBoard(5, 5);
   /**
    * The thread that runs the game. When this variable is set to null, the game thread will
@@ -798,13 +824,19 @@ class Game {
    */
   private int score = 0;
 
-  /** The current figure. The figure will be updated when */
+  /**
+   * The current figure. The figure will be updated when
+   */
   private Figure figure = null;
 
-  /** The next figure. */
+  /**
+   * The next figure.
+   */
   private Figure nextFigure = null;
 
-  /** The rotation of the next figure. */
+  /**
+   * The rotation of the next figure.
+   */
   private int nextRotation = 0;
 
   /**
@@ -819,10 +851,14 @@ class Game {
    */
   private boolean moveLock = false;
 
-  /** */
+  /**
+   *
+   */
   private int state;
 
-  /** Creates a new Tetris game. The square board will be given the default size of 10x20. */
+  /**
+   * Creates a new Tetris game. The square board will be given the default size of 10x20.
+   */
   public Game() {
     this(10, 20);
   }
@@ -830,7 +866,7 @@ class Game {
   /**
    * Creates a new Tetris game. The square board will be given the specified size.
    *
-   * @param width the width of the square board (in positions)
+   * @param width  the width of the square board (in positions)
    * @param height the height of the square board (in positions)
    */
   public Game(int width, int height) {
@@ -862,7 +898,8 @@ class Game {
    * <p>name: "score" value: current score (int) when: fired when the player increases his/her
    * score.
    *
-   * <p>name: "lines" value: number of 'removed' lines (int) when: fired when the player removes one
+   * <p>name: "lines" value: number of 'removed' lines (int) when: fired when the player removes
+   * one
    * or more lines.
    *
    * @param l the property change listener which is going to be notified.
@@ -935,33 +972,43 @@ class Game {
     return previewBoard.getComponent();
   }
 
-  /** Initializes the game ready if the state is on STATE_GAMEOVER otherwise it does nothing. */
+  /**
+   * Initializes the game ready if the state is on STATE_GAMEOVER otherwise it does nothing.
+   */
   public void init() {
     if (state == STATE_GAMEOVER) {
       handleGetReady();
     }
   }
 
-  /** Starts the game. (No matter what the current state is) */
+  /**
+   * Starts the game. (No matter what the current state is)
+   */
   public void start() {
     handleStart();
   }
 
-  /** Pauses the game if the state is on STATE_PLAYING otherwise it does nothing. */
+  /**
+   * Pauses the game if the state is on STATE_PLAYING otherwise it does nothing.
+   */
   public void pause() {
     if (state == STATE_PLAYING) {
       handlePause();
     }
   }
 
-  /** Resumes the game if the state is on STATE_PAUSED otherwise it does nothing. */
+  /**
+   * Resumes the game if the state is on STATE_PAUSED otherwise it does nothing.
+   */
   public void resume() {
     if (state == STATE_PAUSED) {
       handleResume();
     }
   }
 
-  /** Terminates the game. (No matter what the current state is) */
+  /**
+   * Terminates the game. (No matter what the current state is)
+   */
   public void terminate() {
     handleGameOver();
   }
@@ -1019,7 +1066,9 @@ class Game {
     PCS.firePropertyChange("state", -1, STATE_GAMEOVER);
   }
 
-  /** Handles a getReady event. This will print a 'get ready' message on the game board. */
+  /**
+   * Handles a getReady event. This will print a 'get ready' message on the game board.
+   */
   private void handleGetReady() {
     board.setMessage("Get Ready");
     board.clear();
@@ -1059,7 +1108,9 @@ class Game {
     thread.adjustSpeed();
   }
 
-  /** Handle a score modification event. This will modify the score label. */
+  /**
+   * Handle a score modification event. This will modify the score label.
+   */
   private void handleScoreModification() {
     PCS.firePropertyChange("score", -1, score);
   }
@@ -1244,7 +1295,9 @@ class Game {
    */
   private class GameThread extends Thread {
 
-    /** The game pause flag. This flag is set to true while the game should pause. */
+    /**
+     * The game pause flag. This flag is set to true while the game should pause.
+     */
     private boolean paused = true;
 
     /**
@@ -1253,8 +1306,11 @@ class Game {
      */
     private int sleepTime = 500;
 
-    /** Creates a new game thread with default values. */
-    public GameThread() {}
+    /**
+     * Creates a new game thread with default values.
+     */
+    public GameThread() {
+    }
 
     /**
      * Resets the game thread. This will adjust the speed and start the game thread if not
@@ -1298,7 +1354,9 @@ class Game {
       }
     }
 
-    /** Runs the game. */
+    /**
+     * Runs the game.
+     */
     public void run() {
       while (true) {
         // Make the time step
@@ -1392,7 +1450,7 @@ class Configuration {
   /**
    * Sets a configuration parameter value.
    *
-   * @param key the configuration parameter key
+   * @param key   the configuration parameter key
    * @param value the configuration parameter value
    */
   public static void setValue(String key, String value) {
@@ -1469,30 +1527,44 @@ class Configuration {
  * squares on the board. When not attached, any rotation can be made (and will be kept when attached
  * to a new board).
  *
- * @version 1.2
  * @author Per Cederberg, per@percederberg.net
+ * @version 1.2
  */
 class Figure {
 
-  /** A figure constant used to create a figure forming a square. */
+  /**
+   * A figure constant used to create a figure forming a square.
+   */
   public static final int SQUARE_FIGURE = 1;
 
-  /** A figure constant used to create a figure forming a line. */
+  /**
+   * A figure constant used to create a figure forming a line.
+   */
   public static final int LINE_FIGURE = 2;
 
-  /** A figure constant used to create a figure forming an "S". */
+  /**
+   * A figure constant used to create a figure forming an "S".
+   */
   public static final int S_FIGURE = 3;
 
-  /** A figure constant used to create a figure forming a "Z". */
+  /**
+   * A figure constant used to create a figure forming a "Z".
+   */
   public static final int Z_FIGURE = 4;
 
-  /** A figure constant used to create a figure forming a right angle. */
+  /**
+   * A figure constant used to create a figure forming a right angle.
+   */
   public static final int RIGHT_ANGLE_FIGURE = 5;
 
-  /** A figure constant used to create a figure forming a left angle. */
+  /**
+   * A figure constant used to create a figure forming a left angle.
+   */
   public static final int LEFT_ANGLE_FIGURE = 6;
 
-  /** A figure constant used to create a figure forming a triangle. */
+  /**
+   * A figure constant used to create a figure forming a triangle.
+   */
   public static final int TRIANGLE_FIGURE = 7;
   /**
    * The horizontal coordinates of the figure shape. The coordinates are relative to the current
@@ -1534,7 +1606,9 @@ class Figure {
    * @see #orientation
    */
   private int maxOrientation = 4;
-  /** The figure color. */
+  /**
+   * The figure color.
+   */
   private Color color = Color.white;
 
   /**
@@ -1542,6 +1616,7 @@ class Figure {
    * any square board and default colors and orientations will be assigned.
    *
    * @param type the figure type (one of the figure constants)
+   * @throws IllegalArgumentException if the figure type specified is not recognized
    * @see #SQUARE_FIGURE
    * @see #LINE_FIGURE
    * @see #S_FIGURE
@@ -1549,7 +1624,6 @@ class Figure {
    * @see #RIGHT_ANGLE_FIGURE
    * @see #LEFT_ANGLE_FIGURE
    * @see #TRIANGLE_FIGURE
-   * @throws IllegalArgumentException if the figure type specified is not recognized
    */
   public Figure(int type) throws IllegalArgumentException {
     initialize(type);
@@ -1559,6 +1633,7 @@ class Figure {
    * Initializes the instance variables for a specified figure type.
    *
    * @param type the figure type (one of the figure constants)
+   * @throws IllegalArgumentException if the figure type specified is not recognized
    * @see #SQUARE_FIGURE
    * @see #LINE_FIGURE
    * @see #S_FIGURE
@@ -1566,7 +1641,6 @@ class Figure {
    * @see #RIGHT_ANGLE_FIGURE
    * @see #LEFT_ANGLE_FIGURE
    * @see #TRIANGLE_FIGURE
-   * @throws IllegalArgumentException if the figure type specified is not recognized
    */
   private void initialize(int type) throws IllegalArgumentException {
 
@@ -1687,7 +1761,7 @@ class Figure {
    * was previously attached to another board, it will be detached from that board before attaching
    * to the new board.
    *
-   * @param board the square board to attach to
+   * @param board  the square board to attach to
    * @param center the centered position flag
    * @return true if the figure could be attached, or false otherwise
    */
@@ -1928,8 +2002,8 @@ class Figure {
    * account when checking for collisions. If a collision is detected, this method will return
    * false.
    *
-   * @param newX the new horizontal position
-   * @param newY the new vertical position
+   * @param newX           the new horizontal position
+   * @param newY           the new vertical position
    * @param newOrientation the new orientation (rotation)
    * @return true if the figure can be moved, or false otherwise
    */
@@ -1951,7 +2025,7 @@ class Figure {
    * Returns the relative horizontal position of a specified square. The square will be rotated
    * according to the specified orientation.
    *
-   * @param square the square to rotate (0-3)
+   * @param square      the square to rotate (0-3)
    * @param orientation the orientation to use (0-3)
    * @return the rotated relative horizontal position
    */
@@ -1974,7 +2048,7 @@ class Figure {
    * Rotates the relative vertical position of a specified square. The square will be rotated
    * according to the specified orientation.
    *
-   * @param square the square to rotate (0-3)
+   * @param square      the square to rotate (0-3)
    * @param orientation the orientation to use (0-3)
    * @return the rotated relative vertical position
    */

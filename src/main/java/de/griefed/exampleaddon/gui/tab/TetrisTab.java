@@ -1,9 +1,32 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2022 Griefed
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ */
 package de.griefed.exampleaddon.gui.tab;
 
 import com.electronwill.nightconfig.core.CommentedConfig;
 import de.griefed.serverpackcreator.ApplicationProperties;
 import de.griefed.serverpackcreator.addons.swinggui.ExtensionTab;
-import de.griefed.serverpackcreator.swing.ServerPackCreatorGui;
 import de.griefed.serverpackcreator.utilities.common.Utilities;
 import de.griefed.serverpackcreator.versionmeta.VersionMeta;
 import java.awt.Dimension;
@@ -42,7 +65,8 @@ public class TetrisTab extends ExtensionTab {
    * @param configFile            The config-file corresponding to the ID of the addon, wrapped in
    *                              an Optional.
    */
-  protected TetrisTab(VersionMeta versionMeta,
+  protected TetrisTab(
+      VersionMeta versionMeta,
       ApplicationProperties applicationProperties,
       Utilities utilities,
       Optional<CommentedConfig> addonConfig,
@@ -73,22 +97,22 @@ public class TetrisTab extends ExtensionTab {
 
     miniGameConstraints.gridx = 0;
     miniGameConstraints.gridy = 0;
-    miniGame.add(press,miniGameConstraints);
+    miniGame.add(press, miniGameConstraints);
     miniGameConstraints.gridx = 0;
     miniGameConstraints.gridy = 1;
-    miniGame.add(play,miniGameConstraints);
+    miniGame.add(play, miniGameConstraints);
 
     gridBagConstraints.gridx = 0;
     gridBagConstraints.gridy = 0;
     gridBagConstraints.gridwidth = 2;
 
-    miniGame.setPreferredSize(new Dimension(300,135));
+    miniGame.setPreferredSize(new Dimension(300, 135));
     add(miniGame, gridBagConstraints);
 
     gridBagConstraints.gridy += 1;
     gridBagConstraints.anchor = GridBagConstraints.WEST;
     gridBagConstraints.fill = GridBagConstraints.BOTH;
-    gridBagConstraints.insets = new Insets(10,10,10,10);
+    gridBagConstraints.insets = new Insets(10, 10, 10, 10);
 
     if (addonConfig.isPresent() && configFile.isPresent()) {
       JPanel config = new JPanel();
@@ -148,7 +172,7 @@ public class TetrisTab extends ExtensionTab {
           );
         }
       });
-      config.add(set,configConstraints);
+      config.add(set, configConstraints);
 
       add(config, gridBagConstraints);
     }
