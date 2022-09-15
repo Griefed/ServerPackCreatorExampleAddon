@@ -1,1 +1,5 @@
-de.griefed.serverpackcreatoraddonexample
+de.griefed.exampleaddon
+de.griefed.exampleaddon.configcheck
+de.griefed.exampleaddon.gui.panel
+de.griefed.exampleaddon.gui.tab
+de.griefed.exampleaddon.serverpack
