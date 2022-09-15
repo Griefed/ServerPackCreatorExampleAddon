@@ -64,7 +64,7 @@ generateNotes:
           section: '🧨 Breaking changes!'
           hidden: false
         - type: 'build'
-          section: '⚗ Build and Dependencies'
+          section: '🦊 CI/CD'
           hidden: false
         - type: 'chore'
           section: 'Other'

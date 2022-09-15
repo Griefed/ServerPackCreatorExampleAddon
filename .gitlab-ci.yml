@@ -4,11 +4,11 @@ stages:
   - Release
   - Build Release
 
-services:
-  - name: ghcr.io/griefed/gitlab-ci-cd:2.0.9
-    alias: docker
-
-image: ghcr.io/griefed/gitlab-ci-cd:2.0.9
+variables:
+  project_name: "$CI_PROJECT_NAME"
+  SEMANTIC_RELEASE_PACKAGE: "$CI_PROJECT_NAME"
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false"
+  GRADLE_USER_HOME: "$CI_PROJECT_DIR/.gradle"
 
 workflow:
   rules:
@@ -16,17 +16,13 @@ workflow:
       when: never
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
       when: never
+    - if: '$CI_COMMIT_TITLE =~ /^RELEASE:.+$/ && $CI_COMMIT_BRANCH' # && $CI_COMMIT_TAG == null
+      when: never
     - when: always
 
 Gradle Test:
-  image: griefed/baseimage-ubuntu-jdk-8:2.0.13
+  image: griefed/baseimage-ubuntu-jdk-8:2.0.4
   stage: Gradle Test
-  services:
-    - name: griefed/gitlab-ci-cd:2.2.1
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
   before_script:
     - echo "**** Running in $CI_JOB_ID ****"
     - echo "**** Java location ****"
@@ -35,60 +31,48 @@ Gradle Test:
     - java -version
     - echo "**** Allowing execution of gradlew ****"
     - chmod +x gradlew
-    - echo "**** Ensure clean environment ****"
-    - ./gradlew about
   script:
     - echo "**** Building ServerPackCreator ****"
-    - ./gradlew build --info
-  except:
-    refs:
-      - tags
-      - webservice
-    variables:
-      - $CI_COMMIT_TITLE =~ /^RELEASE:.+$/
+    - ./gradlew build --info --full-stacktrace
+  artifacts:
+    when: always
+    name: "$CI_COMMIT_BRANCH-$CI_COMMIT_SHORT_SHA-$CI_JOB_NAME"
+    expose_as: "Gradle-Test-Artifacts"
+    paths:
+      - build
+    expire_in: 1 week
+  cache:
+    - key:
+        files:
+          - build.gradle
+          - gradle/gradle-wrapper.properties
+      paths:
+        - .gradle
 
 Release:
   needs:
     - job: 'Gradle Test'
       artifacts: false
   stage: Release
-  image: griefed/gitlab-ci-cd:2.2.1
-  services:
-    - name: griefed/gitlab-ci-cd:2.2.1
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
+  image: ghcr.io/griefed/gitlab-ci-cd:2.0.9
   script:
     - npx semantic-release
-  only:
-    - main
-  except:
-    refs:
-      - tags
-    variables:
-      - $CI_COMMIT_TITLE =~ /^RELEASE:.+$/
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "alpha" && $CI_COMMIT_TITLE !~ /^RELEASE:.+$/ && $CI_SERVER_HOST == "git.griefed.de"'
+    - if: '$CI_COMMIT_BRANCH == "beta" && $CI_COMMIT_TITLE !~ /^RELEASE:.+$/ && $CI_SERVER_HOST == "git.griefed.de"'
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_COMMIT_TITLE !~ /^RELEASE:.+$/ && $CI_SERVER_HOST == "git.griefed.de"'
 
 pages:
-  image: griefed/baseimage-ubuntu-jdk-8:2.0.13
+  image: griefed/baseimage-ubuntu-jdk-8:2.0.4
   stage: Documentation
-  services:
-    - name: griefed/gitlab-ci-cd:2.2.1
-      alias: docker
-  variables:
-    project_name: $CI_PROJECT_NAME
-    SEMANTIC_RELEASE_PACKAGE: $CI_PROJECT_NAME
   before_script:
     - which java
     - chmod +x gradlew
-    - ./gradlew about
   script:
-    - ./gradlew build --info -x test
+    - "./gradlew javaDoc -Pversion='' --info --full-stacktrace -x test"
     - cp -Rf build/docs/javadoc public
-    - LC_COLLATE=C ls -ahl --group-directories-first --color=auto
-      public
+    - LC_COLLATE=C ls -ahl --group-directories-first --color=auto public
   only:
-    - master
     - main
   artifacts:
     paths:

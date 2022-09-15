@@ -1,210 +1,304 @@
-# Example Addon for ServerPackCreator
-
-[![Homepage](https://img.shields.io/badge/Griefed.de-Homepage-c0ffee?style=for-the-badge&labelColor=325358&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAACylBMVEUAAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f39/f3+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v6OsnIvAAAA7XRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiQlJicoKSorLC0uLzAxMjU2Nzg5Ojs8Pj9AQUJERUZHSElLTE9QUVJTVFVWV1hZXF1eX2BhYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ent8fX5/gIGCg4SGh4iJiouMjY6PkJGSk5SVlpeYmZqbnJ2en6Cio6WmqKmqq6ytrrCxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jKy8zNzs/Q0dLT1NXW2Nrb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f4O/wLaAAAGUklEQVR42o3WBVsb2xoF4G9PQqgXubktUnd3d3fFqjjHQt2Vg9Xd3TXU3d1b3KEugczM+g8nY5VAmrxYZGaxtj1A9jgfcoS1SdKTUx73gg2kYZzOTcdIYQjKeVWZnPJ7a91bh2zc6/SJWbNj16F9G+aNa12VkXGjBYU+5FTTz0DqmPphB9MsIjRCgXnRXRH42pSc6lQCgLdCIYoifsL3IqcG8FB8e34sISpkUnjUjKRj2VpeIDmjmweFdYeRkcr/mtYjK9CNfstnt1pAyFxmJA3XIi5VUDucqEeOsV5p6u2v5tbl6Cecb9RtC2T5Qxk5wE35rN5u8uPKhHuMPPZB/FgClEzXUbl0s3jg6S3+Ubgnlati1w1XB74ExPhyJ4KbzQNHasQHVyeHdH56nxQpoZwOLIyHuLkC6ciJSrtEiNMZ2ev3BdjgTi6ouAsoGUJ2amUCh9zJJZVSgHy71XQ7CDzwJhf5vQRO/DqR4wR87qYn1+gS7gHi0gGdmvp5cKSv4tOsd1A68PaaH7loAg8bvuTz23s+lPS66BsvAhDX66rWlDlt4vEYitIgojbZULzvwqSH/OOPy8iZCBGyPQYiFmSB7GgFBpuNNPrtWfOZW2bzlcvmlFtnzGdvms3XLppTbqeYz18/15YkXq8heVObbAwb5DjLCJID4qjfmTBDyNTuxpi/vHtOCTGEhrarE/FX1cGTR1eMiuxxsTVJYgWp7GiSGe/A5rYHMVy68eGU35wddXc3o/EJ7u4rxlKLXXVYxHx91Y0DqNv2/7E5C5QOflIFoSkpZktPIhkxPMzNB7AzpHdYjcjh3XsOifl/aO+QOlPHtRs84E/vqL6jmwZP6HFO6sDNlyr8STJ2GECqLxHDLTmgcINpxZNZplPHTbOeJps23ZlhOn/AtOD5UtOua7GxZxMfMCKql8UDpxhJKmdCFOI4Iia+KCoGYO5rZ/qGn591Ihtu+V4euVVJ0qwUqZdakM3UE6mb41Lj2pOdfn9TGcYa6bC2JMkwEfv8dSQJmBDtYSZyJYDYGWAUSf4BlpAiIMJ/4R0XA2g1MJMkiUCUFrCs34bnrgaYgLVyle0QA7SAwMAGZlcDJgC75YC9EMdqAXcXBDxyNWA8cJBsdCeBUC1gZijnuIFnTVVFkgQAR8iGOwxEawHjfUPPkL1mJ+/0JKKW36C6TpIQYA9JtgLztYB1AcnvyE717LeFX5sT9YMmlyR/qZNIC4Et3xs0DCjToGeSu25KZNmARO0XBwKXOTVgaQAzk53aNYn07ewDdLWOAQEkac8jx9+oBFyOL2cVmPxJjd6LqtPSjFzOBt9emdwi8IeXccoQRraxazDYpAqqvnqnagoRFy8ARZ4k4S4AQmY9ZRlbL3hFP2Ol0ERDk0PklwbgPEeymQCEeZwUMKNt/INfA/DdPz/NAYsW8OMItRYBvPKTAoKm+JpdCfC4A5s7RpKNldKEWCng2Sy7SWQiNFHQZNAoC2zE9QayqZMKyStPooA/ovVyA6Yh0w5VfOWl2sNhFY9DZglkRIZ9kAnh0ip4RF8gonioSgc9hKpggADVo24foMhuQxRiheJxdWkrrywmohS7gds9zN8oAhD5r4WvEsnn3tvPJcofyxBbg7bDU5wHfLr2EcgO7NnUp7KeuOq+TTr2TxCB+/G6gFUjmAsBeUNKIQTSz9wvAGm1KeDE2vHSKqyHih/5GqqPnZ/nqi6mAUfc6BdN3gKXqgSMH9DNTETBO1RrqoZrDxdzpKpyGciuTXbGWYGDocv7xWcQUS40fQRompOi0gHg2wCyxy0EkBXhP/cWEeVD0w/ftSIbHVXeBwjRjMrQrxOBq9OMV3SOAzwmJPifBwR1OHbc1wJIH5q2sWvFcofQwivyCX/3NSAu0VO59AutgNUifji2f+O/cbL5VYLiFPHJM16LkFj+5sgBbtxbyCx3on79f52rP/+12iVvMCPHGp8TIRNS/22hI40xLku9XTxel37LMDUPCvGKP6k4n708FEvdyJlgEYqis2tmhE+dGDZr/dl0KxR8f3KqN49yCTyAkg7kVLNvgHh72YViAd9Z81JMLcakAp+bkFM+RbCsMxLn1Wnism1Hjh/YsSp2ZMtqjIjq7LW+9SWnqrzODjCQijFGPxiC71Ynp/RJrZnjehzZ+Q9fNggLmTcf8AAAAABJRU5ErkJggg==)](https://www.griefed.de)
-[![Blog](https://img.shields.io/badge/Griefed.de-Blog-c0ffee?style=for-the-badge&labelColor=325358&logo=wordpress)](https://blog.griefed.de)
-[![Fleet](https://img.shields.io/badge/Griefed.de-Fleet-c0ffee?style=for-the-badge&labelColor=325358&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAABiVBMVEUAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8XJWL///8gNCTuAAAAgXRSTlMAAgMEBQYHCAkLDA4PEBESFhgZGh0eISIlKC8zNDU3OT0+P0BBQkhKS01QU1RVVltcXWJjZGlrbG1wcnN0eHl6e4CBhYyOkJWWmZ6foaKkqaqsrrKztLe8vsHExcbHy8zNz9DT1NXX2Nna293e3+Tm5+nq7O3u7/Hy9fb4+fr7/f4zgtRAAAABWklEQVR42mKgHhCFMbg0dHW1xNGlBcw5wTS7tkcJoNV5UJItBoMA3GPjcm3btm3btq1+8s1JxijuV0p+X5NzVcfNRoT4O26ClEZykdydI5ddCHDt+EfqthiwYoXfRH++yb9r8IZ+o/CpeB1hE/zMtXf0KYKkP9p8ZSaCfq1S2ddDU84zrsuXYXZjYy0VcBxQKYVmgQ9slS8HhUbxSP+kNAPB+kIyO1ggr5mn9GoX70wKydA4/RNQQSVPvGspZEHQ5ZKHK5lu8UymUi/enRQuxYjcN5LPH+RTQfcVlQ4AbfJ1n4JKRusG0ErpzCn3vjFMe8g9/eUU2himHEAilc+Vq6XJ4Zyx6eXTk3f6/IOww7i2oOliXNXQ/H5kHBcWSO2MowyKJc4VU/BLOGcMm04EJF3FyHsQImkvMj/tQBhrz0to+rwSUf70XvjT23VWxKLLaBkYGuqr+Y8f9Q3q0fzzGED8cgAAAABJRU5ErkJggg==)](https://fleet.griefed.de)
-[![GitHub](https://img.shields.io/badge/Griefed.de-Github-c0ffee?style=for-the-badge&labelColor=325358&logo=github)](https://github.com/Griefed)
-[![DockerHub](https://img.shields.io/badge/Griefed.de-DockerHub-c0ffee?style=for-the-badge&labelColor=325358&logo=docker&logoColor=white)](https://hub.docker.com/u/griefed)
-[![Discord](https://img.shields.io/badge/Griefed.de-Discord-c0ffee?style=for-the-badge&labelColor=325358&logo=discord&logoColor=white)](https://discord.griefed.de)
-
----
-
-# Sources, GitHub, GitLab and Mirroring and all that good stuff
-
-Repositories on GitHub are now for issues only. I've set up my own installation of GitLab and moved all my repositories over to [Git.Griefed.de](https://git.griefed.de/users/Griefed/projects). Make sure to check there first for the latest code before opening an issue on GitHub.
-
-For questions, you can always join my [Discord server](https://discord.griefed.de) and talk to me there.
-
-###### This repository is available at:
-
-- Source: https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon
-- Mirror: https://gitlab.com/Griefed/ServerPackCreatorExampleAddon
-- Mirror: https://github.com/Griefed/ServerPackCreatorExampleAddon
-- Mirror: https://gitea.com/Griefed/ServerPackCreatorExampleAddon
-
----
-
-[![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/Griefed/ServerPackCreatorExampleAddon?include_prereleases&label=Latest%20Release&logo=Github&style=for-the-badge&color=c0ffee&labelColor=325358)](https://github.com/Griefed/ServerPackCreatorExampleAddon/releases/latest)
-[![GitHub](https://img.shields.io/github/license/Griefed/ServerPackCreatorExampleAddon?logo=GitHub&style=for-the-badge&color=c0ffee&labelColor=325358)](https://github.com/Griefed/ServerPackCreatorExampleAddon/blob/main/LICENSE)
-
-[![GitHub Repo stars](https://img.shields.io/github/stars/Griefed/ServerPackCreatorExampleAddon?label=GitHub%20Stars&style=for-the-badge&logo=Github&labelColor=325358&color=c0ffee)](https://github.com/Griefed/ServerPackCreatorExampleAddon)
-[![GitHub forks](https://img.shields.io/github/forks/Griefed/ServerPackCreatorExampleAddon?label=GitHub%20Forks&style=for-the-badge&logo=Github&labelColor=325358&color=c0ffee)](https://github.com/Griefed/ServerPackCreatorExampleAddon)
-[![GitHub contributors](https://img.shields.io/github/contributors/Griefed/ServerPackCreatorExampleAddon?color=c0ffee&label=Contributors&logo=GitHub&logoColor=white&style=for-the-badge&labelColor=325358)](https://github.com/Griefed/ServerPackCreatorExampleAddon/graphs/contributors)
-[![GitHub all releases](https://img.shields.io/github/downloads/Griefed/ServerPackCreatorExampleAddon/total?color=c0ffee&logo=GitHub&logoColor=white&labelColor=325358&style=for-the-badge)](https://github.com/Griefed/ServerPackCreatorExampleAddon/releases)
-
----
-
+# 1. Example Addon for ServerPackCreator
 
 This is an example server pack addon for [ServerPackCreator](https://github.com/Griefed/ServerPackCreator)
 
-The following endpoints are available in ServerPackCreator to add you extra functionality with a plugin. This example plugin provides examples for all four of them:
+ServerPackCreator provides several extension endpoints for [pf4j plugins](https://github.com/pf4j/pf4j), from hereon out called **addons**, to add
+additional functionality. This example addon demonstrates an implementation for all available extension endpoints of ServerPackCreator.
 
-- TabExtension: Allows you to add your own JComponent in the form of an additional tab to the GUI. You can run whatever code you want in that tab.
+This repository demonstrates how extension for ServerPackCreator are implemented, one small example for every extension
+point available in ServerPackCreator.
 
-- PreGenExtension: Will allow you to run your code before generation of a server pack starts
+## 1.1 Addon details
 
-- PreZipExtension: Will allow you to run your code after a server pack was generated, but before the ZIP-archive is created
+Take care to edit this section in the `build.gradle`-file if you forked, or intent on forking, this repository.
 
-- PostGenExtension: Will allow you to run your code after the server pack ZIP-archive was generated, so right at the on of the SPC process, basically.
+```groovy
+/*
+ CHANGE THESE VALUES
+    FOR YOUR OWN
+       ADDON
 
-Using this example plugin would result in the following or similar output in ServerPackCreator itself:
-
-serverpackcreator.log:
-```
-INFO [main] (AbstractPluginManager.java:814) - Plugin 'example-plugin@0.0.1' resolved
-INFO [main] (AbstractPluginManager.java:357) - Start plugin 'example-plugin@0.0.1'
-INFO [main] (ApplicationPlugins.java:74) - Available PreGenExtension plugins:
-INFO [main] (ApplicationPlugins.java:76) - Name:       ServerPackCreatorExampleAddon
-INFO [main] (ApplicationPlugins.java:77) - Description:This is an example addon for ServerPackCreator showcasing all, currently 4, aspects ofServerPackCreators addon functionality. In this example you see code which gets executed before a server pack is generated,code that gets executed after a server pack was generated but before the ZIP-archive is created, code that gets executedafter this ZIP-archive was created, as well as code adding a new tabbed pane to the GUI.
-INFO [main] (ApplicationPlugins.java:78) - Version:    0.0.1
-INFO [main] (ApplicationPlugins.java:79) - Author:     Griefed
-INFO [main] (ApplicationPlugins.java:83) - Available PreZipExtension plugins:
-INFO [main] (ApplicationPlugins.java:85) - Name:       ServerPackCreatorExampleAddon
-INFO [main] (ApplicationPlugins.java:86) - Description:This is an example addon for ServerPackCreator showcasing all, currently 4, aspects ofServerPackCreators addon functionality. In this example you see code which gets executed before a server pack is generated,code that gets executed after a server pack was generated but before the ZIP-archive is created, code that gets executedafter this ZIP-archive was created, as well as code adding a new tabbed pane to the GUI.
-INFO [main] (ApplicationPlugins.java:87) - Version:    0.0.1
-INFO [main] (ApplicationPlugins.java:88) - Author:     Griefed
-INFO [main] (ApplicationPlugins.java:92) - Available PostGenExtension plugins:
-INFO [main] (ApplicationPlugins.java:94) - Name:       ServerPackCreatorExampleAddon
-INFO [main] (ApplicationPlugins.java:95) - Description:This is an example addon for ServerPackCreator showcasing all, currently 4, aspects ofServerPackCreators addon functionality. In this example you see code which gets executed before a server pack is generated,code that gets executed after a server pack was generated but before the ZIP-archive is created, code that gets executedafter this ZIP-archive was created, as well as code adding a new tabbed pane to the GUI.
-INFO [main] (ApplicationPlugins.java:96) - Version:    0.0.1
-INFO [main] (ApplicationPlugins.java:97) - Author:     Griefed
-INFO [main] (ApplicationPlugins.java:101) - Available TabExtension plugins:
-INFO [main] (ApplicationPlugins.java:103) - Name:       ServerPackCreatorExampleAddon
-INFO [main] (ApplicationPlugins.java:104) - Description:This is an example addon for ServerPackCreator showcasing all, currently 4, aspects ofServerPackCreators addon functionality. In this example you see code which gets executed before a server pack is generated,code that gets executed after a server pack was generated but before the ZIP-archive is created, code that gets executedafter this ZIP-archive was created, as well as code adding a new tabbed pane to the GUI.
-INFO [main] (ApplicationPlugins.java:105) - Version:    0.0.1
-INFO [main] (ApplicationPlugins.java:106) - Author:     Griefed
+ Addon ID must be unique.
+    Set it carefully!
+ */
+def pluginClass = 'de.griefed.exampleaddon.Example'
+def addon_id = 'example'
+def addon_name = 'Example Addon'
+def addon_description = 'An example addon for ServerPackCreator'
+def addon_author = 'Griefed'
+group 'de.griefed'
+version = "1.0.0"
 ```
 
-addons.log:
+`pluginClass` must point at the Addon/Plugin class of your addon. Think of it as the Main-Class-attribute from a regular JARs manifest.
+
+`addon_id` Is the ID used by ServerPackCreator to identify your addon, extensions in your addon, the global configuration-file of your addon (if you provide one) and
+for identifying extension-configurations from or given to a serverpackcreator.conf. Make it as **unique** as possible.
+[pf4j](https://pf4j.org/doc/plugins.html) does **not** allow for two addons with the same ID to co-exist in a given environment. The more unique
+your addon-ID is, the more likely it will be able to co-exist with any other addon in a given users ServerPackCreator environment.
+
+`addon_name` Is good for identifying a troublesome addon in the logs.
+
+`addon_description`, `addon_author` and `version` are fancy to have and should contain a value, but they are not used by ServerPackCreator for any vital or sensitive operations.
+
+`group` well yeah, this should obviously be changed to **your** group as you're **not** me 😅
+
+### 1.1.1 Updating the implemented version of ServerPackCreator
+
+It's as simple as changing the version specified in the `dependencies`-section of the `build.gradle`:
+
+```groovy
+dependencies {
+    ...
+    implementation 'de.griefed:serverpackcreator:3.14.0'
+    ...
+}
 ```
-2022-01-26T18:20:45,896  INFO [main] (ExamplePlugin.java:45) - Starting ExamplePlugin...
-2022-01-26T18:20:45,897  INFO [main] (ExamplePlugin.java:46) - This methods should prepare the environment for anything you want to do with it.
-2022-01-26T18:20:45,897  INFO [main] (ExamplePlugin.java:47) - You could download some files. Create or replace some files. Basically you can do whatever you want.
-2022-01-26T18:21:55,874  INFO [pool-2-thread-1] (ServerPackHandler.java:253) - Executing PreGenExtension addons
-2022-01-26T18:21:55,874  INFO [pool-2-thread-1] (ServerPackHandler.java:255) - Executing plugin ServerPackCreatorExampleAddon
-2022-01-26T18:21:55,874  INFO [pool-2-thread-1] (ExamplePlugin.java:58) - This would run before a server pack generation.
-2022-01-26T18:21:55,875  INFO [pool-2-thread-1] (ExamplePlugin.java:59) - Received destination: G:/GitLab/ServerPackCreator/testruns/server-packs/Deathdusk
-2022-01-26T18:21:55,875  INFO [pool-2-thread-1] (ExamplePlugin.java:60) - We recieved the following configurationModel: ConfigurationModel{clientMods=[AdvancementPlaques-, AmbientSounds_, backtools-, BetterAdvancements-, BetterAnimationsCollection-, BetterDarkMode-, betterf3-, BetterF3-, BetterFoliage-, BetterPingDisplay-, BetterPlacement-, Blur-, catalogue-, cherishedworlds-, classicbar-, clickadv-, ClientTweaks_, configured-, Controlling-, CraftPresence-, CTM-, customdiscordrpc-, CustomMainMenu-, defaultoptions-, DefaultOptions_, desiredservers-, Ding-, drippyloadingscreen-, drippyloadingscreen_, Durability101-, dynmus-, dynamic-music-, DynamicSurroundings-, DynamicSurroundingsHuds-, eiramoticons-, EiraMoticons_, EnchantmentDescriptions-, EquipmentCompare-, extremesoundmuffler-, extremeSoundMuffler-, Fallingleaves-, fallingleaves-, fancymenu_, findme-, flickerfix-, FpsReducer-, FullscreenWindowed-, WindowedFullscreen-, InventoryEssentials_, InventorySpam-, invtweaks-, InventoryTweaks-, ItemBorders-, itemzoom, itlt-, jeed-, jeiintegration_, JustEnoughProfessions-, JEITweaker-, justenoughbeacons-, JustEnoughCalculation-, jehc-, just-enough-harvestcraft-, JustEnoughProfessions-, JustEnoughResources-, keywizard-, konkrete_, lazydfu-, LegendaryTooltips-, LightOverlay-, light-overlay-, LLOverlayReloaded-, loadmyresources_, lootbeams-, mcbindtype-, modnametooltip_, modnametooltip-, moreoverlays-, MouseTweaks-, multihotbar-, MyServerIsCompatible-, Neat, NotifMod-, OldJavaWarning-, ornaments-, overloadedarmorbar-, PackMenu-, PickUpNotifier-, Ping-, preciseblockplacing-, presencefootsteps-, PresenceFootsteps-, ReAuth-, ResourceLoader-, shutupexperimentalsettings-, SimpleDiscordRichPresence-, smoothboot-, sounddeviceoptions-, SpawnerFix-, spoticraft-, tconplanner-, timestamps-, Tips-, TipTheScales-, Toast Control-, Toast-Control-, torohealth-, toughnessbar-, TravelersTitles-, WorldNameRandomizer-], copyDirs=[config, mods], modpackDir='C:/Minecraft/Game/Instances/Deathdusk', javaPath='C:/Program Files/Java/jdk1.8.0_291/jre/bin/java.exe', minecraftVersion='1.18.1', modLoader='Fabric', modLoaderVersion='0.12.12', javaArgs='empty', serverPackSuffix='', serverIconPath='', serverPropertiesPath='', includeServerInstallation=true, includeServerIcon=true, includeServerProperties=true, includeZipCreation=true, curseModpack=null, projectName='null', fileName='null', fileDiskName='null', projectID=0, fileID=0}
-2022-01-26T18:21:55,875  INFO [pool-2-thread-1] (ExamplePlugin.java:61) - We received the following applicationProperties: {de.griefed.serverpackcreator.serverpack.autodiscoverenabled=true, de.griefed.serverpackcreator.spring.schedules.database.cleanup=0 0 24 * *, de.griefed.serverpackcreator.configuration.hastebinserver=https://haste.zneix.eu/documents, de.griefed.serverpackcreator.spring.artemis.queue.max_disk_usage=90, de.griefed.serverpackcreator.serverpack.overwrite.enabled=true, de.griefed.serverpackcreator.configuration.saveloadedconfig=false, de.griefed.serverpackcreator.gui.darkmode=true, de.griefed.serverpackcreator.configuration.directories.shouldexclude=overrides,packmenu,resourcepacks,server_pack,fancymenu, de.griefed.serverpackcreator.language=en_us, de.griefed.serverpackcreator.configuration.directories.serverpacks=server-packs, homeDir=G:/GitLab/ServerPackCreator/build/classes/java, de.griefed.serverpackcreator.curseforge.cleanup.enabled=true, de.griefed.serverpackcreator.plugins.directory=./plugins, de.griefed.serverpackcreator.versioncheck.prerelease=true, de.griefed.serverpackcreator.configuration.directories.mustinclude=mods,config,defaultconfigs,scripts,saves,seeds,libraries, de.griefed.serverpackcreator.serverpack.cleanup.enabled=true, de.griefed.serverpackcreator.spring.cursecontroller.regenerate.enabled=false, de.griefed.serverpackcreator.configuration.fallbackmodslist=AdvancementPlaques-,AmbientSounds_,backtools-,BetterAdvancements-,BetterAnimationsCollection-,BetterDarkMode-,betterf3-,BetterF3-,BetterFoliage-,BetterPingDisplay-,BetterPlacement-,Blur-,catalogue-,cherishedworlds-,classicbar-,clickadv-,ClientTweaks_,configured-,Controlling-,CraftPresence-,CTM-,customdiscordrpc-,CustomMainMenu-,defaultoptions-,DefaultOptions_,desiredservers-,Ding-,drippyloadingscreen-,drippyloadingscreen_,Durability101-,dynmus-,dynamic-music-,DynamicSurroundings-,DynamicSurroundingsHuds-,eiramoticons-,EiraMoticons_,EnchantmentDescriptions-,EquipmentCompare-,extremesoundmuffler-,extremeSoundMuffler-,Fallingleaves-,fallingleaves-,fancymenu_,findme-,flickerfix-,FpsReducer-,FullscreenWindowed-,WindowedFullscreen-,InventoryEssentials_,InventorySpam-,invtweaks-,InventoryTweaks-,ItemBorders-,itemzoom,itlt-,jeed-,jeiintegration_,JustEnoughProfessions-,JEITweaker-,justenoughbeacons-,JustEnoughCalculation-,jehc-,just-enough-harvestcraft-,JustEnoughProfessions-,JustEnoughResources-,keywizard-,konkrete_,lazydfu-,LegendaryTooltips-,LightOverlay-,light-overlay-,LLOverlayReloaded-,loadmyresources_,lootbeams-,mcbindtype-,modnametooltip_,modnametooltip-,moreoverlays-,MouseTweaks-,multihotbar-,MyServerIsCompatible-,Neat,NotifMod-,OldJavaWarning-,ornaments-,overloadedarmorbar-,PackMenu-,PickUpNotifier-,Ping-,preciseblockplacing-,presencefootsteps-,PresenceFootsteps-,ReAuth-,ResourceLoader-,shutupexperimentalsettings-,SimpleDiscordRichPresence-,smoothboot-,sounddeviceoptions-,SpawnerFix-,spoticraft-,tconplanner-,timestamps-,Tips-,TipTheScales-,Toast Control-,Toast-Control-,torohealth-,toughnessbar-,TravelersTitles-,WorldNameRandomizer-}
-2022-01-26T18:22:06,414  INFO [pool-2-thread-1] (ServerPackHandler.java:303) - Executing PreZipExtension addons
-2022-01-26T18:22:06,414  INFO [pool-2-thread-1] (ServerPackHandler.java:305) - Executing plugin ServerPackCreatorExampleAddon
-2022-01-26T18:22:06,414  INFO [pool-2-thread-1] (ExamplePlugin.java:98) - This would run after a server pack was generated, but BEFORE the ZIP-archive would be generated.
-2022-01-26T18:22:06,414  INFO [pool-2-thread-1] (ExamplePlugin.java:99) - Received destination: G:/GitLab/ServerPackCreator/testruns/server-packs/Deathdusk
-2022-01-26T18:22:06,414  INFO [pool-2-thread-1] (ExamplePlugin.java:100) - We recieved the following configurationModel: ConfigurationModel{clientMods=[AdvancementPlaques-, AmbientSounds_, backtools-, BetterAdvancements-, BetterAnimationsCollection-, BetterDarkMode-, betterf3-, BetterF3-, BetterFoliage-, BetterPingDisplay-, BetterPlacement-, Blur-, catalogue-, cherishedworlds-, classicbar-, clickadv-, ClientTweaks_, configured-, Controlling-, CraftPresence-, CTM-, customdiscordrpc-, CustomMainMenu-, defaultoptions-, DefaultOptions_, desiredservers-, Ding-, drippyloadingscreen-, drippyloadingscreen_, Durability101-, dynmus-, dynamic-music-, DynamicSurroundings-, DynamicSurroundingsHuds-, eiramoticons-, EiraMoticons_, EnchantmentDescriptions-, EquipmentCompare-, extremesoundmuffler-, extremeSoundMuffler-, Fallingleaves-, fallingleaves-, fancymenu_, findme-, flickerfix-, FpsReducer-, FullscreenWindowed-, WindowedFullscreen-, InventoryEssentials_, InventorySpam-, invtweaks-, InventoryTweaks-, ItemBorders-, itemzoom, itlt-, jeed-, jeiintegration_, JustEnoughProfessions-, JEITweaker-, justenoughbeacons-, JustEnoughCalculation-, jehc-, just-enough-harvestcraft-, JustEnoughProfessions-, JustEnoughResources-, keywizard-, konkrete_, lazydfu-, LegendaryTooltips-, LightOverlay-, light-overlay-, LLOverlayReloaded-, loadmyresources_, lootbeams-, mcbindtype-, modnametooltip_, modnametooltip-, moreoverlays-, MouseTweaks-, multihotbar-, MyServerIsCompatible-, Neat, NotifMod-, OldJavaWarning-, ornaments-, overloadedarmorbar-, PackMenu-, PickUpNotifier-, Ping-, preciseblockplacing-, presencefootsteps-, PresenceFootsteps-, ReAuth-, ResourceLoader-, shutupexperimentalsettings-, SimpleDiscordRichPresence-, smoothboot-, sounddeviceoptions-, SpawnerFix-, spoticraft-, tconplanner-, timestamps-, Tips-, TipTheScales-, Toast Control-, Toast-Control-, torohealth-, toughnessbar-, TravelersTitles-, WorldNameRandomizer-], copyDirs=[config, mods], modpackDir='C:/Minecraft/Game/Instances/Deathdusk', javaPath='C:/Program Files/Java/jdk1.8.0_291/jre/bin/java.exe', minecraftVersion='1.18.1', modLoader='Fabric', modLoaderVersion='0.12.12', javaArgs='empty', serverPackSuffix='', serverIconPath='', serverPropertiesPath='', includeServerInstallation=true, includeServerIcon=true, includeServerProperties=true, includeZipCreation=true, curseModpack=null, projectName='null', fileName='null', fileDiskName='null', projectID=0, fileID=0}
-2022-01-26T18:22:06,414  INFO [pool-2-thread-1] (ExamplePlugin.java:101) - We received the following applicationProperties: {de.griefed.serverpackcreator.serverpack.autodiscoverenabled=true, de.griefed.serverpackcreator.spring.schedules.database.cleanup=0 0 24 * *, de.griefed.serverpackcreator.configuration.hastebinserver=https://haste.zneix.eu/documents, de.griefed.serverpackcreator.spring.artemis.queue.max_disk_usage=90, de.griefed.serverpackcreator.serverpack.overwrite.enabled=true, de.griefed.serverpackcreator.configuration.saveloadedconfig=false, de.griefed.serverpackcreator.gui.darkmode=true, de.griefed.serverpackcreator.configuration.directories.shouldexclude=overrides,packmenu,resourcepacks,server_pack,fancymenu, de.griefed.serverpackcreator.language=en_us, de.griefed.serverpackcreator.configuration.directories.serverpacks=server-packs, homeDir=G:/GitLab/ServerPackCreator/build/classes/java, de.griefed.serverpackcreator.curseforge.cleanup.enabled=true, de.griefed.serverpackcreator.plugins.directory=./plugins, de.griefed.serverpackcreator.versioncheck.prerelease=true, de.griefed.serverpackcreator.configuration.directories.mustinclude=mods,config,defaultconfigs,scripts,saves,seeds,libraries, de.griefed.serverpackcreator.serverpack.cleanup.enabled=true, de.griefed.serverpackcreator.spring.cursecontroller.regenerate.enabled=false, de.griefed.serverpackcreator.configuration.fallbackmodslist=AdvancementPlaques-,AmbientSounds_,backtools-,BetterAdvancements-,BetterAnimationsCollection-,BetterDarkMode-,betterf3-,BetterF3-,BetterFoliage-,BetterPingDisplay-,BetterPlacement-,Blur-,catalogue-,cherishedworlds-,classicbar-,clickadv-,ClientTweaks_,configured-,Controlling-,CraftPresence-,CTM-,customdiscordrpc-,CustomMainMenu-,defaultoptions-,DefaultOptions_,desiredservers-,Ding-,drippyloadingscreen-,drippyloadingscreen_,Durability101-,dynmus-,dynamic-music-,DynamicSurroundings-,DynamicSurroundingsHuds-,eiramoticons-,EiraMoticons_,EnchantmentDescriptions-,EquipmentCompare-,extremesoundmuffler-,extremeSoundMuffler-,Fallingleaves-,fallingleaves-,fancymenu_,findme-,flickerfix-,FpsReducer-,FullscreenWindowed-,WindowedFullscreen-,InventoryEssentials_,InventorySpam-,invtweaks-,InventoryTweaks-,ItemBorders-,itemzoom,itlt-,jeed-,jeiintegration_,JustEnoughProfessions-,JEITweaker-,justenoughbeacons-,JustEnoughCalculation-,jehc-,just-enough-harvestcraft-,JustEnoughProfessions-,JustEnoughResources-,keywizard-,konkrete_,lazydfu-,LegendaryTooltips-,LightOverlay-,light-overlay-,LLOverlayReloaded-,loadmyresources_,lootbeams-,mcbindtype-,modnametooltip_,modnametooltip-,moreoverlays-,MouseTweaks-,multihotbar-,MyServerIsCompatible-,Neat,NotifMod-,OldJavaWarning-,ornaments-,overloadedarmorbar-,PackMenu-,PickUpNotifier-,Ping-,preciseblockplacing-,presencefootsteps-,PresenceFootsteps-,ReAuth-,ResourceLoader-,shutupexperimentalsettings-,SimpleDiscordRichPresence-,smoothboot-,sounddeviceoptions-,SpawnerFix-,spoticraft-,tconplanner-,timestamps-,Tips-,TipTheScales-,Toast Control-,Toast-Control-,torohealth-,toughnessbar-,TravelersTitles-,WorldNameRandomizer-}
-2022-01-26T18:22:45,053  INFO [pool-2-thread-1] (ServerPackHandler.java:333) - Executing PostGenExtension addons
-2022-01-26T18:22:45,053  INFO [pool-2-thread-1] (ServerPackHandler.java:335) - Executing plugin ServerPackCreatorExampleAddon
-2022-01-26T18:22:45,053  INFO [pool-2-thread-1] (ExamplePlugin.java:143) - This would run after the server pack ZIP-archive was created.
-2022-01-26T18:22:45,053  INFO [pool-2-thread-1] (ExamplePlugin.java:144) - Received destination: G:/GitLab/ServerPackCreator/testruns/server-packs/Deathdusk
-2022-01-26T18:22:45,053  INFO [pool-2-thread-1] (ExamplePlugin.java:145) - We recieved the following configurationModel: ConfigurationModel{clientMods=[AdvancementPlaques-, AmbientSounds_, backtools-, BetterAdvancements-, BetterAnimationsCollection-, BetterDarkMode-, betterf3-, BetterF3-, BetterFoliage-, BetterPingDisplay-, BetterPlacement-, Blur-, catalogue-, cherishedworlds-, classicbar-, clickadv-, ClientTweaks_, configured-, Controlling-, CraftPresence-, CTM-, customdiscordrpc-, CustomMainMenu-, defaultoptions-, DefaultOptions_, desiredservers-, Ding-, drippyloadingscreen-, drippyloadingscreen_, Durability101-, dynmus-, dynamic-music-, DynamicSurroundings-, DynamicSurroundingsHuds-, eiramoticons-, EiraMoticons_, EnchantmentDescriptions-, EquipmentCompare-, extremesoundmuffler-, extremeSoundMuffler-, Fallingleaves-, fallingleaves-, fancymenu_, findme-, flickerfix-, FpsReducer-, FullscreenWindowed-, WindowedFullscreen-, InventoryEssentials_, InventorySpam-, invtweaks-, InventoryTweaks-, ItemBorders-, itemzoom, itlt-, jeed-, jeiintegration_, JustEnoughProfessions-, JEITweaker-, justenoughbeacons-, JustEnoughCalculation-, jehc-, just-enough-harvestcraft-, JustEnoughProfessions-, JustEnoughResources-, keywizard-, konkrete_, lazydfu-, LegendaryTooltips-, LightOverlay-, light-overlay-, LLOverlayReloaded-, loadmyresources_, lootbeams-, mcbindtype-, modnametooltip_, modnametooltip-, moreoverlays-, MouseTweaks-, multihotbar-, MyServerIsCompatible-, Neat, NotifMod-, OldJavaWarning-, ornaments-, overloadedarmorbar-, PackMenu-, PickUpNotifier-, Ping-, preciseblockplacing-, presencefootsteps-, PresenceFootsteps-, ReAuth-, ResourceLoader-, shutupexperimentalsettings-, SimpleDiscordRichPresence-, smoothboot-, sounddeviceoptions-, SpawnerFix-, spoticraft-, tconplanner-, timestamps-, Tips-, TipTheScales-, Toast Control-, Toast-Control-, torohealth-, toughnessbar-, TravelersTitles-, WorldNameRandomizer-], copyDirs=[config, mods], modpackDir='C:/Minecraft/Game/Instances/Deathdusk', javaPath='C:/Program Files/Java/jdk1.8.0_291/jre/bin/java.exe', minecraftVersion='1.18.1', modLoader='Fabric', modLoaderVersion='0.12.12', javaArgs='empty', serverPackSuffix='', serverIconPath='', serverPropertiesPath='', includeServerInstallation=true, includeServerIcon=true, includeServerProperties=true, includeZipCreation=true, curseModpack=null, projectName='null', fileName='null', fileDiskName='null', projectID=0, fileID=0}
-2022-01-26T18:22:45,053  INFO [pool-2-thread-1] (ExamplePlugin.java:146) - We received the following applicationProperties: {de.griefed.serverpackcreator.serverpack.autodiscoverenabled=true, de.griefed.serverpackcreator.spring.schedules.database.cleanup=0 0 24 * *, de.griefed.serverpackcreator.configuration.hastebinserver=https://haste.zneix.eu/documents, de.griefed.serverpackcreator.spring.artemis.queue.max_disk_usage=90, de.griefed.serverpackcreator.serverpack.overwrite.enabled=true, de.griefed.serverpackcreator.configuration.saveloadedconfig=false, de.griefed.serverpackcreator.gui.darkmode=true, de.griefed.serverpackcreator.configuration.directories.shouldexclude=overrides,packmenu,resourcepacks,server_pack,fancymenu, de.griefed.serverpackcreator.language=en_us, de.griefed.serverpackcreator.configuration.directories.serverpacks=server-packs, homeDir=G:/GitLab/ServerPackCreator/build/classes/java, de.griefed.serverpackcreator.curseforge.cleanup.enabled=true, de.griefed.serverpackcreator.plugins.directory=./plugins, de.griefed.serverpackcreator.versioncheck.prerelease=true, de.griefed.serverpackcreator.configuration.directories.mustinclude=mods,config,defaultconfigs,scripts,saves,seeds,libraries, de.griefed.serverpackcreator.serverpack.cleanup.enabled=true, de.griefed.serverpackcreator.spring.cursecontroller.regenerate.enabled=false, de.griefed.serverpackcreator.configuration.fallbackmodslist=AdvancementPlaques-,AmbientSounds_,backtools-,BetterAdvancements-,BetterAnimationsCollection-,BetterDarkMode-,betterf3-,BetterF3-,BetterFoliage-,BetterPingDisplay-,BetterPlacement-,Blur-,catalogue-,cherishedworlds-,classicbar-,clickadv-,ClientTweaks_,configured-,Controlling-,CraftPresence-,CTM-,customdiscordrpc-,CustomMainMenu-,defaultoptions-,DefaultOptions_,desiredservers-,Ding-,drippyloadingscreen-,drippyloadingscreen_,Durability101-,dynmus-,dynamic-music-,DynamicSurroundings-,DynamicSurroundingsHuds-,eiramoticons-,EiraMoticons_,EnchantmentDescriptions-,EquipmentCompare-,extremesoundmuffler-,extremeSoundMuffler-,Fallingleaves-,fallingleaves-,fancymenu_,findme-,flickerfix-,FpsReducer-,FullscreenWindowed-,WindowedFullscreen-,InventoryEssentials_,InventorySpam-,invtweaks-,InventoryTweaks-,ItemBorders-,itemzoom,itlt-,jeed-,jeiintegration_,JustEnoughProfessions-,JEITweaker-,justenoughbeacons-,JustEnoughCalculation-,jehc-,just-enough-harvestcraft-,JustEnoughProfessions-,JustEnoughResources-,keywizard-,konkrete_,lazydfu-,LegendaryTooltips-,LightOverlay-,light-overlay-,LLOverlayReloaded-,loadmyresources_,lootbeams-,mcbindtype-,modnametooltip_,modnametooltip-,moreoverlays-,MouseTweaks-,multihotbar-,MyServerIsCompatible-,Neat,NotifMod-,OldJavaWarning-,ornaments-,overloadedarmorbar-,PackMenu-,PickUpNotifier-,Ping-,preciseblockplacing-,presencefootsteps-,PresenceFootsteps-,ReAuth-,ResourceLoader-,shutupexperimentalsettings-,SimpleDiscordRichPresence-,smoothboot-,sounddeviceoptions-,SpawnerFix-,spoticraft-,tconplanner-,timestamps-,Tips-,TipTheScales-,Toast Control-,Toast-Control-,torohealth-,toughnessbar-,TravelersTitles-,WorldNameRandomizer-}
+
+## 1.2 Configuration Panel Extension
+
+The configuration panel is intended to let you add a panel in which you, or the user of your addon, may
+configure something for any of the extensions added by your addon.
+
+![configpanel](img/configpanel.png)
+
+The above example lets you configure four textfields, one for each extension point used during server pack 
+configuration checking and server pack generation. More on this in **Configuration Check Extension**.
+
+Extension configurations are saved to the serverpackcreator.conf of the server pack and re-loaded along
+with everything else, like the Minecraft version, modloader and modloader version etc.
+
+To see how this is achieved, please see
+
+```java
+@Override
+public ArrayList<CommentedConfig> serverPackExtensionConfig() {...}
+``` 
+
+and 
+
+```java
+@Override
+public void setServerPackExtensionConfig(ArrayList<CommentedConfig> serverPackExtensionConfig) {...}
 ```
 
-Additionally, the following files/directories would be created in the server pack-directory:
+in the `ConfigurationPanel`-class.
 
-- `./ExampleStartExtension`
-- `./ExampleArchiveExtension`
-- `serverpackcreator.conf` as it was used to generate the server pack
-- `./some/folder/with/a/name`
+## 1.3 Tab Extension
 
-| Example at boot time       | Example after generation finished |
-|----------------------------|-----------------------------------|
-| ![boot](img/boot.png)      | ![preGen](img/afterGen.png)       |
+Tab extensions allow you to add whole tabs to the GUI of ServerPackCreator. These additional tabs are intended
+to let you add textfields and such, which allow you to configure your global addon configuration.
+You may add anything you want to it. The sky is the limit!
 
-**Example tab**
+![tab](img/tabextension.png)
 
-![tab](img/exampleTab.png)
+The above example adds a button which, when pressed, opens a minimalistic Tetris game in a new window.
+It's not supposed to be actually that entertaining, but rather to demonstrate that you can do what you want inside
+your tab.
 
-# 1. Addons
+Below the big button are some textfields which allow you to change some values of the global addon-wide configuration.
+Global addon-configurations are handed to you by ServerPackCreator when the tab is instantiated. The only thing
+you need to take care of is to call `saveConfiguration()` from within your tab to save the configuration.
+The example above simply adds a button `Set values` which does just that. 
 
-## 1.1 Why
+Global addon-configurations are passed to every extension, along with any available extension-specific configuration,
+automatically, so you don't have to worry about anything other than actually saving changes you made in the tab.
 
-There are things which people want to do with their server packs which could most certainly be automated. Some of those
-things so special, or maybe out of place, that they would not warrant a separate feature for ServerPackCreator itself.
+Maybe have a timer auto-save every few seconds? Your tab, your choice! 😁
 
-It may also be that it is such a niche feature, that I either don't have the time to code it in, or simply don't want to.
-Maybe it doesn't fit into the overall design of ServerPackCreator, too. Who knows, it could be any of those reasons or another.
+## 1.4 Configuration Check Extension
 
-**Hence, the addon functionality!**
+The configuration check extension point allows you to run your own config checks, be that on any of the
+already available data from the server pack config tab, or your own data from the configuration panel, or your
+own tab, or whatever else you may want to check.
 
-This allows people to write their own addons to expand the functionality of ServerPackCreator with their own features as
-they see fit or want.
+![check](img/configcheck.png)
 
-For documentation about Pf4j, visit the [Pf4j documentation](https://pf4j.org/)
+The above example simply checks whether the string in `text` of the passed `CommentedConfig` in a list
+of passed configs contains text. If it does, then we add a custom error message to the list of errors encountered
+during configuration checks.
+That list is then displayed to the user after the configurations checks have all run.
 
-## 1.2 Adding your own
+For details see `runCheck(...) {...}` in the `ConfigurationCheck`-class.
 
-How to get your own addon into this list:
+Keep in mind that the method must return `true` in order to trigger a config check failure on ServerPackCreators part.
+Only if any one configuration check, be that ServerPackCreator native or from addons, returns `true` will the
+error messages be displayed to the user.
 
-If you have written your own addon or plugin for ServerPackCreator and you would like to see it added here, please open an issue over at ServerPackCreatoron GitHub, using the Documentation template.
+Make use of this extension point in combination with the **Configuration Panel Extension** and/or **Tab Extension** in order to
+check user input for any errors!
 
-For an addon to be accepted, you must at least provide:
-- The name of the repository, and therefore the addon.
-- The owner of the repository, and therefore the addon.
-- The branch of the repository where the main code resides in.
-- A description of the plugin or addon.
+## 1.5 Pre Server Pack Generation Extension
 
-A curated list of officially acknowledged addons/plugins can be found at [addons.griefed.de](https://addons.griefed.de) (redirects to [GitHub Pages](https://griefed.github.io/ServerPackCreator-Addons-Overview/#/))
+The Pre Server Pack Generation extensions run, as the name implies, *right before* the generation of a server pack really begins.
+You may use this to prepare the environment for any of the tailing extensions.
 
-## 1.3 Examples for potential addons
+![pregen](img/pregen.png)
 
-Some examples for potential addons can be found [in this discussion thread](https://github.com/Griefed/ServerPackCreator/discussions/201).
+The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
+extension passed to it by ServerPackCreator.
 
-Some excerpts:
-1. Changelog generator, by @TheButterbrotMan at [Feature request]: Changelog generator #198
-   - A changelog generator that checks the differences to the previous version and generates a changelog.
+See the `PreGeneration`-class for details on how the example above was achieved.
 
-2. Bundle Adoptium Java with server packs, by @kreezxil at [Feature request]: Bundle Adoptium Java #199
-   - Because modpacks need one of the either Java 8, 16, or 17, it would be nice to have the corresponding https://adoptium.net java prebundled with the server pack.
+## 1.6 Pre Server Pack ZIP-archive Creation Extension
 
-3. Automatic setup of a server pack for [BlueMap](https://www.curseforge.com/minecraft/mc-mods/bluemap)
-   - Check all mods in the specified modpacks mods-directory for textures, and if any are found, add the mod to
-     BlueMap's resourcepack folder `config/bluemap/resourcepacks`, install BlueMap for the specified Minecraft and Forge/Fabric
-     version and voilà!
+The Pre Server Pack ZIP-archive Creation extensions run, as the name implies, *right before* the creation of the server packs ZIP-archive is, or would be,
+started. Want to add any files to the ZIP-archive? Or make sure some file doesn't make it into the ZIP-archive?
 
-# 2. How
+![prezip](img/prezip.png)
 
-During the start of ServerPackCreator, all plugins are loaded and started. If you have anything you need to run then and there,
-use `public void start() {...}` and do your thing.
+The above example shows the run of a PreZip extension, with the global addon configuration as well as the extension-specific
+extension passed to it by ServerPackCreator.
 
-For documentation about Pf4j, visit https://pf4j.org/
+See the `PreZipArchive`-class for details on how the example above was achieved.
 
-If you have ideas and/or suggestions for improvements to the addon-system in ServerPackCreator, open an improvement-issue over at the ServerPackCreator [issues page](https://github.com/Griefed/ServerPackCreator/issues/new?assignees=Griefed&labels=enhancement&template=improvement.yml&title=%5BImprovement+request%5D%3A+)
+## 1.7 Post Server Pack Generation Extension
 
-## 2.1 Extensions
+The Post Server Pack Generation extensions run, as the name implies, *after* the generation of a server pack has finished.
+Want to add any files to the server pack, but don't want them to end up in the ZIP-archive? Maybe download,
+install and configure DynMap with some renderdata? This would be the place to do that!
 
-One plugin can have multiple extensions.
+![postgen](img/postgen.png)
 
-ServerPackCreator passes the `ConfigurationModel` and `ApplicationProperties`, used to create a server pack, to all `PreGenExtension`, `PreZipExtension` and `PostGenExtension` extensions.
+The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
+extension passed to it by ServerPackCreator.
 
-If you have a plugin with multiple extensions of the same type, you can set the priority in which they are executed by specifiying and ordinal for your extension: `@Extension(ordinal = 1)`
-The higher the ordinal, the lower the priority. See [pf4j documentation](https://pf4j.org/doc/extensions) on extensions.
+See the `PostGeneration`-class for details on how the example above was achieved.
 
-## 2.2 Logs
+See now why the ConfigPanel, ConfigCheck and Tab extensions are so nice to have?
+The possibilities are (almost) **endless**!😁 
 
-If you want to print log messages, then use the `LOG_ADDONS` logger as shown in this example. This will result in ServerPackCreator writing any and all log entries from this logger to the `addons.log`-file.
+# 2. The reason for allowing ServerPackCreator to run addons:
 
-# 3. Building
+Some people need additional functionality for their server packs, or have some additional wishes for
+them. Some of those
+things may not fit into the core functionality of ServerPackCreator itself.
+
+It may also be that it is such a niche feature, that I either don't have the time to code it in, or
+simply don't want to.
+Maybe it doesn't fit into the overall design of ServerPackCreator, too. Who knows, it could be any
+of those reasons or another.
+
+**Hence, the addon functionality.**
+
+This allows people to write their own addons to expand the functionality of ServerPackCreator with
+their own features as
+they see fit.
+
+# 3. How
+
+During the start of ServerPackCreator, all addons are loaded and then started. As per the pf4j
+plugin lifecycle, you may use the `start()` method of your addon-class to run any operations needed
+to ensure your environment is set up.
+ServerPackCreator provides a nice `ServerPackCreatorExampleAddon`-class which you can extend if you so
+desire. 
+What it does is it prints some information about your addon during the start of ServerPackCreator,
+which in turn helps you, any other addon-dev and me with debugging things. You may, of course,
+choose not to extend the aforementioned class, and simply extend pf4j's `Plugin`-class, setting up
+your very own addon from scratch.
+
+For detailed documentation about Pf4j, visit https://pf4j.org/
+
+After addons have been loaded an started by ServerPackCreator, it will list all available extensions. Depending on the mode in which ServerPackCreator is run
+
+- additional tabs may get added the GUI
+- additional panels may get added to the server pack configuration tab
+- additional extensions for configuration checking and server pack generation may be added
+
+## 3.1 Extension Endpoints
+
+One plugin can have multiple extensions. You may add and provide as many as you like.
+Currently existing endpoint and their intended purpose:
+
+| **Extension Endpoint**                 | **Description**                                                                                                                                                                                                                                                                                                                  |
+|----------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Configuration Check                    | Allows you to run your own, additional, configuration checks. Useful if you provide any of the other extensions and want to make them configurable.<br>The Configuration Check Extension of your addon receives the global configuration for your addon, as well as any server pack specific extension configurations available. |
+| Tab Extension                          | Allows you to add an entirely new tab to the GUI of ServerPackCreator. A usage example for this: Provide configuration possibilities in case you have a global configuration for your addon.                                                                                                                                     |
+| Configuration Panel                    | Allows you to add additional panels to the server pack configuration tab. A usage example for this: Your extensions have configuration you would like to be configurable on a server pack - by - server pack basis.                                                                                                              |
+| Pre Server Pack Generation             | Allows you to run your own operations before the generation of a server pack starts. You may provide configurations via the previously mentioned Tab- and Configuration Panel extensions.                                                                                                                                        |
+| Pre Server Pack ZIP-archive Generation | Allows you to run your own operations after the server pack was generated, but before the ZIP-archive creation would start. You may provide configurations via the previously mentioned Tab- and Configuration Panel extensions.                                                                                                 |
+| Post Server Pack Generation            | Allows you to run your own operations after the generation of a server pack has finished. You may provide configurations via the previously mentioned Tab- and Configuration Panel extensions.                                                                                                                                   |
+
+## 3.2 Data provided to extensions
+
+Depending on the extension, different data will be supplied by ServerPackCreator, to the extension, automatically.
+
+| **Extension Endpoint**                                                                                | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|-------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Configuration Check                                                                                   | 1. The Version Meta ServerpackCreator uses for Minecraft, Forge, Fabric, LegacyFabric and Quilt related operations.<br>2. The configuration of ServerPackCreator, ApplicationProperties.<br>3. Commonly used utilities across ServerPackCreator<br>4. Receives the configuration model which was just checked by ServerPackCreator.<br>5. A list of encountered errors during previous configuration checks to which you may add your own encountered errors, if any.<br>6. A global, addon-specific, configuration, if you've provided one.<br>6. A list of server pack-specific configurations. You may provide as many as you like, one for each of your extensions for example. |
+| Tab Extension                                                                                         | 1. The Version Meta ServerpackCreator uses for Minecraft, Forge, Fabric, LegacyFabric and Quilt related operations.<br>2. The configuration of ServerPackCreator, ApplicationProperties.<br>3. Commonly used utilities across ServerPackCreator<br>4. A global, addon-specific, configuration, if you've provided one.<br>4.1. The configuration-file for your addon-wide configuration, used to load and save.                                                                                                                                                                                                                                                                     |
+| Configuration Panel                                                                                   | 1. The Version Meta ServerpackCreator uses for Minecraft, Forge, Fabric, LegacyFabric and Quilt related operations.<br>2. The configuration of ServerPackCreator, ApplicationProperties.<br>3. Commonly used utilities across ServerPackCreator<br>4. The tab in which the panel(s) reside in, giving you access to its data.<br>5. A global, addon-specific, configuration, if you've provided one.<br>6. The name of your extension, used by the `ExtensionConfigPanel`-class to add a title to a titled border around your panel.<br>7. The ID of the addon which holds the extension. This is the, unique to a given environment, unique identifier of your addon.              |
+| Pre Server Pack Generation,<br>Pre Server Pack ZIP-archive Generation,<br>Post Server Pack Generation | 1. The Version Meta ServerpackCreator uses for Minecraft, Forge, Fabric, LegacyFabric and Quilt related operations.<br>2. Commonly used utilities across ServerPackCreator<br>3. The configuration of ServerPackCreator, ApplicationProperties.<br>4. Receives the configuration model which was just checked by ServerPackCreator.<br>5. The destination at which the server pack was/is/will be/being generated.<br>6. A global, addon-specific, configuration, if you've provided one.<br>7. A list of server pack-specific configurations. You may provide as many as you like, one for each of your extensions for example.                                                    |
+
+As you can see, a lot of data and information is provided by ServerPackCreator for your convenience.
+If your addon provides a global configuration, you do not need to take care of it, manage it, ensure
+it exists or load it. ServerPackCreator will extract it and provide any and all of your extensions
+with it, so you may use, change, overwrite and save it as you so desire.
+
+Furthermore, any server pack specific configuration provided by you via a Configuration Panel will
+be stored in the server pack related configuration file, along with any other default fields of
+ServerPackCreator. When said configuration file is then loaded, your Configuration Panel extension
+is again, automatically, provided with your extension configurations. No need to load it yourself,
+all you have to make sure is to provide the changed data back to ServerPackCreator for when a given
+user saves their configuration.
+
+See [pf4j documentation](https://pf4j.org/doc/extensions) on extensions.
+
+## 3.3 Global addon configuration
+
+This example contains a `config.toml`-file which serves as a global configuration for your addon and
+any extensions it provides. As mentioned previously, every one of your extensions will receive this
+global configuration and in order for it to be changeable, you need to provide a suitable TabExtension.
+
+If you intend on using the global configuration, bear in mind:
+1. to **not** rename the file yourself. ServerPackCreator extracts it from your addon and stores it under a different filename, matching your addons ID
+2. that your addon ID should be as unique as possible. Duplicate IDs will cause conflicts with other addons which have the same ID as yours
+3. pf4j relies on each addon to have a unique ID, otherwise pf4j will encounter issues if multiple addons with the same ID are provided
+4. Change the ID in `build.grdle`, in the `def addon_id`-section. Change the other values accordingly, too
+
+ServerPackCreator will manage and provide the global configuration itself. You simply have to take
+care to provide, change and use the values therein.
+
+## 3.4 Addon identification
+
+The `addon.toml`-file contains values by which to identify your addon in the logs. Do not edit this
+file manually, as the `processResources`-task will automatically replace the values with the ones
+you set in the `def <key>`-section.
+
+As well as with the `addon.toml`-file, your addon#s manifest must contain specific information. This
+information is also automatically replace.
+
+Again, make sure to change the values in the `def <key>`-section!
+
+## 3.5 Logs
+
+If you want to print log messages, then use the `LOG_ADDONS` logger as shown in this example. This
+will result in ServerPackCreator writing any and all log entries from this logger to
+the `addons.log`-file.
+
+# 4. Building
 
 1. Fork and clone this repository
 2. Make your changes and additions.
-3. Build with `gradlew about build --info`.
+3. Build with `gradlew clean build --info --stacktrace`.
 4. Copy the JAR-file from `build/libs` to the plugins-directory created by ServerPackCreator.
 5. Run ServerPackCreator!
 
-## 4. Contributing
+# 5. Contributing
 
-If you have written an addon, let me know by creating an issue in this repository. Provide a short description of what your
-addon does and a link to the GitHub repository as well. I will add it to a list in the README of ServerPackCreator.
+If you have written an addon, let me know by creating an issue in this repository. Provide a short
+description of what your
+addon does and a link to the GitHub repository as well. I will add it to a list in the README of
+ServerPackCreator.
 
-**NOTE: I only add addons which are open source. I will NOT add any direct download links to any file. People must be able
-to check your code before they download and install your addon, and as such, I will only add a link to your addon-respository
+**NOTE: I only add addons which are open source. I will NOT add any direct download links to any
+file. People must be able
+to check your code before they download and install your addon, and as such, I will only add a link
+to your addon-respository
 along with a small description, if you provided one.
 
 Example:
 
-| Addon                                                                                                                                           | Creator | Description                                                                                                                                                                                         |
-|:------------------------------------------------------------------------------------------------------------------------------------------------|:--------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon)                                                                        | Griefed | An example addon providing a starting point for addon development.                                                                                                                                  |
-| [ExampleAddon Alternative Extension Declaration](https://github.com/Griefed/ServerPackCreatorExampleAddon/tree/alternativeExtensionDeclaration) | Griefed | An example addon providing a starting point for addon development. This addon provides an example for a different way of declaring extensions as well as reading entries from the plugins manifest. |
-| [Example MiniGame](https://github.com/Griefed/ServerPackCreatorExampleAddon/tree/tetris)                                                        | Griefed | Play Tetris in a new window whilst your server packs generate!                                                                                                                                      |
+| Addon                                                                                    | Creator | Description                                                                                             |
+|:-----------------------------------------------------------------------------------------|:--------|:--------------------------------------------------------------------------------------------------------|
+| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon)                 | Griefed | An example addon providing a starting point for addon development with one example for every extension. |

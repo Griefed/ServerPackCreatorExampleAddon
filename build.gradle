@@ -5,10 +5,24 @@ plugins {
   id 'idea'
 }
 
-group 'de.griefed'
-
 //noinspection GroovyUnusedAssignment
-sourceCompatibility = targetCompatibility = '1.8'
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+/*
+ CHANGE THESE VALUES
+    FOR YOUR OWN
+       ADDON
+
+ Addon ID must be unique.
+    Set it carefully!
+ */
+group 'de.griefed'
+version = "1.0.0"
+def pluginClass = group + '.exampleaddon.Example'
+def addon_id = 'example'
+def addon_name = 'Example Addon'
+def addon_description = 'An example addon for ServerPackCreator, demonstrating all extension points available.'
+def addon_author = 'Griefed'
+
 
 sourceSets {
   //noinspection GroovyAssignabilityCheck
@@ -35,28 +49,15 @@ sourceSets {
 repositories {
   mavenCentral()
   maven { url "https://jitpack.io" }
-}
-
-configurations {
-  embed
-  implementation.extendsFrom(embed)
+  maven { url 'https://repo.spring.io/release' }
 }
 
 dependencies {
-  // Dependencies required for any plugin and/or extension to work
-  implementation 'org.pf4j:pf4j:3.7.0'
   annotationProcessor 'org.pf4j:pf4j:3.7.0'
-  implementation 'de.griefed:serverpackcreator:3.12.0'
-
-  // Required if you want to log to any of ServerPackCreators logs
-  implementation 'org.apache.logging.log4j:log4j-api:2.18.0'
-
-  // Dependencies your plugin or extension requires and need to be shipped within the plugin#s JAR-file
-  embed 'commons-io:commons-io:2.11.0'
-  embed 'org.apache.commons:commons-lang3:3.12.0'
+  implementation 'de.griefed:serverpackcreator:3.14.0'
 
   // Testing
-  testImplementation 'org.mockito:mockito-core:4.7.0'
+  testImplementation 'org.mockito:mockito-core:4.8.0'
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
@@ -65,57 +66,58 @@ test {
   useJUnitPlatform()
   // Mention test result in logs
   testLogging {
-    events "passed",
+    events(
+        "passed",
         "skipped",
         "failed"
+    )
   }
 }
 
-// Include specific files in resources folder, like the license and readme.
-tasks.register('about', Copy) {
-  dependsOn tasks.named('clean')
-
-  from layout.projectDirectory.file("LICENSE") into layout.projectDirectory.dir("src/main/resources")
-  from layout.projectDirectory.file("README.md") into layout.projectDirectory.dir("src/main/resources")
-}
-
-tasks.withType(Javadoc) {
-  options.addStringOption('encoding', 'UTF-8')
-}
-
-javadoc {
-  options.memberLevel = JavadocMemberLevel.PRIVATE
-  classpath = sourceSets.main.runtimeClasspath
-}
-
-java {
-  withSourcesJar()
-  withJavadocJar()
+processResources {
+  filesMatching("addon.toml") {
+    expand(
+        "version": project.version,
+        "addon_id": addon_id,
+        "addon_name": addon_name,
+        "addon_description": addon_description,
+        "addon_author": addon_author,
+        "addon_class": pluginClass
+    )
+  }
+  copy {
+    from layout.projectDirectory.file("LICENSE")
+    into layout.projectDirectory.dir("src/main/resources")
+  }
+  copy {
+    from layout.projectDirectory.file("README.md")
+    into layout.projectDirectory.dir("src/main/resources")
+  }
+  copy {
+    from layout.projectDirectory.file("CHANGELOG.md")
+    into layout.projectDirectory.dir("src/main/resources")
+  }
 }
 
 jar {
   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-  from {
-    configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-  }
-
   //noinspection GroovyAssignabilityCheck
   manifest {
     attributes(
-        "Main-Class": "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
-        "Class-Path": configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
-        "Description": "Example plugin for ServerPackCreator",
+        "Main-Class": pluginClass,
+        "Description": addon_description,
         "Built-By": System.getProperty("user.name"),
         "Build-Timestamp": new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
         "Created-By": "Gradle ${gradle.gradleVersion}",
         "Build-Jdk": "${System.getProperty('java.version')} (${System.getProperty('java.vendor')} ${System.getProperty('java.vm.version')})",
         "Build-OS": "${System.getProperty('os.name')} ${System.getProperty('os.arch')} ${System.getProperty('os.version')}",
-        "Plugin-Class": "de.griefed.serverpackcreatoraddonexample.ExamplePlugin",
-        "Plugin-Id": "example-plugin",
-        "Plugin-Provider": "Griefed",
-        "Plugin-Version": "0.0.1",
-        "Plugin-Description": "Example plugin for ServerPackCreator",
+        "Plugin-Class": pluginClass,
+        "Plugin-Id": addon_id,
+        "Plugin-Name": addon_name,
+        "Plugin-Provider": addon_author,
+        "Plugin-Version": project.version,
+        "Plugin-Description": addon_description
     )
   }
 }

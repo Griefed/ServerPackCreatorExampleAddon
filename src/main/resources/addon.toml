@@ -1,0 +1,5 @@
+id = "${addon_id}"
+name = "${addon_name}"
+description = "${addon_description}"
+author = "${addon_author}"
+version = "${version}"
