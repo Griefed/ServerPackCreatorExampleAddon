@@ -162,8 +162,11 @@ public class TetrisTab extends ExtensionTab {
             "Save?",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.INFORMATION_MESSAGE) == 0) {
+
           saveConfiguration();
+
         } else {
+
           JOptionPane.showMessageDialog(
               null,
               "Values not saved :-(   ",

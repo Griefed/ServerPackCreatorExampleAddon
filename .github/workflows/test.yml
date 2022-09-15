@@ -22,7 +22,7 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Build with Gradle
-        run: ./gradlew about build --no-daemon --info
+        run: ./gradlew build --info --full-stacktrace
       - name: List files in libs
         run: ls -ahl build/libs
       - uses: actions/upload-artifact@v2

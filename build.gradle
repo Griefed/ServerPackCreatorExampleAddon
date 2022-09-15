@@ -15,13 +15,14 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
  Addon ID must be unique.
     Set it carefully!
  */
-def pluginClass = 'de.griefed.exampleaddon.Example'
-def addon_id = 'example'
-def addon_name = 'Example Addon'
-def addon_description = 'An example addon for ServerPackCreator'
-def addon_author = 'Griefed'
 group 'de.griefed'
 version = "1.0.0"
+def pluginClass = group + '.exampleaddon.Example'
+def addon_id = 'example'
+def addon_name = 'Example Addon'
+def addon_description = 'An example addon for ServerPackCreator, demonstrating all extension points available.'
+def addon_author = 'Griefed'
+
 
 sourceSets {
   //noinspection GroovyAssignabilityCheck
@@ -49,11 +50,6 @@ repositories {
   mavenCentral()
   maven { url "https://jitpack.io" }
   maven { url 'https://repo.spring.io/release' }
-}
-
-configurations {
-  embed
-  implementation.extendsFrom(embed)
 }
 
 dependencies {
@@ -89,20 +85,27 @@ processResources {
         "addon_class": pluginClass
     )
   }
+  copy {
+    from layout.projectDirectory.file("LICENSE")
+    into layout.projectDirectory.dir("src/main/resources")
+  }
+  copy {
+    from layout.projectDirectory.file("README.md")
+    into layout.projectDirectory.dir("src/main/resources")
+  }
+  copy {
+    from layout.projectDirectory.file("CHANGELOG.md")
+    into layout.projectDirectory.dir("src/main/resources")
+  }
 }
 
 jar {
   duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
-  from {
-    configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
-  }
-
   //noinspection GroovyAssignabilityCheck
   manifest {
     attributes(
         "Main-Class": pluginClass,
-        "Class-Path": configurations.embed.findAll { it.name.endsWith('jar') }.collect { zipTree(it) },
         "Description": addon_description,
         "Built-By": System.getProperty("user.name"),
         "Build-Timestamp": new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ").format(new Date()),
