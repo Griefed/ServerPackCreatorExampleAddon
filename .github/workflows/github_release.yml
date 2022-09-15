@@ -6,13 +6,9 @@ on:
       - '*'
 
 jobs:
-
   release:
     runs-on: ubuntu-latest
-    # OUTPUTS
-    outputs:
-      newtag: ${{ steps.tag.outputs.tag }}
-      uploadurl: ${{ steps.create_release.outputs.upload_url }}
+
     steps:
       # GET LATEST CODE
       - name: Checkout latest code
@@ -35,36 +31,12 @@ jobs:
           'https://git.griefed.de/api/v4/projects/95/releases/${{steps.tag.outputs.tag}}' >> ./version.json
 
       # GET DESCRIPTION
-      - name: Extract version from package.json
+      - name: Extract version changelog
         uses: sergeysova/jq-action@v2
         id: description
         with:
-          cmd: 'jq .description version.json -r'
+          cmd: "jq .description version.json -r | sed -e 's/\\n/\\n/g' > description.txt"
           multiline: true
-
-      # GENERATE RELEASE
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{steps.tag.outputs.tag}}
-          body: ${{ steps.description.outputs.value }}
-          draft: false
-          prerelease: false
-
-  main:
-    needs: release
-    runs-on: ubuntu-latest
-    steps:
-      # GET LATEST CODE
-      - name: Checkout latest code
-        uses: actions/checkout@master
-        with:
-          ref: main
-          fetch-depth: 0
 
       # BUILD PROJECT AND PUBLISH TO PACKAGES
       - name: Set up JDK 8
@@ -77,44 +49,60 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
-
       - name: Publish to GitHub Packages
         env:
           GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          ./gradlew -Pversion=${{ needs.release.outputs.newtag }} build --info --full-stacktrace -x test
+          ./gradlew -Pversion=${{steps.tag.outputs.tag}} build --info --full-stacktrace -x test
 
-      # UPLOAD ASSETS TO RELEASE
-      - name: Upload Release Asset Main Jar
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # GENERATE RELEASE
+      - name: Create Release
+        id: create_release
+        uses: softprops/action-gh-release@v1
         with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}.jar
-          asset_name: ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}.jar
-          asset_content_type: application/jar
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: ${{steps.tag.outputs.tag}}
+          name: Release ${{steps.tag.outputs.tag}}
+          body_path: description.txt
+          draft: false
+          prerelease: false
+          fail_on_unmatched_files: false
+          files: |
+            build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}.jar
+            build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
+            build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
 
-      - name: Upload Release Asset Sources Jar
-        id: upload-release-asset-sources
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # PUBLISH ARTIFACTS
+      - uses: actions/upload-artifact@v3
         with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_name: ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
-          asset_content_type: application/jar
+          name: build-artifacts-gradle
+          path: |
+            build
+          if-no-files-found: warn # 'warn' or 'ignore' are also available, defaults to `warn`
 
-      - name: Upload Release Asset Javadoc Jar
-        id: upload-release-asset-javadoc
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url:  ${{ needs.release.outputs.uploadurl }}
-          asset_path: ./build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_name: ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
-          asset_content_type: application/jar
+      # ANNOUNCE NEW VERSION
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=today::$(date +'%Y-%m-%dT%H:%M:%S')"
+      - name: Post WebHook Message
+        run: |
+          curl -L --output ./discord.sh https://raw.githubusercontent.com/ChaoticWeg/discord.sh/master/discord.sh
+          chmod a+x ./discord.sh
+          ./discord.sh \
+            --webhook-url="${{ secrets.WEBHOOK_URL }}" \
+            --username "$GITHUB_REPOSITORY" \
+            --avatar "https://i.griefed.de/images/2020/11/18/Prosper_Docker_300x300.png" \
+            --text "There's been a new release for $GITHUB_REPOSITORY. The new version is ${{steps.tag.outputs.tag}} and is available at <$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/${{steps.tag.outputs.tag}}>" \
+            --title "New $GITHUB_REPOSITORY Release" \
+            --description "There's been a new release for $GITHUB_REPOSITORY. The new version is ${{steps.tag.outputs.tag}} and is available at $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/${{steps.tag.outputs.tag}}" \
+            --color "0xC0FFEE" \
+            --url "$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/${{steps.tag.outputs.tag}}" \
+            --author "Griefed" \
+            --author-url "$GITHUB_SERVER_URL/Griefed" \
+            --author-icon "https://i.griefed.de/images/2022/01/21/sam_1500x1500.th.jpg" \
+            --thumbnail "https://i.griefed.de/images/2022/09/15/icon.png" \
+            --field "Author;[Griefed]($GITHUB_SERVER_URL/Griefed)" \
+            --field "Platform;[GitHub]($GITHUB_SERVER_URL)" \
+            --footer "Released at ${{ steps.date.outputs.today }}" \
+            --footer-icon "https://i.griefed.de/images/2022/01/21/start_generation.png"
