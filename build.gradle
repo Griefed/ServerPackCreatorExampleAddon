@@ -16,7 +16,6 @@ sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
     Set it carefully!
  */
 group 'de.griefed'
-version = "1.0.0"
 def pluginClass = group + '.exampleaddon.Example'
 def addon_id = 'example'
 def addon_name = 'Example Addon'

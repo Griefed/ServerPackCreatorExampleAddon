@@ -69,9 +69,7 @@ jobs:
           prerelease: false
           fail_on_unmatched_files: false
           files: |
-            build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}.jar
-            build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-sources.jar
-            build/libs/ServerPackCreatorExampleAddon-${{ needs.release.outputs.newtag }}-javadoc.jar
+            build/libs/ServerPackCreatorExampleAddon-${{steps.tag.outputs.tag}}.jar
 
       # PUBLISH ARTIFACTS
       - uses: actions/upload-artifact@v3

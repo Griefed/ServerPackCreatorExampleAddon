@@ -27,7 +27,6 @@ def addon_name = 'Example Addon'
 def addon_description = 'An example addon for ServerPackCreator'
 def addon_author = 'Griefed'
 group 'de.griefed'
-version = "1.0.0"
 ```
 
 `pluginClass` must point at the Addon/Plugin class of your addon. Think of it as the Main-Class-attribute from a regular JARs manifest.
@@ -39,7 +38,7 @@ your addon-ID is, the more likely it will be able to co-exist with any other add
 
 `addon_name` Is good for identifying a troublesome addon in the logs.
 
-`addon_description`, `addon_author` and `version` are fancy to have and should contain a value, but they are not used by ServerPackCreator for any vital or sensitive operations.
+`addon_description`, `addon_author` are fancy to have and should contain a value, but they are not used by ServerPackCreator for any vital or sensitive operations.
 
 `group` well yeah, this should obviously be changed to **your** group as you're **not** me 😅
 

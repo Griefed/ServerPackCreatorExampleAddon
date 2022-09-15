@@ -10,7 +10,7 @@ point available in ServerPackCreator.
 
 ## 1.1 Addon details
 
-Take care to edit this section in the [build.gradle](build.gradle)-file if you forked, or intent on forking, this repository.
+Take care to edit this section in the `build.gradle`-file if you forked, or intent on forking, this repository.
 
 ```groovy
 /*
@@ -27,7 +27,6 @@ def addon_name = 'Example Addon'
 def addon_description = 'An example addon for ServerPackCreator'
 def addon_author = 'Griefed'
 group 'de.griefed'
-version = "1.0.0"
 ```
 
 `pluginClass` must point at the Addon/Plugin class of your addon. Think of it as the Main-Class-attribute from a regular JARs manifest.
@@ -39,13 +38,13 @@ your addon-ID is, the more likely it will be able to co-exist with any other add
 
 `addon_name` Is good for identifying a troublesome addon in the logs.
 
-`addon_description`, `addon_author` and `version` are fancy to have and should contain a value, but they are not used by ServerPackCreator for any vital or sensitive operations.
+`addon_description`, `addon_author` are fancy to have and should contain a value, but they are not used by ServerPackCreator for any vital or sensitive operations.
 
 `group` well yeah, this should obviously be changed to **your** group as you're **not** me 😅
 
 ### 1.1.1 Updating the implemented version of ServerPackCreator
 
-It's as simple as changing the version specified in the `dependencies`-section of the [build.gradle](build.gradle):
+It's as simple as changing the version specified in the `dependencies`-section of the `build.gradle`:
 
 ```groovy
 dependencies {
@@ -82,7 +81,7 @@ and
 public void setServerPackExtensionConfig(ArrayList<CommentedConfig> serverPackExtensionConfig) {...}
 ```
 
-in the [ConfigurationPanel](src/main/java/de/griefed/exampleaddon/gui/panel/ConfigurationPanel.java)-class.
+in the `ConfigurationPanel`-class.
 
 ## 1.3 Tab Extension
 
@@ -99,7 +98,6 @@ your tab.
 Below the big button are some textfields which allow you to change some values of the global addon-wide configuration.
 Global addon-configurations are handed to you by ServerPackCreator when the tab is instantiated. The only thing
 you need to take care of is to call `saveConfiguration()` from within your tab to save the configuration.
-See the example in the [TetrisTab](src/main/java/de/griefed/exampleaddon/gui/tab/TetrisTab.java)-class.
 The example above simply adds a button `Set values` which does just that. 
 
 Global addon-configurations are passed to every extension, along with any available extension-specific configuration,
@@ -120,7 +118,7 @@ of passed configs contains text. If it does, then we add a custom error message 
 during configuration checks.
 That list is then displayed to the user after the configurations checks have all run.
 
-For details see `runCheck(...) {...}` in the [ConfigurationCheck](src/main/java/de/griefed/exampleaddon/configcheck/ConfigurationCheck.java)-class.
+For details see `runCheck(...) {...}` in the `ConfigurationCheck`-class.
 
 Keep in mind that the method must return `true` in order to trigger a config check failure on ServerPackCreators part.
 Only if any one configuration check, be that ServerPackCreator native or from addons, returns `true` will the
@@ -139,7 +137,7 @@ You may use this to prepare the environment for any of the tailing extensions.
 The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
 extension passed to it by ServerPackCreator.
 
-See the [PreGeneration](src/main/java/de/griefed/exampleaddon/serverpack/PreGeneration.java)-class for details on how the example above was achieved.
+See the `PreGeneration`-class for details on how the example above was achieved.
 
 ## 1.6 Pre Server Pack ZIP-archive Creation Extension
 
@@ -151,7 +149,7 @@ started. Want to add any files to the ZIP-archive? Or make sure some file doesn'
 The above example shows the run of a PreZip extension, with the global addon configuration as well as the extension-specific
 extension passed to it by ServerPackCreator.
 
-See the [PreZipArchive](src/main/java/de/griefed/exampleaddon/serverpack/PreZipArchive.java)-class for details on how the example above was achieved.
+See the `PreZipArchive`-class for details on how the example above was achieved.
 
 ## 1.7 Post Server Pack Generation Extension
 
@@ -164,7 +162,7 @@ install and configure DynMap with some renderdata? This would be the place to do
 The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
 extension passed to it by ServerPackCreator.
 
-See the [PostGeneration](src/main/java/de/griefed/exampleaddon/serverpack/PostGeneration.java)-class for details on how the example above was achieved.
+See the `PostGeneration`-class for details on how the example above was achieved.
 
 See now why the ConfigPanel, ConfigCheck and Tab extensions are so nice to have?
 The possibilities are (almost) **endless**!😁 
