@@ -1,3 +1,10 @@
+## [4.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.0...4.0.1) (2022-09-15)
+
+
+### 🛠 Fixes
+
+* **Gradle:** Correctly use specified version in build. Move version to gradle.properties. Upload correct artifact to release. ([9e3ffaa](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/9e3ffaa386504ce5f5d4dee604d3fa6230d2c930))
+
 ## [4.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.16...4.0.0) (2022-09-15)
 
 
