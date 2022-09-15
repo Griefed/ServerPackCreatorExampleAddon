@@ -1,6 +1,6 @@
 # 1. Example Addon for ServerPackCreator
 
-This is an example server pack addon for [ServerPackCreator](https://github.com/Griefed/ServerPackCreator)
+This is an example addon for [ServerPackCreator](https://github.com/Griefed/ServerPackCreator)
 
 ServerPackCreator provides several extension endpoints for [pf4j plugins](https://github.com/pf4j/pf4j), from hereon out called **addons**, to add
 additional functionality. This example addon demonstrates an implementation for all available extension endpoints of ServerPackCreator.
@@ -10,7 +10,7 @@ point available in ServerPackCreator.
 
 ## 1.1 Addon details
 
-Take care to edit this section in the `build.gradle`-file if you forked, or intent on forking, this repository.
+Take care to edit this section in the [build.gradle](build.gradle)-file if you forked, or intent on forking, this repository.
 
 ```groovy
 /*
@@ -44,17 +44,19 @@ your addon-ID is, the more likely it will be able to co-exist with any other add
 
 ### 1.1.1 Updating the implemented version of ServerPackCreator
 
-It's as simple as changing the version specified in the `dependencies`-section of the `build.gradle`:
+It's as simple as changing the version specified in the `dependencies`-section of the [build.gradle](build.gradle):
 
 ```groovy
 dependencies {
     ...
-    implementation 'de.griefed:serverpackcreator:3.14.0'
+    implementation 'de.griefed:serverpackcreator:<NEW_VERSION_HERE>'
     ...
 }
 ```
 
 ## 1.2 Configuration Panel Extension
+
+**`implements ExtensionConfigPanel`**
 
 The configuration panel is intended to let you add a panel in which you, or the user of your addon, may
 configure something for any of the extensions added by your addon.
@@ -81,9 +83,15 @@ and
 public void setServerPackExtensionConfig(ArrayList<CommentedConfig> serverPackExtensionConfig) {...}
 ```
 
-in the `ConfigurationPanel`-class.
+in the [ConfigurationPanel](src/main/java/de/griefed/exampleaddon/gui/panel/ConfigurationPanel.java)- and [Panel](src/main/java/de/griefed/exampleaddon/gui/panel/Panel.java)-classes.
+
+Docs: [Configuration Panel Extension](https://griefed.github.io/ServerPackCreator/de/griefed/serverpackcreator/addons/swinggui/ConfigPanelExtension.html)
+
+In order for your extension to register correctly, make sure to implement the correct interfaces and use the `@Extension`-annotation on your extension-class.
 
 ## 1.3 Tab Extension
+
+**`implements TabExtension`**
 
 Tab extensions allow you to add whole tabs to the GUI of ServerPackCreator. These additional tabs are intended
 to let you add textfields and such, which allow you to configure your global addon configuration.
@@ -97,7 +105,7 @@ your tab.
 
 Below the big button are some textfields which allow you to change some values of the global addon-wide configuration.
 Global addon-configurations are handed to you by ServerPackCreator when the tab is instantiated. The only thing
-you need to take care of is to call `saveConfiguration()` from within your tab to save the configuration.
+you need to take care of is to call `saveConfiguration()` (see [Tab](src/main/java/de/griefed/exampleaddon/gui/tab/TetrisTab.java) )from within your tab to save the configuration.
 The example above simply adds a button `Set values` which does just that. 
 
 Global addon-configurations are passed to every extension, along with any available extension-specific configuration,
@@ -105,7 +113,13 @@ automatically, so you don't have to worry about anything other than actually sav
 
 Maybe have a timer auto-save every few seconds? Your tab, your choice! 😁
 
+See [TetrisTab](src/main/java/de/griefed/exampleaddon/gui/tab/TetrisTab.java) and [Tab](src/main/java/de/griefed/exampleaddon/gui/tab/Tab.java)
+
+Docs: [Tab Extension](https://griefed.github.io/ServerPackCreator/de/griefed/serverpackcreator/addons/swinggui/TabExtension.html)
+
 ## 1.4 Configuration Check Extension
+
+**`implements ConfigCheckExtension`**
 
 The configuration check extension point allows you to run your own config checks, be that on any of the
 already available data from the server pack config tab, or your own data from the configuration panel, or your
@@ -118,7 +132,7 @@ of passed configs contains text. If it does, then we add a custom error message 
 during configuration checks.
 That list is then displayed to the user after the configurations checks have all run.
 
-For details see `runCheck(...) {...}` in the `ConfigurationCheck`-class.
+For details see `runCheck(...) {...}` in the [ConfigurationCheck](src/main/java/de/griefed/exampleaddon/configcheck/ConfigurationCheck.java)-class.
 
 Keep in mind that the method must return `true` in order to trigger a config check failure on ServerPackCreators part.
 Only if any one configuration check, be that ServerPackCreator native or from addons, returns `true` will the
@@ -127,7 +141,13 @@ error messages be displayed to the user.
 Make use of this extension point in combination with the **Configuration Panel Extension** and/or **Tab Extension** in order to
 check user input for any errors!
 
+See [ConfigurationCheck](src/main/java/de/griefed/exampleaddon/configcheck/ConfigurationCheck.java)
+
+Docs: [ConfigurationCheck Extension](https://griefed.github.io/ServerPackCreator/de/griefed/serverpackcreator/addons/configurationhandler/ConfigCheckExtension.html)
+
 ## 1.5 Pre Server Pack Generation Extension
+
+**`implements PreGenExtension`**
 
 The Pre Server Pack Generation extensions run, as the name implies, *right before* the generation of a server pack really begins.
 You may use this to prepare the environment for any of the tailing extensions.
@@ -137,9 +157,13 @@ You may use this to prepare the environment for any of the tailing extensions.
 The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
 extension passed to it by ServerPackCreator.
 
-See the `PreGeneration`-class for details on how the example above was achieved.
+See [PreGeneration](src/main/java/de/griefed/exampleaddon/serverpack/PreGeneration.java)
+
+Docs: [Pre Generation Extension](https://griefed.github.io/ServerPackCreator/de/griefed/serverpackcreator/addons/serverpackhandler/PreGenExtension.html)
 
 ## 1.6 Pre Server Pack ZIP-archive Creation Extension
+
+**`implements PreZipExtension`**
 
 The Pre Server Pack ZIP-archive Creation extensions run, as the name implies, *right before* the creation of the server packs ZIP-archive is, or would be,
 started. Want to add any files to the ZIP-archive? Or make sure some file doesn't make it into the ZIP-archive?
@@ -149,9 +173,13 @@ started. Want to add any files to the ZIP-archive? Or make sure some file doesn'
 The above example shows the run of a PreZip extension, with the global addon configuration as well as the extension-specific
 extension passed to it by ServerPackCreator.
 
-See the `PreZipArchive`-class for details on how the example above was achieved.
+See [PreZipArchive](src/main/java/de/griefed/exampleaddon/serverpack/PreZipArchive.java)
+
+Docs: [Pre Zip Extension](https://griefed.github.io/ServerPackCreator/de/griefed/serverpackcreator/addons/serverpackhandler/PreZipExtension.html)
 
 ## 1.7 Post Server Pack Generation Extension
+
+**`implements PostGenExtension`**
 
 The Post Server Pack Generation extensions run, as the name implies, *after* the generation of a server pack has finished.
 Want to add any files to the server pack, but don't want them to end up in the ZIP-archive? Maybe download,
@@ -162,7 +190,11 @@ install and configure DynMap with some renderdata? This would be the place to do
 The above example shows the run of a PreGen extension, with the global addon configuration as well as the extension-specific
 extension passed to it by ServerPackCreator.
 
-See the `PostGeneration`-class for details on how the example above was achieved.
+See [PostGeneration](src/main/java/de/griefed/exampleaddon/serverpack/PostGeneration.java)
+
+Docs: [Post Generation Extension](https://griefed.github.io/ServerPackCreator/de/griefed/serverpackcreator/addons/serverpackhandler/PostGenExtension.html)
+
+---
 
 See now why the ConfigPanel, ConfigCheck and Tab extensions are so nice to have?
 The possibilities are (almost) **endless**!😁 
