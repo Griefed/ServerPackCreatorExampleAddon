@@ -290,14 +290,6 @@ description of what your
 addon does and a link to the GitHub repository as well. I will add it to a list in the README of
 ServerPackCreator.
 
-**NOTE: I only add addons which are open source. I will NOT add any direct download links to any
-file. People must be able
-to check your code before they download and install your addon, and as such, I will only add a link
-to your addon-respository
-along with a small description, if you provided one.
-
-Example:
-
-| Addon                                                                                    | Creator | Description                                                                                             |
-|:-----------------------------------------------------------------------------------------|:--------|:--------------------------------------------------------------------------------------------------------|
-| [ExampleAddon](https://github.com/Griefed/ServerPackCreatorExampleAddon)                 | Griefed | An example addon providing a starting point for addon development with one example for every extension. |
+**NOTE**: I only add addons which are open source. I will **NOT** add any direct download links to any
+file. People must be able to check your code before they download and install your addon, and as such, I will only add a link
+to your addon-respository along with a small description, if you provided one.
