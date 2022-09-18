@@ -1,3 +1,22 @@
+## [4.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.0...4.0.1) (2022-09-15)
+
+
+### 🛠 Fixes
+
+* **Gradle:** Correctly use specified version in build. Move version to gradle.properties. Upload correct artifact to release. ([9e3ffaa](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/9e3ffaa386504ce5f5d4dee604d3fa6230d2c930))
+
+## [4.0.0](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.16...4.0.0) (2022-09-15)
+
+
+### 🦊 CI/CD
+
+* Bring GitHub workflows up to date ([18dbcbc](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/18dbcbcb2db428353450302de7e445688d64fd1f))
+
+
+### 🧨 Breaking changes!
+
+* **Addon Suite Upgrade:** Move to new ServerPackCreator addon suite. Provide examples for all extension endpoints.  Examples for ConfigCheck-, ConfigPanel-, Tab-, PreGen-, PreZip- and PostGen extensions, global addon configuration, extension configuration and more. ([36ffd33](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/36ffd331037d2d62bdc71219d8d29c781cae1fa8))
+
 ### [3.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/3.0.1...3.0.2) (2022-01-31)
 
 
