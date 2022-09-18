@@ -1,3 +1,16 @@
+## [4.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.1...4.0.2) (2022-09-18)
+
+
+### 🦊 CI/CD
+
+* **deps:** Update ServerPackCreator to 3.14.2 ([37cd0ba](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/37cd0ba2240f8468ce674e63a265705f154deef6))
+
+
+### Other
+
+* **README:** Link classes and relevant docs ([5db6342](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/5db63429ba28ee15bcb4545a102478546461211d))
+* **README:** Minor formatting fixes ([fd02450](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/fd024506f9d8fd3928d4588f3701ef24f9a9a322))
+
 ## [4.0.1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.0...4.0.1) (2022-09-15)
 
 
