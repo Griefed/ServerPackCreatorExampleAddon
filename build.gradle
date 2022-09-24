@@ -53,7 +53,7 @@ repositories {
 
 dependencies {
   annotationProcessor 'org.pf4j:pf4j:3.7.0'
-  implementation 'de.griefed:serverpackcreator:3.14.2'
+  implementation 'de.griefed:serverpackcreator:3.14.4'
 
   // Testing
   testImplementation 'org.mockito:mockito-core:4.8.0'
