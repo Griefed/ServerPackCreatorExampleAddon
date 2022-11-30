@@ -53,10 +53,10 @@ repositories {
 
 dependencies {
   annotationProcessor 'org.pf4j:pf4j:3.7.0'
-  implementation 'de.griefed:serverpackcreator:3.14.6'
+  implementation 'de.griefed:serverpackcreator:3.14.7'
 
   // Testing
-  testImplementation 'org.mockito:mockito-core:4.8.0'
+  testImplementation 'org.mockito:mockito-core:4.8.1'
   testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
 }
