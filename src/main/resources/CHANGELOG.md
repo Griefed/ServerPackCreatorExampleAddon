@@ -1,3 +1,23 @@
+## [4.0.4](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.3...4.0.4) (2022-10-04)
+
+
+### 🛠 Fixes
+
+* **deps:** update dependency de.griefed:serverpackcreator to v3.14.6 ([1768088](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/17680884fd2c785e8b92183c6ea21319d4f58424))
+
+
+### Other
+
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.2 ([2145039](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/21450399958a6bdcc3bb1db851d896b7e1c11a31))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.14 ([2a3123f](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/2a3123f13d96518fa83cf3bf8b669415833ffe3d))
+
+## [4.0.3](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.2...4.0.3) (2022-09-24)
+
+
+### 🦊 CI/CD
+
+* **deps:** Update ServerPackCreator implementation to 3.14.4 ([74a4aa1](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/74a4aa1b7034212783da73a863baf0f5de6cac9d))
+
 ## [4.0.2](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.1...4.0.2) (2022-09-18)
 
 
