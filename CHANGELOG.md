@@ -1,3 +1,19 @@
+## [4.0.5](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.4...4.0.5) (2022-12-19)
+
+
+### 🛠 Fixes
+
+* **deps:** update dependency de.griefed:serverpackcreator to v3.14.7 ([4c61b7b](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/4c61b7b4d5938e22d6bcf612dfb12c1494d0f39a))
+* **deps:** update dependency org.mockito:mockito-core to v4.8.1 ([398a20a](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/398a20ad691a9739574b5d11da1b6f23b4ad38d7))
+
+
+### Other
+
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.3 ([97b6a64](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/97b6a6474d103cf51cfef05f0b37ecc70b3470c0))
+* **deps:** update ghcr.io/griefed/gitlab-ci-cd docker tag to v2.2.4 ([343af71](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/343af71b9d06d2b9d6b21aa56bfe81fbf2b74c6d))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.15 ([aa8b7e7](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/aa8b7e719e233e6549be233ed294cb6aacc4a693))
+* **deps:** update griefed/baseimage-ubuntu-jdk-8 docker tag to v2.0.16 ([c9df227](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/commit/c9df227524c9d7ad125520a8f19318fcddc2f8c2))
+
 ## [4.0.4](https://git.griefed.de/Griefed/ServerPackCreatorExampleAddon/compare/4.0.3...4.0.4) (2022-10-04)
 
 
